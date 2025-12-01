@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Logan Luna – Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="top-bar">
+      <div class="name-title">
+        <h1>Logan Luna</h1>
+        <p>
+          B.S. Computer Science, Embry-Riddle Aeronautical University (Honors) ·
+          DoD SMART Scholar · Machine Learning, Optimization
+        </p>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html" class="active">Home</a> |
+      <a href="bio.html">Brief Bio/CV</a> |
+      <a href="publications.html">Publications</a> |
+      <a href="research.html">Research</a> |
+      <a href="awards.html">Awards</a> |
+      <a href="software.html">Software</a> |
+      <a href="links.html">Interests/Links</a> |
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section id="home">
+    <div class="two-column">
+      <div class="left-column">
+        <h2>Home</h2>
+        <p>
+          I am an undergraduate researcher in Computer Science at
+          <span class="label">Embry-Riddle Aeronautical University</span> and a
+          <span class="label">DoD SMART Scholar</span>. My work focuses on machine learning,
+          reinforcement learning, optimization, cybersecurity, and remote sensing,
+          with applications in satellite trajectory optimization, intrusion
+          detection, and autonomous maritime robotics.
+        </p>
+        <p>
+          I currently intern at the
+          <span class="label">Naval Surface Warfare Center Dahlgren Division (NSWCDD)</span>,
+          where I develop real-time autonomous tracking systems that integrate
+          machine learning, computer vision, and radar sensing.
+        </p>
+        <p>
+          Broadly, I am interested in:
+        </p>
+        <ul>
+          <li>Machine learning and artificial intelligence</li>
+          <li>AI for Mathematics (AI4Math), specifically symbolic reasoning and theorem proving for mathematical research</li>
+          <li>Optimization and new learning algorithms (e.g., magnitude-invariant optimizers)</li>
+          <li>Reinforcement learning for safety-critical and physical systems</li>
+          <li>Cybersecurity, intrusion detection, and threat hunting with RL</li>
+          <li>Signal-centric remote sensing for sonar and radar</li>
+          <li>Autonomous aerial and underwater vehicles</li>
+        </ul>
+      </div>
+
+      <div class="right-column">
+        <!-- Your headshot on the right -->
+        <img src="pictures/HeadShot.png" alt="Logan Luna" class="profile-photo">
+
+        <div class="small">
+            <div><span class="label">Email:</span> <a href="mailto:Logan03Luna@gmail.com">Logan03Luna@gmail.com</a></div>
+            <div><span class="label">LinkedIn:</span> <a href="https://www.linkedin.com/in/logan-luna">linkedin.com/in/logan-luna</a></div>
+            <div><span class="label">GitHub:</span> <a href="https://github.com/Logan-Cole-Luna" class="code-link">github.com/Logan-Cole-Luna</a></div>
+            <div><span class="label">Google Scholar:</span> <a href="https://scholar.google.com/citations?user=cwfqLqYAAAAJ&hl=en&oi=ao">Google Scholar Profile</a></div>
+        </div>
+
+
+        <h3>News</h3>
+        <ul class="news-list small">
+           <li><strong>2025</strong> – <em>Satellite Trajectory Optimization via Machine Learning for Space Debris Avoidance</em> submitted to IEEE Access.</li>
+           <li><strong>2025</strong> – <a href="https://news.erau.edu/headlines/embry-riddle-undergrads-develop-guard-dog-system-to-ward-off-cyberattacks" target="_blank" rel="noopener">Embry‑Riddle Undergrads Develop ‘Guard Dog’ System to Ward Off Cyberattacks</a> Three Embry‑Riddle undergraduates won first place at IEEE SoutheastCon for a machine-learning system that autonomously adapts to evolving cyber threats.</li>
+           <li><strong>2025</strong> – <em>Dueling Deep Q-Learning for Intrusion Detection</em> accepted to IEEE SoutheastCon 2025 (IEEE-Eta Kappa Nu Best Paper Award).</li>
+           <li><strong>2025</strong> – <em>Signal-Centric Remote Sensing via Alternative Preprocessing and Acoustic Processing for ML-Driven Applications</em> accepted to IEEE SoutheastCon 2025.</li>
+           <li><strong>2024</strong> – Began DoD internship at NSWCDD for computer vision systems.</li>
+           <li><strong>2023</strong> – Awarded DoD SMART Scholarship.</li>
+           <li><strong>2023</strong> – 1st Place at Embry-Riddle Student Research Symposium for research on <em>Advanced Aerial Mapping with Computer Vision</em>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    &copy; <span id="year"></span> Logan Luna. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

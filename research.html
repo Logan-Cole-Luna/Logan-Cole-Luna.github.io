@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Logan Luna – Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="top-bar">
+      <div class="name-title">
+        <h1>Logan Luna</h1>
+        <p>Research</p>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="bio.html">Brief Bio/CV</a> |
+      <a href="publications.html">Publications</a> |
+      <a href="research.html" class="active">Research</a> |
+      <a href="awards.html">Awards</a> |
+      <a href="software.html">Software</a> |
+      <a href="links.html">Interests/Links</a> |
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- RESEARCH AREAS -->
+  <section>
+    <h2>Research Areas</h2>
+    <ul>
+      <li>Reinforcement learning for cyber defense and autonomous control</li>
+      <li>Optimization algorithms and gradient normalization methods</li>
+      <li>Signal-centric remote sensing (sonar, radar) and ML</li>
+      <li>Autonomous aerial and underwater vehicles (sim-to-real)</li>
+      <li>AI for sustainability in orbital mechanics and space traffic management</li>
+    </ul>
+  </section>
+
+  <!-- CURRENT PROJECTS -->
+  <section>
+    <h2>Current Projects</h2>
+    <ul>
+      <li>
+        <span class="item-title">Milo: Magnitude-Invariant Learning Optimizer</span> (2025–Present).<br>
+        A group-wise gradient normalization optimization method designed to reduce
+        magnitude distortion in learning dynamics. Includes empirical testing across
+        image classification, CNNs, and reinforcement learning tasks.
+      </li>
+    </ul>
+  </section>
+
+  <!-- POSTERS SECTION -->
+  <section>
+    <h2>Research Posters</h2>
+    <p>Below is a selected collection of research posters from 2022–2025, representing
+    my work across reinforcement learning, optimization, sonar processing, and remote sensing.</p>
+
+    <div class="poster-grid">
+
+      <!-- SAT PROPOSAL -->
+      <div class="poster-item">
+        <h3>Satellite Proposal Poster (2025)</h3>
+        <p>This poster introduces the proposes a development framework for satellite anomaly detection. It outlines the motivation, mission impact, and design plan prior to full implementation.</p>
+        <a href="posters/SatProposalPoster.png" target="_blank">
+          <img src="posters/SatProposalPoster.png" class="poster-thumb">
+        </a>
+      </div>
+
+      <!-- SAT RESEARCH -->
+      <div class="poster-item">
+        <h3>Satellite Trajectory Research Poster (2024)</h3>
+        <p>Displays the full research results for PPO-based orbital collision avoidance, including stabilized low-fuel orbits and debris-avoidance maneuvers. This poster was presented as the research matured into publishable form.</p>
+        <a href="posters/SatResearchPoster.png" target="_blank">
+          <img src="posters/SatResearchPoster.png" class="poster-thumb">
+        </a>
+      </div>
+
+      <!-- CYBER -->
+      <div class="poster-item">
+        <h3>Hierarchical Dueling Q-Learning for Intrusion Detection (2024)</h3>
+        <p>This poster outlines a two-agent Q-learning and Dueling DQN system for classifying and responding to cyberattacks. It demonstrates near-perfect binary and multi-class accuracy on large intrusion datasets.</p>
+        <a href="posters/Hierarchical Q-Learning for Intrusion Detection.png" target="_blank">
+          <img src="posters/Hierarchical Q-Learning for Intrusion Detection.png" class="poster-thumb">
+        </a>
+      </div>
+
+      <!-- SONAR -->
+      <div class="poster-item">
+        <h3>Sonar Contrastive Learning Research (2024)</h3>
+        <p>Presents a semi-supervised contrastive learning model for sonar-based object detection. Highlights both noise reduction strategies and adaptation potential for radar systems.</p>
+        <a href="posters/RemoteSensingResearch.png" target="_blank">
+          <img src="posters/RemoteSensingResearch.png" class="poster-thumb">
+        </a>
+      </div>
+
+      <!-- AMRA -->
+      <div class="poster-item">
+        <h3>Autonomous Maritime Robotics Association Poster (2023)</h3>
+        <p>This poster shows early work on underwater sonar-based detection, noise filtering strategies, and object tracking. It represents the foundation of later remote-sensing and sonar research.</p>
+        <a href="posters/AMRA Presentation.png" target="_blank">
+          <img src="posters/AMRA Presentation.png" class="poster-thumb">
+        </a>
+      </div>
+
+      <!-- AIRCRAFT -->
+      <div class="poster-item">
+        <h3>Aircraft Detection & Kalman Tracking Poster (2022)</h3>
+        <p>One of my earliest research posters, combining YOLO object detection with ORB keypoints and Kalman filtering for aircraft motion prediction. Demonstrates reliable tracking through occlusions and movement noise.</p>
+        <a href="posters/Aircraft Tracking (48 x 36 in).png" target="_blank">
+          <img src="posters/Aircraft Tracking (48 x 36 in).png" class="poster-thumb">
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    &copy; <span id="year"></span> Logan Luna. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

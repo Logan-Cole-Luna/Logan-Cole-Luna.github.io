@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Logan Luna – Software</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="top-bar">
+      <div class="name-title">
+        <h1>Logan Luna</h1>
+        <p>Software & Code</p>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="bio.html">Brief Bio/CV</a> |
+      <a href="publications.html">Publications</a> |
+      <a href="research.html">Research</a> |
+      <a href="awards.html">Awards</a> |
+      <a href="software.html" class="active">Software</a> |
+      <a href="links.html">Interests/Links</a> |
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section>
+    <h2>Selected Software Projects</h2>
+    <ul>
+      <li>
+        <span class="item-title">Satellite Trajectory Projection and Collision Avoidance</span><br>
+        RL-based satellite collision avoidance environment and PPO pipeline.<br>
+        <span class="small code-link">
+          <a href="https://github.com/Logan-Cole-Luna/sat-trajectory-avoidance">
+            github.com/Logan-Cole-Luna/sat-trajectory-avoidance
+          </a>
+        </span>
+      </li>
+
+      <li>
+        <span class="item-title">Hierarchical Q-Learning for Threat Hunting (Dueling DQN)</span><br>
+        A multi-stage RL agent performing hierarchical intrusion detection over
+        network traffic, including binary classification and attack-type prediction.<br>
+        <span class="small code-link">
+          <a href="https://github.com/Logan-Cole-Luna/Hierarchical-Q-Learning-Threat-Hunting">
+            github.com/Logan-Cole-Luna/Hierarchical-Q-Learning-Threat-Hunting
+          </a>
+        </span>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    &copy; <span id="year"></span> Logan Luna. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

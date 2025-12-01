@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Logan Luna – Awards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="top-bar">
+      <div class="name-title">
+        <h1>Logan Luna</h1>
+        <p>Awards & Honors</p>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="bio.html">Brief Bio/CV</a> |
+      <a href="publications.html">Publications</a> |
+      <a href="research.html">Research</a> |
+      <a href="awards.html" class="active">Awards</a> |
+      <a href="software.html">Software</a> |
+      <a href="links.html">Interests/Links</a> |
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section>
+    <h2>Selected Awards</h2>
+    <ul class="awards-list">
+
+      <!-- IEEE Award -->
+      <li class="award-item">
+        <img src="pictures/southeastcon.jpg" alt="IEEE SoutheastCon Award" class="award-img">
+        <div>
+          <span class="item-title">IEEE-Eta Kappa Nu Best Student Paper Award</span>, 2025.<br>
+          For “Dueling Deep Q-Learning for Intrusion Detection” at IEEE SoutheastCon 2025.
+        </div>
+      </li>
+
+      <!-- SRS Award -->
+      <li class="award-item">
+        <img src="pictures/SRS_LoganLuna.png" alt="Student Research Symposium Award" class="award-img">
+        <div>
+          <span class="item-title">1st Place, Embry-Riddle Student Research Symposium</span>, 2023.<br>
+          For "Advanced Aerial Mapping with Computer Vision".
+        </div>
+      </li>
+
+      <li class="award-item">
+        <div>
+          <span class="item-title">DoD SMART (Science, Mathematics, and Research for Transformation) Scholarship</span>, 2023–Present.
+        </div>
+      </li>
+
+      <li class="award-item">
+        <div>
+          Dean’s List, Honors Program, Embry-Riddle Aeronautical University.
+        </div>
+      </li>
+
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    &copy; <span id="year"></span> Logan Luna. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

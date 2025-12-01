@@ -1,0 +1,240 @@
+/* Basic layout and typography */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9fafb;
+  color: #111827;
+  line-height: 1.6;
+}
+
+header {
+  background: #111827;
+  color: #f9fafb;
+  padding: 1.5rem 0.5rem;
+  border-bottom: 4px solid #2563eb;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.top-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.name-title h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.name-title p {
+  margin: 0.2rem 0 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+nav {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+nav a {
+  color: #e5e7eb;
+  text-decoration: none;
+  margin-right: 0.75rem;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+}
+
+nav a:hover {
+  border-color: #fde68a;
+}
+
+nav a.active {
+  border-color: #60a5fa;
+}
+
+main {
+  padding: 2rem 0 3rem;
+}
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+section h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.25rem;
+}
+
+.two-column {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.left-column {
+  flex: 2;
+  min-width: 260px;
+}
+
+.right-column {
+  flex: 1.4;
+  min-width: 220px;
+}
+
+.profile-photo {
+  width: 100%;
+  max-width: 220px;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 0.75rem;
+}
+
+ul {
+  padding-left: 1.2rem;
+  margin-top: 0.25rem;
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
+
+.news-list li {
+  margin-bottom: 0.2rem;
+}
+
+.subtle {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.item-title {
+  font-weight: 600;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.tagline {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.small {
+  font-size: 0.9rem;
+}
+
+a {
+  color: #1d4ed8;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.contact-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.contact-list li {
+  margin-bottom: 0.2rem;
+}
+
+.code-link {
+  font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+footer {
+  border-top: 1px solid #e5e7eb;
+  padding: 1rem 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+@media (max-width: 700px) {
+  nav {
+    line-height: 1.8;
+  }
+}
+
+.awards-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.award-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.award-img {
+  width: 140px;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Poster Grid */
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 25px;
+}
+
+/* Poster Container */
+.poster-item {
+  text-align: center;
+  padding: 10px;
+}
+
+/* Thumbnail Styling */
+.poster-thumb {
+  width: 100%;
+  max-width: 250px;    /* ensures consistent thumbnail width */
+  height: auto;
+  max-height: 350px;   /* prevents super tall posters from stretching layout */
+  object-fit: contain; /* keeps posters proportional */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.poster-thumb:hover {
+  transform: scale(1.03);
+}
+
+.pdf-container {
+  width: 100%;
+  height: 900px;           /* adjust as needed */
+  margin-top: 20px;
+  border: 1px solid #ccc;
+}
+
+.pdf-container embed {
+  width: 100%;
+  height: 100%;
+}
