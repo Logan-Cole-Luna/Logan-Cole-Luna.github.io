@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Logan Luna – Research</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="pictures/HeadShot.png" type="image/png">
+  <link rel="icon" href="pictures/favicon.svg" type="image/svg+xml">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-R2EEYCKBCG"></script>
   <script>
@@ -23,7 +23,7 @@
     <div class="top-bar">
       <div class="name-title">
         <h1>Logan Luna</h1>
-        <p>Research</p>
+        <p>M.S. Computer Science, Georgia Institute of Technology · B.S. Computer Science, Embry-Riddle Aeronautical University (Honors) · DoW SMART Scholar</p>
       </div>
     </div>
     <nav>
@@ -33,7 +33,7 @@
       <a href="research.html" class="active">Research</a> |
       <a href="awards.html">Awards</a> |
       <a href="software.html">Software</a> |
-      <a href="links.html">Interests/Links</a> |
+      <a href="links.html">Links</a> |
       <a href="contact.html">Contact</a>
     </nav>
   </div>
@@ -45,15 +45,35 @@
   <section>
     <h2>Research Areas</h2>
     <ul>
-      <li>Reinforcement learning for cyber defense and autonomous control</li>
-      <li>Optimization algorithms and gradient normalization methods</li>
+      <li>Deep learning theory, optimization, and learning dynamics (gradient-based methods)</li>
+      <li>Representation learning, inductive bias, and interpretable learning mechanisms</li>
+      <li>Reinforcement learning for safety-critical and real-world systems (cyber defense, autonomous control)</li>
+      <li>AI for Mathematics (AI4Math): auto-formalization and neuro-symbolic reasoning</li>
       <li>Signal-centric remote sensing (sonar, radar) and ML</li>
       <li>Autonomous aerial and underwater vehicles (sim-to-real)</li>
-      <li>AI for sustainability in orbital mechanics and space traffic management</li>
+      <li>AI for anomaly detection and sustainability in orbital mechanics and space traffic management</li>
     </ul>
   </section>
 
-  <!-- CURRENT PROJECTS -->
+  <!-- RESEARCH GROUPS -->
+  <section>
+    <h2>Research Groups</h2>
+    <ul>
+      <li>
+        <span class="item-title">Reasoning and Learning Group, Georgia Institute of Technology</span> (2025–Present).<br>
+        AI4Math / auto-formalization research under Dr. Vijay Ganesh; contributing to
+        LogicComplexityLib, auto-formalizing logic and model theory textbooks using
+        neuro-symbolic reasoning tools.
+      </li>
+      <li>
+        <span class="item-title">Agile Research Group, Embry-Riddle Aeronautical University</span> (2024–2026).<br>
+        Satellite trajectory optimization research under Dr. Omar Ochoa; developed a
+        PPO-based RL framework for fuel-aware satellite collision avoidance.
+      </li>
+    </ul>
+  </section>
+
+  <!--
   <section>
     <h2>Current Projects</h2>
     <ul>
@@ -63,16 +83,56 @@
         magnitude distortion in learning dynamics. Includes empirical testing across
         image classification, CNNs, and reinforcement learning tasks.
       </li>
+      <li>
+        <span class="item-title">AI for Data Anomaly Detection in a Satellite Learning Laboratory (SATLL)</span>
+        (2025–2026, Project Lead; CARS-funded).<br>
+        Data-centric ML anomaly detection pipelines for satellite telemetry (power, thermal,
+        attitude, and communications subsystems), operating directly on structured CSV/HDF5
+        data with baseline (z-score) and advanced (Isolation Forest, autoencoder) models.
+      </li>
+      <li>
+        <span class="item-title">Reinforcement Learning for Aerial Robotics: Sim-to-Real Transfer</span>
+        (2025–2026, Flexible &amp; Intelligent Complex Systems Research Group).<br>
+        Training RL control policies for Crazyflie 2.x nano-quadrotors in NVIDIA Omniverse
+        Isaac Gym; evaluating sim-to-real gaps (stability, drift, tracking) under noise, wind,
+        and mass-variation perturbations.
+      </li>
+      <li>
+        <span class="item-title">Enhancing Underwater Object Recognition with Computer Vision and Filtering Techniques</span>
+        (2023–2026, Project Lead).<br>
+        YOLOv8-based detection/classification and feature-matching pipelines (SuperPoint/SuperGlue)
+        for AUV perception, fused with Kalman-based tracking for continuous, confidence-aware detection.
+      </li>
     </ul>
   </section>
+  -->
 
   <!-- POSTERS SECTION -->
   <section>
     <h2>Research Posters</h2>
-    <p>Below is a selected collection of research posters from 2022–2025, representing
-    my work across reinforcement learning, optimization, sonar processing, and remote sensing.</p>
+    <p>Below is a selected collection of research posters from 2022–2026, representing
+    my work across reinforcement learning, optimization, sonar processing, remote sensing,
+    sim-to-real robotics, and aviation NLP.</p>
 
     <div class="poster-grid">
+
+      <!-- SIM2REAL DRONE -->
+      <div class="poster-item">
+        <h3>AERO-Sim2Real: Reinforcement Learning For Sim-to-Real Drone Deployment (2026)</h3>
+        <p>Trains PPO-based flight-control policies in NVIDIA IsaacLab and deploys them on Crazyflie 2.1 nano-quadrotors, quantifying sim-to-real divergence across hover, waypoint-following, and figure-eight trajectory tasks.</p>
+        <a href="posters/AERO-Sim2Real Reinforcement Learning For Sim-to-Real Drone Deployment.png" target="_blank">
+          <img src="posters/AERO-Sim2Real Reinforcement Learning For Sim-to-Real Drone Deployment.png" class="poster-thumb">
+        </a>
+      </div>
+
+      <!-- CAUSAL AVIATION -->
+      <div class="poster-item">
+        <h3>Learning Causal Structures from Aviation Accident Narratives (2026)</h3>
+        <p>Compares rule-based NLP, transformer (DistilBERT), and few-shot LLM (Mistral-7B) approaches for extracting causal relationships from NTSB aviation accident narratives and representing them as knowledge graphs.</p>
+        <a href="posters/35_Learning Causal Structures from Aviation Accident Narratives.pdf.png" target="_blank">
+          <img src="posters/35_Learning Causal Structures from Aviation Accident Narratives.pdf.png" class="poster-thumb">
+        </a>
+      </div>
 
       <!-- SAT PROPOSAL -->
       <div class="poster-item">
