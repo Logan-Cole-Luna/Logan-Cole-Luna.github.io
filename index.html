@@ -5,6 +5,8 @@
   <title>Logan Luna – Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="pictures/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="pictures/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="pictures/apple-touch-icon.png">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-R2EEYCKBCG"></script>
   <script>
@@ -16,91 +18,228 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav class="tabs" aria-label="Site">
-  <a href="index.html" class="on" aria-current="page">Home</a>
-  <a href="bio.html">Brief Bio/CV</a>
-  <a href="publications.html">Publications</a>
-  <a href="research.html">Research</a>
-  <a href="awards.html">Awards</a>
-  <a href="software.html">Software</a>
-  <a href="links.html">Links</a>
-  <a href="contact.html">Contact</a>
-</nav>
+<div class="top">
+  <header class="row top-bar">
+    <a class="brand" href="index.html"><img src="pictures/HeadShot_Cropped.png" alt="">Logan Luna</a>
+    <nav class="menu" aria-label="Site">
+      <a href="index.html" class="on" aria-current="page">Home</a>
+      <a href="bio.html">Bio / CV</a>
+      <a href="publications.html">Publications</a>
+      <a href="research.html">Research</a>
+      <a href="awards.html">Awards</a>
+      <a href="software.html">Software</a>
+      <a href="contact.html">Contact</a>
+      <span class="social">
+        <a href="https://github.com/Logan-Cole-Luna" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.192 22 16.439 22 12.017 22 6.484 17.523 2 12 2z"/></svg></a>
+        <a href="https://scholar.google.com/citations?user=cwfqLqYAAAAJ&hl=en&oi=ao" aria-label="Google Scholar"><svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
+        <a href="https://www.linkedin.com/in/logan-luna" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      </span>
+    </nav>
+  </header>
 
-<div class="wrap">
-  <main class="home">
-    <h1>Logan Luna</h1>
-    <ul class="role">
-      <li><b>M.S. Computer Science</b>, Georgia Institute of Technology</li>
-      <li><b>B.S. Computer Science</b>, Embry-Riddle Aeronautical University (Honors)</li>
-      <li><b>DoW SMART Scholar</b></li>
-    </ul>
-
-    <p class="lede">I am an M.S. Computer Science student (Artificial Intelligence specialization, thesis track) at the <strong>Georgia Institute of Technology</strong>, a B.S. Computer Science graduate (<em>magna cum laude</em>, Honors Program) of <strong>Embry-Riddle Aeronautical University</strong>, and a <strong>DoW SMART Scholar</strong>.</p>
-
-    <p>My research is in <strong>AI for Mathematical Reasoning (AI4Math)</strong>. I study how semantically informative training signals can be quantified and incorporated into the training and generation of mathematical reasoning models. Symbolic feedback rewards output that compiles or type-checks, but that does not certify that it expresses the intended mathematics. In Georgia Tech's Reasoning and Learning Group under Dr. Vijay Ganesh, I contribute to <em>AIProver</em>, an agentic system that post-trains an open-weight LLM on graded verifier rewards to auto-formalize research mathematics in Lean.</p>
-
-    <p>I am also a Scientist Intern at the <strong>Naval Surface Warfare Center Dahlgren Division (NSWCDD)</strong> (Active Secret clearance), where I build real-time video detection and tracking systems for small, low-visibility targets.</p>
-
-    <h2>Current research directions</h2>
-    <ol class="dirs">
-      <li>Reinforcement learning from symbolic and semantic-equivalence feedback for auto-formalization</li>
-      <li>Dense rewards from distance in a learned proof-semantic space, grounded in kernel-checked entailment</li>
-      <li>Diffusion language models for theorem proving and auto-formalization</li>
-    </ol>
-
-    <p>Earlier work covers reinforcement learning for safety-critical systems (satellite collision avoidance, intrusion detection, sim-to-real drone control), sonar and remote sensing, and computer vision for autonomous vehicles.</p>
-  </main>
-
-  <aside class="side" aria-label="Contact and news">
-    <div class="sticky">
-      <img class="photo" src="pictures/HeadShot_Cropped.png" alt="Logan Luna">
-
-      <div class="side-label">Contact</div>
-      <ul class="contact">
-        <li><span>Email</span><a href="mailto:Logan03Luna@gmail.com">Logan03Luna@gmail.com</a></li>
-        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/logan-luna">linkedin.com/in/logan-luna</a></li>
-        <li><span>GitHub</span><a href="https://github.com/Logan-Cole-Luna">github.com/Logan-Cole-Luna</a></li>
-        <li><span>Scholar</span><a href="https://scholar.google.com/citations?user=cwfqLqYAAAAJ&hl=en&oi=ao">Google Scholar Profile</a></li>
+  <section class="row hero">
+    <div class="hero-text">
+      <p class="pretitle">Logan Luna</p>
+      <h1>Computer Scientist &amp; <br>AI for Math Researcher</h1>
+      <p class="sub">I study how semantically informative training signals can be quantified and incorporated into the training and generation of mathematical reasoning models.</p>
+      <ul class="titles">
+        <li><b>M.S. Computer Science</b>, Georgia Institute of Technology, advised by <a href="https://vganesh1.github.io/">Vijay Ganesh</a></li>
+        <li><b>Research Collaborator V</b>, supporting Meta FAIR on the <a href="https://github.com/facebookresearch/atlas-lean">ATLAS</a> project</li>
+        <li><b>B.S. Computer Science</b>, Embry-Riddle Aeronautical University (Honors)</li>
+        <li><b>DoW SMART Scholar</b>, Scientist Intern at NSWCDD</li>
       </ul>
-
-      <div class="side-label">News</div>
-      <ul class="news">
-        <li class="pending"><time>Fall 2026</time><em>AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolving Harness</em> submitted to ICLR 2027 (under review).</li>
-        <li><time>Fall 2026</time>Became Seminar Coordinator for the <a href="https://foundationsofai.github.io/" target="_blank" rel="noopener">Foundations of AI Seminar Series</a> at Georgia Tech.</li>
-        <li><time>September 2026</time><em>SensorWF</em> presented at the ReWorDS Workshop, IEEE eScience 2026, in Naples, Italy.</li>
-        <li><time>August 2026</time>Began the Georgia Institute of Technology M.S. Computer Science program (AI specialization, thesis track); joined the Reasoning and Learning Group under Dr. Vijay Ganesh.</li>
-        <li><time>August 2026</time><em>SensorWF: A FAIR Generalizable Workflow Framework for Scientific Time-Series Analysis</em> accepted to the ReWorDS Workshop at the IEEE International Conference on e-Science (eScience) 2026.</li>
-        <li><time>June–July 2026</time>Interned at NSWCDD, continuing work on real-time autonomous tracking systems.</li>
-        <li><time>May 2026</time>Graduated <em>magna cum laude</em> with a B.S. in Computer Science from Embry-Riddle Aeronautical University.</li>
-        <li><time>April 2026</time>Named Embry-Riddle's Outstanding Undergraduate in Computer Science.</li>
-        <li><time>February 2026</time>Awarded a $24,000 Center for Aerospace Resilient Systems (CARS) Research Grant for <em>AI for Data Anomaly Detection in a Satellite Learning Laboratory (SATLL)</em>.</li>
-        <li><time>January 2026</time><em>Satellite Trajectory Optimization via Proximal Policy Optimization for Space Debris Avoidance</em> published in IEEE Access.</li>
-        <li><time>June–July 2025</time>Interned at NSWCDD, continuing work on real-time autonomous tracking systems.</li>
-        <li><time>2025</time>Named Embry-Riddle's Outstanding Undergraduate in Computer Science.</li>
-        <li><time>2025</time><a href="https://news.erau.edu/headlines/embry-riddle-undergrads-develop-guard-dog-system-to-ward-off-cyberattacks" target="_blank" rel="noopener">Embry‑Riddle Undergrads Develop ‘Guard Dog’ System to Ward Off Cyberattacks</a> Three Embry‑Riddle undergraduates won first place at IEEE SoutheastCon for a machine-learning system that autonomously adapts to evolving cyber threats.</li>
-        <li><time>2025</time><em>Dueling Deep Q-Learning for Intrusion Detection</em> accepted to IEEE SoutheastCon 2025 (IEEE-Eta Kappa Nu Best Paper Award).</li>
-        <li><time>2025</time><em>Signal-Centric Remote Sensing via Alternative Preprocessing and Acoustic Processing for ML-Driven Applications</em> accepted to IEEE SoutheastCon 2025.</li>
-        <li><time>2024</time>Began DoD internship at NSWCDD for computer vision systems.</li>
-        <li><time>2023</time>Awarded DoD SMART Scholarship.</li>
-        <li><time>2023</time>1st Place at Embry-Riddle Student Research Symposium for research on <em>Enhancing Aircraft Recognition and Localization through Object Detection and Feature Point Tracking with Kalman Filtering</em>.</li>
-      </ul>
+      <p class="thesis">Symbolic feedback rewards output that compiles or type-checks, but that does not certify that it expresses the intended mathematics.</p>
+      <div class="btns">
+        <a class="btn btn-fill" href="LoganLunaCV.pdf">View CV</a>
+        <a class="btn btn-line" href="mailto:Logan03Luna@gmail.com">Email</a>
+      </div>
     </div>
-  </aside>
+
+    <figure class="fig fig-hero">
+      <a class="fig-frame boxed paper proof-hero" href="replay.html" aria-label="Watch the full replay of an AIProver run on Erdős's conjecture on large totient fibers">
+        <div class="ph-head"><span class="ph-eyebrow">AIProver run replay</span><span class="ph-status">Formalizing</span></div>
+        <p class="ph-title">Erdős's conjecture on large totient fibers</p>
+        <div class="ph-graph"></div>
+        <div class="ph-bar"><span class="ph-clock">0:00 h</span><span class="ph-msg">Theorem statement formalized in Lean</span></div>
+        <div class="ph-foot"><span><b data-stat="proved">0</b> lemmas proved</span><span><b data-stat="fail">0</b> rejected by Lean</span><span><b data-stat="esc">0</b> escalated</span><span class="ph-more">Full replay →</span></div>
+      </a>
+      <figcaption>A real 21-hour AIProver run, replayed from its trace. Conditional on the smooth shifted primes hypothesis (H).</figcaption>
+    </figure>
+  </section>
 </div>
 
+<section class="news-band" aria-label="News">
+  <div class="row news-grid">
+    <div class="news-label">News</div>
+    <div class="now">
+      <span class="now-tag">New</span>
+      <p>Started a contract role supporting <strong>Meta FAIR</strong> as a Research Collaborator V, contributing to the <strong>ATLAS</strong> project. ATLAS, the Autoformalized Textbook Library At Scale, is a verified Lean 4 library built with AutoformBot, an open-source multi-agent framework that translates informal textbook mathematics into machine-checked definitions and proofs.</p>
+      <div class="links"><a href="https://arxiv.org/abs/2605.29955">Paper</a><a href="https://github.com/facebookresearch/atlas-lean">Code</a></div>
+    </div>
+    <ul class="news">
+      <li><time>Fall 2026</time><span><em>AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolving Harness</em> submitted to ICLR 2027 (under review).</span></li>
+      <li><time>Fall 2026</time><span>Became Seminar Coordinator for the <a href="https://foundationsofai.github.io/">Foundations of AI Seminar Series</a> at Georgia Tech.</span></li>
+      <li><time>September 2026</time><span><em>SensorWF</em> presented at the ReWorDS Workshop, IEEE eScience 2026, in Naples, Italy.</span></li>
+      <li><time>August 2026</time><span>Began the Georgia Institute of Technology M.S. Computer Science program (AI specialization, thesis track); joined the Reasoning and Learning Group under Dr. Vijay Ganesh.</span></li>
+      <li><time>July 2026</time><span>Started a contract role supporting Meta FAIR (Core Learning and Reasoning) as a Research Collaborator V, contributing to <a href="https://github.com/facebookresearch/atlas-lean">ATLAS</a>.</span></li>
+    </ul>
+    <details class="more">
+      <summary>Earlier news</summary>
+      <ul class="news">
+        <li><time>August 2026</time><span><em>SensorWF: A FAIR Generalizable Workflow Framework for Scientific Time-Series Analysis</em> accepted to the ReWorDS Workshop at the IEEE International Conference on e-Science (eScience) 2026.</span></li>
+        <li><time>June–July 2026</time><span>Interned at NSWCDD, continuing work on real-time autonomous tracking systems.</span></li>
+        <li><time>May 2026</time><span>Graduated <em>magna cum laude</em> with a B.S. in Computer Science from Embry-Riddle Aeronautical University.</span></li>
+        <li><time>April 2026</time><span>Named Embry-Riddle's Outstanding Undergraduate in Computer Science.</span></li>
+        <li><time>February 2026</time><span>Awarded a $24,000 Center for Aerospace Resilient Systems (CARS) Research Grant for <em>AI for Data Anomaly Detection in a Satellite Learning Laboratory (SATLL)</em>.</span></li>
+        <li><time>January 2026</time><span><em>Satellite Trajectory Optimization via Proximal Policy Optimization for Space Debris Avoidance</em> published in IEEE Access.</span></li>
+        <li><time>2025</time><span><a href="https://news.erau.edu/headlines/embry-riddle-undergrads-develop-guard-dog-system-to-ward-off-cyberattacks">Embry‑Riddle Undergrads Develop ‘Guard Dog’ System to Ward Off Cyberattacks</a></span></li>
+        <li><time>2025</time><span><em>Dueling Deep Q-Learning for Intrusion Detection</em> accepted to IEEE SoutheastCon 2025 (IEEE-Eta Kappa Nu Best Paper Award).</span></li>
+        <li><time>2024</time><span>Began DoD internship at NSWCDD for computer vision systems.</span></li>
+        <li><time>2023</time><span>Awarded DoD SMART Scholarship.</span></li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<section class="band papers">
+  <div class="row">
+    <p class="eyebrow">Research</p>
+    <h2 class="display">Select Papers</h2>
+
+    <ol class="paper-grid">
+      <li class="paper wide">
+        <h3>AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolving Harness</h3>
+        <div class="tags"><span class="tag amber">Under review</span><span class="tag">ICLR 2027</span></div>
+        <p class="authors">Prithwish Jana, Viet Bach Hoang, <strong>Logan Luna</strong>, Viresh Pati, Akash Singirikonda, Cy Xie, Lisa Carbone, Wuyang Chen, Walter Moreira, Joe Stubbs, Sriram Vishwanath, Vijay Ganesh.</p>
+        <p class="venue">Under review, ICLR 2027</p>
+        <p class="desc"><em>Contribution:</em> RL pipeline and reward, BEq+ extension, distillation pipeline and dataset, Semantic Alignment Model. <em>Results:</em> pass@4 semantic correctness from 15.7% to 36.7% standalone (above GPT-5.6-Sol and Codex); 41.9% to 79.8% as a Claude Code skill.</p>
+        <div class="links"><a href="replay.html">Watch a run replay</a></div>
+      </li>
+
+      <li class="paper">
+        <h3>Dueling Deep Q-Learning for Intrusion Detection</h3>
+        <div class="tags"><span class="tag">Conference</span><span class="tag green">Best Paper Award</span></div>
+        <p class="authors"><strong>Logan Luna</strong>, Matthew P. Berkowitz, Laxima Niure Kandel, Sirio Jansen-Sánchez.</p>
+        <p class="venue">IEEE SoutheastCon 2025</p>
+        <p class="desc">99.68% multi-class accuracy on 2.18M CIC-IDS2018 flows, against 88% for prior DQN-based detection and 98.4–99% for tree-ensemble and random-forest IDSs; SHAP attribution of the learned policy.</p>
+        <div class="links"><a href="https://doi.org/10.1109/SoutheastCon56624.2025.10971436">DOI</a><a href="https://github.com/Logan-Cole-Luna/Hierarchical-Q-Learning-Threat-Hunting">Code</a></div>
+      </li>
+
+      <li class="paper feature">
+        <div class="feature-text">
+          <h3>Satellite Trajectory Optimization via Proximal Policy Optimization for Space Debris Avoidance</h3>
+          <div class="tags"><span class="tag">Journal</span><span class="tag green">Published, IEEE Access</span></div>
+          <p class="authors"><strong>Logan Luna</strong>, Juan Ortiz Couder, Raul Alejandro Vargas-Acosta.</p>
+          <p class="venue">IEEE Access, 2026</p>
+          <p class="desc">97.5% collision-avoidance success over 1,000 deterministic GEO episodes, 76.8 and 70.0 percentage points above the rule-based and impulsive Δv baselines.</p>
+          <div class="links"><a href="https://doi.org/10.1109/ACCESS.2026.3655237">DOI</a><a href="https://github.com/Logan-Cole-Luna/sat-trajectory-avoidance">Code</a></div>
+        </div>
+        <figure class="feature-fig">
+          <div class="fig-frame boxed paper"><img class="fig-still" src="pictures/debris_field.webp" width="880" height="880" alt="Globe surrounded by orbiting debris fragments from the Fengyun-1C, Cosmos 2251 and Iridium 33 breakups"><canvas id="debris" data-theme="paper" data-src="data/debris.json" role="img" aria-label="Animated globe surrounded by orbiting debris fragments from the Fengyun-1C, Cosmos 2251 and Iridium 33 breakups"></canvas></div>
+          <figcaption>Tracked debris from the Fengyun-1C, Cosmos 2251 and Iridium 33 breakups, with an illustrative avoidance maneuver.</figcaption>
+        </figure>
+      </li>
+
+      <li class="paper half">
+        <h3>Signal-Centric Remote Sensing via Alternative Preprocessing and Acoustic Processing for ML-Driven Applications</h3>
+        <div class="tags"><span class="tag">Conference</span><span class="tag green">Published</span></div>
+        <p class="authors"><strong>Logan Luna</strong>, Sirio Jansen-Sánchez, Ilteris Demirkiran, Leo Ghelarducci.</p>
+        <p class="venue">IEEE SoutheastCon 2025, Concord, NC</p>
+        <p class="desc">91.2% reduction in total sonar processing time (13.1% in filtering alone) against image-based CV processing, while preserving target structure the image pipeline removed.</p>
+        <div class="links"><a href="https://doi.org/10.1109/SoutheastCon56624.2025.10971547">DOI</a></div>
+      </li>
+
+      <li class="paper half">
+        <h3>SensorWF: A FAIR Generalizable Workflow Framework for Scientific Time-Series Analysis</h3>
+        <div class="tags"><span class="tag">Workshop</span><span class="tag green">IEEE eScience 2026</span></div>
+        <p class="authors"><strong>Logan Luna</strong>, Joseph Rigo, Kellan Shew, Raul Alejandro Vargas-Acosta.</p>
+        <p class="venue">IEEE eScience 2026 (ReWorDS Workshop), Naples, Italy</p>
+        <p class="desc">One analytical core carried across spacecraft telemetry, ECG, and climate data with small domain adapters and no core changes; bit-identical outputs under fixed seeds.</p>
+        <div class="links"><a href="https://github.com/Logan-Cole-Luna/SensorWF">Code</a></div>
+      </li>
+    </ol>
+
+    <a class="all" href="publications.html">View All Publications</a>
+  </div>
+</section>
+
+<section class="band posters">
+  <div class="row">
+    <p class="eyebrow">Research Posters</p>
+    <div class="poster-list">
+      <article class="poster">
+        <a class="thumb" href="posters/AERO-Sim2Real Reinforcement Learning For Sim-to-Real Drone Deployment.png"><img src="pictures/poster-thumbs/aero-sim2real.jpg" alt="AERO-Sim2Real poster" loading="lazy"></a>
+        <span class="yr">2026</span>
+        <h3>AERO-Sim2Real: Reinforcement Learning For Sim-to-Real Drone Deployment</h3>
+      </article>
+      <article class="poster">
+        <a class="thumb" href="posters/SatResearchPoster.png"><img src="pictures/poster-thumbs/sat-research.jpg" alt="Satellite trajectory research poster" loading="lazy"></a>
+        <span class="yr">2024</span>
+        <h3>Satellite Trajectory Research Poster</h3>
+      </article>
+      <article class="poster">
+        <a class="thumb" href="posters/Hierarchical Q-Learning for Intrusion Detection.png"><img src="pictures/poster-thumbs/hierarchical-q-learning.jpg" alt="Hierarchical Dueling Q-Learning poster" loading="lazy"></a>
+        <span class="yr">2024</span>
+        <h3>Hierarchical Dueling Q-Learning for Intrusion Detection</h3>
+      </article>
+      <article class="poster">
+        <a class="thumb" href="posters/Aircraft Tracking (48 x 36 in).png"><img src="pictures/poster-thumbs/aircraft-tracking.jpg" alt="Aircraft detection and Kalman tracking poster" loading="lazy"></a>
+        <span class="yr">2023</span>
+        <h3>Aircraft Detection &amp; Kalman Tracking Poster</h3>
+      </article>
+    </div>
+    <div class="poster-more"><a class="btn btn-line" href="research.html">All Research Posters</a></div>
+  </div>
+</section>
+
+<section class="band focus">
+  <div class="row">
+    <p class="eyebrow">Research</p>
+    <h2 class="display">Current Research Directions</h2>
+    <div class="focus-grid">
+      <div class="focus-card">
+        <p class="kind">AI4Math</p>
+        <h3>Reinforcement learning from symbolic and semantic-equivalence feedback for auto-formalization</h3>
+      </div>
+      <div class="focus-card">
+        <p class="kind">AI4Math</p>
+        <h3>Dense rewards from distance in a learned proof-semantic space, grounded in kernel-checked entailment</h3>
+      </div>
+      <div class="focus-card">
+        <p class="kind">AI4Math</p>
+        <h3>Diffusion language models for theorem proving and auto-formalization</h3>
+      </div>
+      <div class="focus-card">
+        <p class="kind">Earlier work</p>
+        <h3>Reinforcement learning for safety-critical systems</h3>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
-  &copy; <span id="year"></span> Logan Luna. All rights reserved.
+  <div class="row foot">
+    <span>&copy; <span id="year">2026</span> Logan Luna. All rights reserved.</span>
+    <span class="foot-links">
+      <a href="mailto:Logan03Luna@gmail.com">Logan03Luna@gmail.com</a>
+      <a href="https://github.com/Logan-Cole-Luna">GitHub</a>
+      <a href="https://scholar.google.com/citations?user=cwfqLqYAAAAJ&hl=en&oi=ao">Google Scholar</a>
+      <a href="https://www.linkedin.com/in/logan-luna">LinkedIn</a>
+    </span>
+  </div>
 </footer>
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+<script src="data/run011.js" defer></script>
+<script src="js/aimath-layout.js" defer></script>
+<script src="js/proof-hero.js" defer></script>
+<script src="js/debris.js" defer></script>
 </body>
 </html>
