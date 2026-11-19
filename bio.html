@@ -14,32 +14,34 @@
 
     gtag('config', 'G-R2EEYCKBCG');
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <div class="container">
-    <div class="top-bar">
-      <div class="name-title">
-        <h1>Logan Luna</h1>
-        <p>M.S. Computer Science, Georgia Institute of Technology · B.S. Computer Science, Embry-Riddle Aeronautical University (Honors) · DoW SMART Scholar</p>
-      </div>
-    </div>
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="bio.html" class="active">Brief Bio/CV</a> |
-      <a href="publications.html">Publications</a> |
-      <a href="research.html">Research</a> |
-      <a href="awards.html">Awards</a> |
-      <a href="software.html">Software</a> |
-      <a href="links.html">Links</a> |
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
+<nav class="tabs" aria-label="Site">
+  <a href="index.html">Home</a>
+  <a href="bio.html" class="on" aria-current="page">Brief Bio/CV</a>
+  <a href="publications.html">Publications</a>
+  <a href="research.html">Research</a>
+  <a href="awards.html">Awards</a>
+  <a href="software.html">Software</a>
+  <a href="links.html">Links</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
-<main class="container">
+<main class="page">
+  <header class="page-head">
+    <a class="site-name" href="index.html">Logan Luna</a>
+    <ul class="role">
+      <li><b>M.S. Computer Science</b>, Georgia Institute of Technology</li>
+      <li><b>B.S. Computer Science</b>, Embry-Riddle Aeronautical University (Honors)</li>
+      <li><b>DoW SMART Scholar</b></li>
+    </ul>
+  </header>
+
   <section>
     <h2>Brief Bio</h2>
     <p>
@@ -48,20 +50,21 @@
       cumulative GPA 3.85/4.00), and Embry-Riddle's Outstanding Undergraduate in Computer
       Science (2025 &amp; 2026). In August 2026, I began an M.S. in Computer
       Science (Artificial Intelligence specialization, thesis track) at the Georgia
-      Institute of Technology. My work spans deep learning theory and optimization,
-      reinforcement learning, cybersecurity, and autonomous systems, with a strong focus
-      on building systems that are both theoretically grounded and deployable in
-      real-world environments.
+      Institute of Technology. My research is in AI for Mathematical Reasoning (AI4Math):
+      how semantically informative training signals can be quantified and incorporated
+      into the training and generation of mathematical reasoning models.
     </p>
     <img src="pictures/Graduation.jpeg" alt="Logan Luna receiving his B.S. diploma at Embry-Riddle Aeronautical University commencement" class="bio-photo">
     <p>
-      As a DoW SMART Scholar and intern (Active Secret clearance) at NSWCDD, I develop
-      real-time autonomous object tracking systems that fuse YOLO-based detection, ORB
-      keypoints, optical flow, re-identification, and Kalman filtering. At Georgia Tech's Reasoning and Learning Group, I contribute to
-      LogicComplexityLib, auto-formalizing logic and model theory textbooks with
-      neuro-symbolic reasoning tools. At Embry-Riddle, I led software R&amp;D for an
-      autonomous underwater vehicle in the Autonomous Maritime Robotics Association,
-      integrating sonar, computer vision, and ML-based decision pipelines.
+      At Georgia Tech's Reasoning and Learning Group under Dr. Vijay Ganesh, I contribute
+      to <em>AIProver</em>, an agentic system that post-trains an open-weight LLM on graded
+      verifier rewards to auto-formalize research mathematics. I built its RL pipeline and
+      reward, its distillation pipeline and dataset, and its Semantic Alignment Model. I
+      also coordinate Georgia Tech's Foundations of AI Seminar Series. As a DoW SMART
+      Scholar and Scientist Intern (Active Secret clearance) at NSWCDD, I build real-time
+      video detection and tracking systems. At Embry-Riddle, I researched RL-based satellite
+      collision avoidance in the Agile Research Group and led autonomy software for the
+      Autonomous Maritime Robotics Association's RoboSub team.
     </p>
   </section>
 
@@ -86,33 +89,66 @@
       <li>
         <span class="item-title">Naval Surface Warfare Center Dahlgren Division (NSWCDD)</span><br>
         Scientist Intern, Beam and Optic Control for High Energy Weapons, 2024–Present · Active Secret Clearance.<br>
-        Designed a lightweight temporal feature approach for stability under infrequent target
-        appearances; built a real-time tracking pipeline with YOLO, ORB keypoint matching,
-        homography-based optical flow, re-identification, and Kalman filtering; integrated radar
-        sensing to improve detection precision and track continuity.
+        Re-architected YOLO into a video detector with a motion cross-attention stream that fuses
+        frame-difference cues into the backbone at three scales, substantially improving small,
+        low-visibility object detection in clutter (2026). Designed a lightweight temporal feature
+        approach for stability when targets appear infrequently (2025). Built a real-time tracking
+        pipeline with YOLO, ORB keypoint matching, homography-based optical flow,
+        re-identification, and Kalman filtering.
       </li>
       <li>
         <span class="item-title">Reasoning and Learning Group, Georgia Institute of Technology</span><br>
         Researcher, AI4Math / Auto-formalization, 2025–Present · Group Lead: Dr. Vijay Ganesh.<br>
-        Contribute to LogicComplexityLib, auto-formalizing logic and model theory textbooks using
-        neuro-symbolic reasoning tools; extract theorem–proof pairs and evaluate Lean formalizations.
+        Contribute to <em>AIProver</em>, which lifts pass@4 semantic correctness on research-math
+        auto-formalization from 15.7% to 36.7% (above GPT-5.6-Sol and Codex), and from 41.9% to
+        79.8% as a Claude Code skill. Extended RLSF to multi-turn auto-formalization with GRPO and
+        designed a graded reward ladder (type correctness, completeness, semantic correctness,
+        length fidelity); extended BEq+ to score one-directional implication; built the
+        distillation pipeline over 57.9k instances (16,570 Mathlib and 6,799 Mizar examples);
+        trained a Semantic Alignment Model (cross-entropy + InfoNCE, LoRA on a 119B MoE),
+        raising matched NL–Lean cosine similarity from 0.11 to 0.75.
       </li>
       <li>
         <span class="item-title">Agile Research Group, Embry-Riddle Aeronautical University</span><br>
         Researcher, Satellite Trajectory Optimization, 2024–2026 · Group Lead: Dr. Omar Ochoa.<br>
-        Developed a PPO-based RL framework for fuel-aware satellite collision avoidance; studied
-        reward shaping and curriculum learning for reproducible evaluation.
+        Developed a PPO-based RL framework for fuel-aware satellite collision avoidance, reaching
+        97.5% avoidance success over 1,000 deterministic GEO episodes; studied reward shaping and
+        curriculum learning; generalized the group's sensor analysis practice into
+        <em>SensorWF</em>, a FAIR workflow framework.
       </li>
     </ul>
 
-    <h3>Selected Roles</h3>
+    <h3>Teaching, Mentoring &amp; Service</h3>
     <ul>
       <li>
+        <span class="item-title"><a href="https://foundationsofai.github.io/" target="_blank" rel="noopener">Foundations of AI Seminar Series</a></span>,
+        Georgia Institute of Technology, 2026–Present.<br>
+        Seminar Coordinator (faculty organizers: Dr. Vijay Ganesh, Dr. Yingyan (Celine) Lin). Run
+        the series end to end and host visiting speakers, including Young Jin Kim (Microsoft
+        Research) and Daniel Kroening (Amazon).
+      </li>
+      <li>
+        <span class="item-title">Workshops</span>, Embry-Riddle Aeronautical University, 2023–2026.<br>
+        Hosted with AMRA: <em>Competitive Fellowship Applications</em> (~20 attendees; 6 went on to
+        receive DoW SMART Scholarships), <em>Introduction to Programming</em> (~30 attendees), and
+        <em>Introduction to Machine Learning</em> (~10 attendees).
+      </li>
+      <li>
+        <span class="item-title">Undergraduate Research Mentoring</span>, Agile Research Group, 2025–2026.<br>
+        Mentored two undergraduate researchers through a full research cycle, from first exposure
+        to research to co-authorship on a peer-reviewed conference paper (SensorWF).
+      </li>
+      <li>
+        <span class="item-title">Peer Mentor</span>, Office of Undergraduate Research, Embry-Riddle, 2023–2024.<br>
+        Mentored two aerospace engineering students; outcomes included a research lab position and
+        an engineering internship at Boeing.
+      </li>
+      <li>
         <span class="item-title">Software Department Head</span>,
-        Autonomous Maritime Robotics Association (AMRA), 2022–2026.<br>
-        Leading AUV perception and decision-making software; mentoring students on research and
-        publication; contributed to a 16th-place finish out of 52 schools at the international
-        RoboSub competition.
+        RoboSub Team, Autonomous Maritime Robotics Association (AMRA), 2022–2026.<br>
+        Led AUV autonomy software (computer vision, sonar processing, ML-based decision-making);
+        16th of 52 schools internationally; developed the team's sonar work into a peer-reviewed
+        publication.
       </li>
     </ul>
 
@@ -130,23 +166,22 @@
 
   <p class="small">
     Full CV available here:
-    <a href="LoganLunaCV2026.pdf" download>Download CV (PDF)</a>
+    <a href="LoganLunaCV.pdf" download>Download CV (PDF)</a>
   </p>
 
   <div class="pdf-container">
-    <embed src="LoganLunaCV2026.pdf" type="application/pdf">
+    <embed src="LoganLunaCV.pdf" type="application/pdf">
   </div>
 </section>
 
 </main>
 
 <footer>
-  <div class="container">
-    &copy; <span id="year"></span> Logan Luna. All rights reserved.
-  </div>
+  &copy; <span id="year"></span> Logan Luna. All rights reserved.
 </footer>
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 </body>
+</html>

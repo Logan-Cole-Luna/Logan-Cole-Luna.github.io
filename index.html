@@ -14,110 +14,89 @@
 
     gtag('config', 'G-R2EEYCKBCG');
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <div class="container">
-    <div class="top-bar">
-      <div class="name-title">
-        <h1>Logan Luna</h1>
-        <p>
-          M.S. Computer Science, Georgia Institute of Technology ·
-          B.S. Computer Science, Embry-Riddle Aeronautical University (Honors) ·
-          DoW SMART Scholar
-        </p>
-      </div>
+<nav class="tabs" aria-label="Site">
+  <a href="index.html" class="on" aria-current="page">Home</a>
+  <a href="bio.html">Brief Bio/CV</a>
+  <a href="publications.html">Publications</a>
+  <a href="research.html">Research</a>
+  <a href="awards.html">Awards</a>
+  <a href="software.html">Software</a>
+  <a href="links.html">Links</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<div class="wrap">
+  <main class="home">
+    <h1>Logan Luna</h1>
+    <ul class="role">
+      <li><b>M.S. Computer Science</b>, Georgia Institute of Technology</li>
+      <li><b>B.S. Computer Science</b>, Embry-Riddle Aeronautical University (Honors)</li>
+      <li><b>DoW SMART Scholar</b></li>
+    </ul>
+
+    <p class="lede">I am an M.S. Computer Science student (Artificial Intelligence specialization, thesis track) at the <strong>Georgia Institute of Technology</strong>, a B.S. Computer Science graduate (<em>magna cum laude</em>, Honors Program) of <strong>Embry-Riddle Aeronautical University</strong>, and a <strong>DoW SMART Scholar</strong>.</p>
+
+    <p>My research is in <strong>AI for Mathematical Reasoning (AI4Math)</strong>. I study how semantically informative training signals can be quantified and incorporated into the training and generation of mathematical reasoning models. Symbolic feedback rewards output that compiles or type-checks, but that does not certify that it expresses the intended mathematics. In Georgia Tech's Reasoning and Learning Group under Dr. Vijay Ganesh, I contribute to <em>AIProver</em>, an agentic system that post-trains an open-weight LLM on graded verifier rewards to auto-formalize research mathematics in Lean.</p>
+
+    <p>I am also a Scientist Intern at the <strong>Naval Surface Warfare Center Dahlgren Division (NSWCDD)</strong> (Active Secret clearance), where I build real-time video detection and tracking systems for small, low-visibility targets.</p>
+
+    <h2>Current research directions</h2>
+    <ol class="dirs">
+      <li>Reinforcement learning from symbolic and semantic-equivalence feedback for auto-formalization</li>
+      <li>Dense rewards from distance in a learned proof-semantic space, grounded in kernel-checked entailment</li>
+      <li>Diffusion language models for theorem proving and auto-formalization</li>
+    </ol>
+
+    <p>Earlier work covers reinforcement learning for safety-critical systems (satellite collision avoidance, intrusion detection, sim-to-real drone control), sonar and remote sensing, and computer vision for autonomous vehicles.</p>
+  </main>
+
+  <aside class="side" aria-label="Contact and news">
+    <div class="sticky">
+      <img class="photo" src="pictures/HeadShot_Cropped.png" alt="Logan Luna">
+
+      <div class="side-label">Contact</div>
+      <ul class="contact">
+        <li><span>Email</span><a href="mailto:Logan03Luna@gmail.com">Logan03Luna@gmail.com</a></li>
+        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/logan-luna">linkedin.com/in/logan-luna</a></li>
+        <li><span>GitHub</span><a href="https://github.com/Logan-Cole-Luna">github.com/Logan-Cole-Luna</a></li>
+        <li><span>Scholar</span><a href="https://scholar.google.com/citations?user=cwfqLqYAAAAJ&hl=en&oi=ao">Google Scholar Profile</a></li>
+      </ul>
+
+      <div class="side-label">News</div>
+      <ul class="news">
+        <li class="pending"><time>Fall 2026</time><em>AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolving Harness</em> submitted to ICLR 2027 (under review).</li>
+        <li><time>Fall 2026</time>Became Seminar Coordinator for the <a href="https://foundationsofai.github.io/" target="_blank" rel="noopener">Foundations of AI Seminar Series</a> at Georgia Tech.</li>
+        <li><time>September 2026</time><em>SensorWF</em> presented at the ReWorDS Workshop, IEEE eScience 2026, in Naples, Italy.</li>
+        <li><time>August 2026</time>Began the Georgia Institute of Technology M.S. Computer Science program (AI specialization, thesis track); joined the Reasoning and Learning Group under Dr. Vijay Ganesh.</li>
+        <li><time>August 2026</time><em>SensorWF: A FAIR Generalizable Workflow Framework for Scientific Time-Series Analysis</em> accepted to the ReWorDS Workshop at the IEEE International Conference on e-Science (eScience) 2026.</li>
+        <li><time>June–July 2026</time>Interned at NSWCDD, continuing work on real-time autonomous tracking systems.</li>
+        <li><time>May 2026</time>Graduated <em>magna cum laude</em> with a B.S. in Computer Science from Embry-Riddle Aeronautical University.</li>
+        <li><time>April 2026</time>Named Embry-Riddle's Outstanding Undergraduate in Computer Science.</li>
+        <li><time>February 2026</time>Awarded a $24,000 Center for Aerospace Resilient Systems (CARS) Research Grant for <em>AI for Data Anomaly Detection in a Satellite Learning Laboratory (SATLL)</em>.</li>
+        <li><time>January 2026</time><em>Satellite Trajectory Optimization via Proximal Policy Optimization for Space Debris Avoidance</em> published in IEEE Access.</li>
+        <li><time>June–July 2025</time>Interned at NSWCDD, continuing work on real-time autonomous tracking systems.</li>
+        <li><time>2025</time>Named Embry-Riddle's Outstanding Undergraduate in Computer Science.</li>
+        <li><time>2025</time><a href="https://news.erau.edu/headlines/embry-riddle-undergrads-develop-guard-dog-system-to-ward-off-cyberattacks" target="_blank" rel="noopener">Embry‑Riddle Undergrads Develop ‘Guard Dog’ System to Ward Off Cyberattacks</a> Three Embry‑Riddle undergraduates won first place at IEEE SoutheastCon for a machine-learning system that autonomously adapts to evolving cyber threats.</li>
+        <li><time>2025</time><em>Dueling Deep Q-Learning for Intrusion Detection</em> accepted to IEEE SoutheastCon 2025 (IEEE-Eta Kappa Nu Best Paper Award).</li>
+        <li><time>2025</time><em>Signal-Centric Remote Sensing via Alternative Preprocessing and Acoustic Processing for ML-Driven Applications</em> accepted to IEEE SoutheastCon 2025.</li>
+        <li><time>2024</time>Began DoD internship at NSWCDD for computer vision systems.</li>
+        <li><time>2023</time>Awarded DoD SMART Scholarship.</li>
+        <li><time>2023</time>1st Place at Embry-Riddle Student Research Symposium for research on <em>Enhancing Aircraft Recognition and Localization through Object Detection and Feature Point Tracking with Kalman Filtering</em>.</li>
+      </ul>
     </div>
-    <nav>
-      <a href="index.html" class="active">Home</a> |
-      <a href="bio.html">Brief Bio/CV</a> |
-      <a href="publications.html">Publications</a> |
-      <a href="research.html">Research</a> |
-      <a href="awards.html">Awards</a> |
-      <a href="software.html">Software</a> |
-      <a href="links.html">Links</a> |
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
+  </aside>
+</div>
 
-<main class="container">
-  <section id="home">
-    <div class="two-column">
-      <div class="left-column">
-        <h2>Home</h2>
-        <p>
-          I am a B.S. Computer Science graduate of
-          <span class="label">Embry-Riddle Aeronautical University</span> and an
-          M.S. Computer Science student (Artificial Intelligence specialization, thesis
-          track) at the <span class="label">Georgia Institute of Technology</span>, and a
-          <span class="label">DoW SMART Scholar</span>. My work spans deep learning theory
-          and optimization, learning dynamics, reinforcement learning for safety-critical
-          systems, cybersecurity, and remote sensing, with applications in satellite
-          trajectory optimization, intrusion detection, and autonomous maritime robotics.
-        </p>
-        <p>
-          I currently intern at the
-          <span class="label">Naval Surface Warfare Center Dahlgren Division (NSWCDD)</span>
-          (Active Secret clearance), where I develop real-time autonomous tracking systems
-          that integrate machine learning, computer vision, and radar sensing. At Georgia
-          Tech's Reasoning and Learning Group, I also research AI4Math and auto-formalization
-          under Dr. Vijay Ganesh.
-        </p>
-        <p>
-          Broadly, I am interested in:
-        </p>
-        <ul>
-          <li>Machine learning and artificial intelligence</li>
-          <li>AI for Mathematics (AI4Math), specifically symbolic reasoning and theorem proving for mathematical research</li>
-          <li>Optimization and new learning algorithms (e.g., magnitude-invariant optimizers)</li>
-          <li>Reinforcement learning for safety-critical and physical systems</li>
-          <li>Cybersecurity, intrusion detection, and threat hunting with RL</li>
-          <li>Signal-centric remote sensing for sonar and radar</li>
-          <li>Autonomous aerial and underwater vehicles</li>
-        </ul>
-      </div>
-
-      <div class="right-column">
-        <!-- Your headshot on the right -->
-        <img src="pictures/HeadShot_Cropped.png" alt="Logan Luna" class="profile-photo">
-
-        <div class="small">
-            <div><span class="label">Email:</span> <a href="mailto:Logan03Luna@gmail.com">Logan03Luna@gmail.com</a></div>
-            <div><span class="label">LinkedIn:</span> <a href="https://www.linkedin.com/in/logan-luna">linkedin.com/in/logan-luna</a></div>
-            <div><span class="label">GitHub:</span> <a href="https://github.com/Logan-Cole-Luna" class="code-link">github.com/Logan-Cole-Luna</a></div>
-            <div><span class="label">Google Scholar:</span> <a href="https://scholar.google.com/citations?user=cwfqLqYAAAAJ&hl=en&oi=ao">Google Scholar Profile</a></div>
-        </div>
-
-
-        <h3>News</h3>
-        <ul class="news-list small">
-           <li><strong>August 2026</strong> – Began the Georgia Institute of Technology M.S. Computer Science program (AI specialization, thesis track); joined the Reasoning and Learning Group under Dr. Vijay Ganesh.</li>
-           <li><strong>August 2026</strong> – <em>SensorWF: A FAIR Generalizable Workflow Framework for Scientific Time-Series Analysis</em> accepted to the ReWorDS Workshop at the IEEE International Conference on e-Science (eScience) 2026.</li>
-           <li><strong>June–July 2026</strong> – Interned at NSWCDD, continuing work on real-time autonomous tracking systems.</li>
-           <li><strong>May 2026</strong> – Graduated <em>magna cum laude</em> with a B.S. in Computer Science from Embry-Riddle Aeronautical University.</li>
-           <li><strong>April 2026</strong> – Named Embry-Riddle's Outstanding Undergraduate in Computer Science.</li>
-           <li><strong>February 2026</strong> – Awarded a $24,000 Center for Aerospace Resilient Systems (CARS) Research Grant for <em>AI for Data Anomaly Detection in a Satellite Learning Laboratory (SATLL)</em>.</li>
-           <li><strong>January 2026</strong> – <em>Satellite Trajectory Optimization via Proximal Policy Optimization for Space Debris Avoidance</em> published in IEEE Access.</li>
-           <li><strong>2025</strong> – Named Embry-Riddle's Outstanding Undergraduate in Computer Science.</li>
-           <li><strong>2025</strong> – <a href="https://news.erau.edu/headlines/embry-riddle-undergrads-develop-guard-dog-system-to-ward-off-cyberattacks" target="_blank" rel="noopener">Embry‑Riddle Undergrads Develop ‘Guard Dog’ System to Ward Off Cyberattacks</a> Three Embry‑Riddle undergraduates won first place at IEEE SoutheastCon for a machine-learning system that autonomously adapts to evolving cyber threats.</li>
-           <li><strong>2025</strong> – <em>Dueling Deep Q-Learning for Intrusion Detection</em> accepted to IEEE SoutheastCon 2025 (IEEE-Eta Kappa Nu Best Paper Award).</li>
-           <li><strong>2025</strong> – <em>Signal-Centric Remote Sensing via Alternative Preprocessing and Acoustic Processing for ML-Driven Applications</em> accepted to IEEE SoutheastCon 2025.</li>
-           <li><strong>2024</strong> – Began DoD internship at NSWCDD for computer vision systems.</li>
-           <li><strong>2023</strong> – Awarded DoD SMART Scholarship.</li>
-           <li><strong>2023</strong> – 1st Place at Embry-Riddle Student Research Symposium for research on <em>Advanced Aerial Mapping with Computer Vision</em>.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</main>
 
 <footer>
-  <div class="container">
-    &copy; <span id="year"></span> Logan Luna. All rights reserved.
-  </div>
+  &copy; <span id="year"></span> Logan Luna. All rights reserved.
 </footer>
 
 <script>

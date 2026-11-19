@@ -14,31 +14,33 @@
 
     gtag('config', 'G-R2EEYCKBCG');
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <div class="container">
-    <div class="top-bar">
-      <div class="name-title">
-        <h1>Logan Luna</h1>
-        <p>M.S. Computer Science, Georgia Institute of Technology · B.S. Computer Science, Embry-Riddle Aeronautical University (Honors) · DoW SMART Scholar</p>
-      </div>
-    </div>
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="bio.html">Brief Bio/CV</a> |
-      <a href="publications.html">Publications</a> |
-      <a href="research.html">Research</a> |
-      <a href="awards.html">Awards</a> |
-      <a href="software.html" class="active">Software</a> |
-      <a href="links.html">Links</a> |
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
+<nav class="tabs" aria-label="Site">
+  <a href="index.html">Home</a>
+  <a href="bio.html">Brief Bio/CV</a>
+  <a href="publications.html">Publications</a>
+  <a href="research.html">Research</a>
+  <a href="awards.html">Awards</a>
+  <a href="software.html" class="on" aria-current="page">Software</a>
+  <a href="links.html">Links</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
-<main class="container">
+<main class="page">
+  <header class="page-head">
+    <a class="site-name" href="index.html">Logan Luna</a>
+    <ul class="role">
+      <li><b>M.S. Computer Science</b>, Georgia Institute of Technology</li>
+      <li><b>B.S. Computer Science</b>, Embry-Riddle Aeronautical University (Honors)</li>
+      <li><b>DoW SMART Scholar</b></li>
+    </ul>
+  </header>
+
   <section>
     <h2>Selected Software Projects</h2>
     <ul>
@@ -56,8 +58,9 @@
 
       <li>
         <span class="item-title">SensorWF: A FAIR Generalizable Workflow Framework for Scientific Time-Series Analysis</span><br>
-        A FAIR, generalizable workflow framework for scientific time-series analysis
-        (Accepted, ReWorDS Workshop @ IEEE eScience 2026).<br>
+        A FAIR workflow framework that carries one analytical core across spacecraft telemetry,
+        ECG, and climate data via small domain adapters, with bit-identical outputs under fixed
+        seeds (IEEE eScience 2026, ReWorDS Workshop).<br>
         <span class="small code-link">
           <a href="https://github.com/Logan-Cole-Luna/SensorWF">
             github.com/Logan-Cole-Luna/SensorWF
@@ -112,9 +115,7 @@
 </main>
 
 <footer>
-  <div class="container">
-    &copy; <span id="year"></span> Logan Luna. All rights reserved.
-  </div>
+  &copy; <span id="year"></span> Logan Luna. All rights reserved.
 </footer>
 
 <script>
