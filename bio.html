@@ -19,7 +19,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261120c">
+  <link rel="stylesheet" href="style.css?v=20261120p">
+  <style>
+    .page .row > section.bio-intro { max-width: 46rem; }
+    .bio-text p:last-of-type { margin-bottom: 1.4rem; }
+    .bio-grad { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--rule); margin: 1.8rem 0 0; }
+    .bio-links { margin-top: 0; }
+    .bio-role { color: var(--soft); }
+    .rail-body p { margin: .55rem 0 0; }
+    .bio-skills > li { padding: .8rem 0 !important; }
+    .page section > .bio-links + .pdf-container { margin-top: 1.2rem; }
+    @media (max-width: 1000px) {
+    }
+  </style>
 </head>
 <body>
 
@@ -32,7 +44,6 @@
       <a href="publications.html">Publications</a>
       <a href="research.html">Research</a>
       <a href="awards.html">Awards</a>
-      <a href="software.html">Software</a>
       <a href="contact.html">Contact</a>
       <span class="social">
         <a href="https://github.com/Logan-Cole-Luna" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.192 22 16.439 22 12.017 22 6.484 17.523 2 12 2z"/></svg></a>
@@ -42,144 +53,206 @@
     </nav>
   </header>
   <section class="row page-hero">
-    <p class="pretitle">Logan Luna</p>
     <h1>Bio / CV</h1>
+    <p class="page-intro">Education, experience and service. The full CV is a PDF.</p>
   </section>
 </div>
 
 <main class="page">
 <div class="row">
 
-  <section>
-    <p>
-      I am a B.S. Computer Science graduate (Honors Program, magna cum laude) with a
-      minor in Applied Mathematics from Embry-Riddle Aeronautical University (May 2026,
-      cumulative GPA 3.85/4.00), and Embry-Riddle's Outstanding Undergraduate in Computer
-      Science (2025 &amp; 2026). In August 2026, I began an M.S. in Computer
-      Science (Artificial Intelligence specialization, thesis track) at the Georgia
-      Institute of Technology. My research is in AI for Mathematical Reasoning (AI4Math):
-      how semantically informative training signals can be quantified and incorporated
-      into the training and generation of mathematical reasoning models.
-    </p>
-    <img src="pictures/Graduation.jpeg" alt="Logan Luna receiving his B.S. diploma at Embry-Riddle Aeronautical University commencement" class="bio-photo">
-    <p>
-      At Georgia Tech's Reasoning and Learning Group under Dr. Vijay Ganesh, I contribute
-      to <em>AIProver</em>, an agentic system that post-trains an open-weight LLM on graded
-      verifier rewards to auto-formalize research mathematics. I built its RL pipeline and
-      reward, its distillation pipeline and dataset, and its Semantic Alignment Model. I
-      also coordinate Georgia Tech's Foundations of AI Seminar Series. As a DoW SMART
-      Scholar and Scientist Intern (Active Secret clearance) at NSWCDD, I build real-time
-      video detection and tracking systems. At Embry-Riddle, I researched RL-based satellite
-      collision avoidance in the Agile Research Group and led autonomy software for the
-      Autonomous Maritime Robotics Association's RoboSub team.
-    </p>
+  <section class="bio-intro">
+    <div class="bio-text">
+      <p>
+        I am a B.S. Computer Science graduate (Honors Program, magna cum laude) with a
+        minor in Applied Mathematics from Embry-Riddle Aeronautical University (May 2026,
+        cumulative GPA 3.85/4.00), and Embry-Riddle's Outstanding Undergraduate in Computer
+        Science (2025 &amp; 2026). In August 2026, I began an M.S. in Computer
+        Science (Artificial Intelligence specialization, thesis track) at the Georgia
+        Institute of Technology. My research is in AI for Mathematical Reasoning (AI4Math):
+        how semantically informative training signals can be quantified and incorporated
+        into the training and generation of mathematical reasoning models.
+      </p>
+      <p>
+        At Georgia Tech's Reasoning and Learning Group under Dr. Vijay Ganesh, I contribute
+        to <em>AIProver</em>, an agentic system that post-trains an open-weight LLM on graded
+        verifier rewards to auto-formalize research mathematics. I built its RL pipeline and
+        reward, its distillation pipeline and dataset, and its Semantic Alignment Model. I
+        also coordinate Georgia Tech's Foundations of AI Seminar Series. As a DoW SMART
+        Scholar and Scientist Intern (Active Secret clearance) at NSWCDD, I build real-time
+        video detection and tracking systems. At Embry-Riddle, I researched RL-based satellite
+        collision avoidance in the Agile Research Group and led autonomy software for the
+        Autonomous Maritime Robotics Association's RoboSub team.
+      </p>
+      <div class="links bio-links">
+        <a href="LoganLunaCV.pdf" download>Download CV (PDF)</a>
+        <a href="#cv">View CV on this page</a>
+      </div>
+    </div>
+    <img src="pictures/Graduation.jpeg" alt="Logan Luna receiving his B.S. diploma at Embry-Riddle Aeronautical University commencement" class="bio-grad">
   </section>
 
   <section>
-    <img src="pictures/georgia-institute-technology_578.jpg" alt="Georgia Institute of Technology" class="banner-photo">
-    <h3>Education</h3>
-    <ul>
+    <h2>Education</h2>
+    <ul class="rail">
       <li>
-        <span class="item-title">Georgia Institute of Technology</span>, Atlanta, GA<br>
-        M.S. Computer Science, Specialization in Artificial Intelligence (Thesis Track)<br>
-        August 2026 – Expected December 2027
+        <span class="rail-key">Aug 2026 – Dec 2027 (expected)</span>
+        <div class="rail-body">
+          <span class="item-title">Georgia Institute of Technology</span>, Atlanta, GA<br>
+          M.S. Computer Science, Specialization in Artificial Intelligence (Thesis Track)
+        </div>
       </li>
       <li>
-        <span class="item-title">Embry-Riddle Aeronautical University</span>, Daytona Beach, FL<br>
-        B.S. Computer Science (Honors Program, magna cum laude), Minor in Applied Mathematics<br>
-        August 2022 – May 2026 · GPA 3.85/4.00 · Outstanding Undergraduate in Computer Science
+        <span class="rail-key">Aug 2022 – May 2026</span>
+        <div class="rail-body">
+          <span class="item-title">Embry-Riddle Aeronautical University</span>, Daytona Beach, FL<br>
+          B.S. Computer Science (Honors Program, magna cum laude), Minor in Applied Mathematics<br>
+          GPA 3.85/4.00, Outstanding Undergraduate in Computer Science
+        </div>
       </li>
-    </ul>
-
-    <h3>Professional Experience</h3>
-    <ul>
-      <li>
-        <span class="item-title">Naval Surface Warfare Center Dahlgren Division (NSWCDD)</span><br>
-        Scientist Intern, Beam and Optic Control for High Energy Weapons, 2024–Present · Active Secret Clearance.<br>
-        Re-architected YOLO into a video detector with a motion cross-attention stream that fuses
-        frame-difference cues into the backbone at three scales, substantially improving small,
-        low-visibility object detection in clutter (2026). Designed a lightweight temporal feature
-        approach for stability when targets appear infrequently (2025). Built a real-time tracking
-        pipeline with YOLO, ORB keypoint matching, homography-based optical flow,
-        re-identification, and Kalman filtering.
-      </li>
-      <li>
-        <span class="item-title">Reasoning and Learning Group, Georgia Institute of Technology</span><br>
-        Researcher, AI4Math / Auto-formalization, 2025–Present · Group Lead: Dr. Vijay Ganesh.<br>
-        Contribute to <em>AIProver</em>, which lifts pass@4 semantic correctness on research-math
-        auto-formalization from 15.7% to 36.7% (above GPT-5.6-Sol and Codex), and from 41.9% to
-        79.8% as a Claude Code skill. Extended RLSF to multi-turn auto-formalization with GRPO and
-        designed a graded reward ladder (type correctness, completeness, semantic correctness,
-        length fidelity); extended BEq+ to score one-directional implication; built the
-        distillation pipeline over 57.9k instances (16,570 Mathlib and 6,799 Mizar examples);
-        trained a Semantic Alignment Model (cross-entropy + InfoNCE, LoRA on a 119B MoE),
-        raising matched NL–Lean cosine similarity from 0.11 to 0.75.
-      </li>
-      <li>
-        <span class="item-title">Agile Research Group, Embry-Riddle Aeronautical University</span><br>
-        Researcher, Satellite Trajectory Optimization, 2024–2026 · Group Lead: Dr. Omar Ochoa.<br>
-        Developed a PPO-based RL framework for fuel-aware satellite collision avoidance, reaching
-        97.5% avoidance success over 1,000 deterministic GEO episodes; studied reward shaping and
-        curriculum learning; generalized the group's sensor analysis practice into
-        <em>SensorWF</em>, a FAIR workflow framework.
-      </li>
-    </ul>
-
-    <h3>Teaching, Mentoring &amp; Service</h3>
-    <ul>
-      <li>
-        <span class="item-title"><a href="https://foundationsofai.github.io/" target="_blank" rel="noopener">Foundations of AI Seminar Series</a></span>,
-        Georgia Institute of Technology, 2026–Present.<br>
-        Seminar Coordinator (faculty organizers: Dr. Vijay Ganesh, Dr. Yingyan (Celine) Lin). Run
-        the series end to end and host visiting speakers, including Young Jin Kim (Microsoft
-        Research) and Daniel Kroening (Amazon).
-      </li>
-      <li>
-        <span class="item-title">Workshops</span>, Embry-Riddle Aeronautical University, 2023–2026.<br>
-        Hosted with AMRA: <em>Competitive Fellowship Applications</em> (~20 attendees; 6 went on to
-        receive DoW SMART Scholarships), <em>Introduction to Programming</em> (~30 attendees), and
-        <em>Introduction to Machine Learning</em> (~10 attendees).
-      </li>
-      <li>
-        <span class="item-title">Undergraduate Research Mentoring</span>, Agile Research Group, 2025–2026.<br>
-        Mentored two undergraduate researchers through a full research cycle, from first exposure
-        to research to co-authorship on a peer-reviewed conference paper (SensorWF).
-      </li>
-      <li>
-        <span class="item-title">Peer Mentor</span>, Office of Undergraduate Research, Embry-Riddle, 2023–2024.<br>
-        Mentored two aerospace engineering students; outcomes included a research lab position and
-        an engineering internship at Boeing.
-      </li>
-      <li>
-        <span class="item-title">Software Department Head</span>,
-        RoboSub Team, Autonomous Maritime Robotics Association (AMRA), 2022–2026.<br>
-        Led AUV autonomy software (computer vision, sonar processing, ML-based decision-making);
-        16th of 52 schools internationally; developed the team's sonar work into a peer-reviewed
-        publication.
-      </li>
-    </ul>
-
-    <h3>Skills</h3>
-    <ul>
-      <li><span class="label">Programming:</span> Python, C/C++, Java</li>
-      <li><span class="label">ML/CV:</span> PyTorch, TensorFlow, OpenAI Gym, SHAP, OpenCV, YOLO</li>
-      <li><span class="label">Mathematics:</span> Linear Algebra, Calculus I–III, Differential Equations, Probability &amp; Statistics, Discrete Mathematics, Optimization</li>
-      <li><span class="label">Tools:</span> Git, Docker, Linux, NVIDIA Isaac Lab, Lean</li>
     </ul>
   </section>
 
-    <section>
-  <h2>Curriculum Vitae</h2>
+  <section>
+    <h2>Professional Experience</h2>
+    <ul class="rail">
+      <li>
+        <span class="rail-key">2026 – Present</span>
+        <div class="rail-body">
+          <span class="item-title">Meta FAIR (Core Learning and Reasoning)</span><br>
+          <span class="bio-role">Research Collaborator V (contract), ATLAS project</span>
+          <p>Contribute to <a href="https://github.com/facebookresearch/atlas-lean">ATLAS</a>, the Autoformalized Textbook Library At Scale: a verified Lean 4 library built with AutoformBot, an open-source multi-agent framework that translates informal textbook mathematics into machine-checked definitions and proofs (<a href="https://arxiv.org/abs/2605.29955">paper</a>).</p>
+        </div>
+      </li>
+      <li>
+        <span class="rail-key">2024 – Present</span>
+        <div class="rail-body">
+          <span class="item-title">Naval Surface Warfare Center Dahlgren Division (NSWCDD)</span><br>
+          <span class="bio-role">Scientist Intern, Beam and Optic Control for High Energy Weapons, Active Secret Clearance</span>
+          <p>
+            Re-architected YOLO into a video detector with a motion cross-attention stream that fuses
+            frame-difference cues into the backbone at three scales, substantially improving small,
+            low-visibility object detection in clutter (2026). Designed a lightweight temporal feature
+            approach for stability when targets appear infrequently (2025). Built a real-time tracking
+            pipeline with YOLO, ORB keypoint matching, homography-based optical flow,
+            re-identification, and Kalman filtering.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="rail-key">2025 – Present</span>
+        <div class="rail-body">
+          <span class="item-title">Reasoning and Learning Group, Georgia Institute of Technology</span><br>
+          <span class="bio-role">Researcher, AI4Math / Auto-formalization, Group Lead: Dr. Vijay Ganesh</span>
+          <p>
+            Contribute to <em>AIProver</em>, which lifts pass@4 semantic correctness on research-math
+            auto-formalization from 15.7% to 36.7% (above GPT-5.6-Sol and Codex), and from 41.9% to
+            79.8% as a Claude Code skill. Extended RLSF to multi-turn auto-formalization with GRPO and
+            designed a graded reward ladder (type correctness, completeness, semantic correctness,
+            length fidelity); extended BEq+ to score one-directional implication; built the
+            distillation pipeline over 57.9k instances (16,570 Mathlib and 6,799 Mizar examples);
+            trained a Semantic Alignment Model (cross-entropy + InfoNCE, LoRA on a 119B MoE),
+            raising matched NL–Lean cosine similarity from 0.11 to 0.75.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="rail-key">2024 – 2026</span>
+        <div class="rail-body">
+          <span class="item-title">Agile Research Group, Embry-Riddle Aeronautical University</span><br>
+          <span class="bio-role">Researcher, Satellite Trajectory Optimization, Group Lead: Dr. Omar Ochoa</span>
+          <p>
+            Developed a PPO-based RL framework for fuel-aware satellite collision avoidance, reaching
+            97.5% avoidance success over 1,000 deterministic GEO episodes; studied reward shaping and
+            curriculum learning; generalized the group's sensor analysis practice into
+            <em>SensorWF</em>, a FAIR workflow framework.
+          </p>
+        </div>
+      </li>
+    </ul>
+  </section>
 
-  <p class="small">
-    Full CV available here:
-    <a href="LoganLunaCV.pdf" download>Download CV (PDF)</a>
-  </p>
+  <section>
+    <h2>Teaching, Mentoring &amp; Service</h2>
+    <ul class="rail">
+      <li>
+        <span class="rail-key">2026 – Present</span>
+        <div class="rail-body">
+          <span class="item-title"><a href="https://foundationsofai.github.io/" target="_blank" rel="noopener">Foundations of AI Seminar Series</a></span>,
+          Georgia Institute of Technology
+          <p>
+            Seminar Coordinator (faculty organizers: Dr. Vijay Ganesh, Dr. Yingyan (Celine) Lin). Run
+            the series end to end and host visiting speakers, including Young Jin Kim (Microsoft
+            Research) and Daniel Kroening (Amazon).
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="rail-key">2023 – 2026</span>
+        <div class="rail-body">
+          <span class="item-title">Workshops</span>, Embry-Riddle Aeronautical University
+          <p>
+            Hosted with AMRA: <em>Competitive Fellowship Applications</em> (~20 attendees; 6 went on to
+            receive DoW SMART Scholarships), <em>Introduction to Programming</em> (~30 attendees), and
+            <em>Introduction to Machine Learning</em> (~10 attendees).
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="rail-key">2025 – 2026</span>
+        <div class="rail-body">
+          <span class="item-title">Undergraduate Research Mentoring</span>, Agile Research Group
+          <p>
+            Mentored two undergraduate researchers through a full research cycle, from first exposure
+            to research to co-authorship on a peer-reviewed conference paper (SensorWF).
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="rail-key">2023 – 2024</span>
+        <div class="rail-body">
+          <span class="item-title">Peer Mentor</span>, Office of Undergraduate Research, Embry-Riddle
+          <p>
+            Mentored two aerospace engineering students; outcomes included a research lab position and
+            an engineering internship at Boeing.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="rail-key">2022 – 2026</span>
+        <div class="rail-body">
+          <span class="item-title">Software Department Head</span>,
+          RoboSub Team, Autonomous Maritime Robotics Association (AMRA)
+          <p>
+            Led AUV autonomy software (computer vision, sonar processing, ML-based decision-making);
+            16th of 52 schools internationally; developed the team's sonar work into a peer-reviewed
+            publication.
+          </p>
+        </div>
+      </li>
+    </ul>
+  </section>
 
-  <div class="pdf-container">
-    <embed src="LoganLunaCV.pdf" type="application/pdf">
-  </div>
-</section>
+  <section>
+    <h2>Skills</h2>
+    <ul class="rail bio-skills">
+      <li><span class="rail-key">Programming</span><div class="rail-body">Python, C/C++, Java</div></li>
+      <li><span class="rail-key">ML/CV</span><div class="rail-body">PyTorch, TensorFlow, OpenAI Gym, SHAP, OpenCV, YOLO</div></li>
+      <li><span class="rail-key">Mathematics</span><div class="rail-body">Linear Algebra, Calculus I–III, Differential Equations, Probability &amp; Statistics, Discrete Mathematics, Optimization</div></li>
+      <li><span class="rail-key">Tools</span><div class="rail-body">Git, Docker, Linux, NVIDIA Isaac Lab, Lean</div></li>
+    </ul>
+  </section>
+
+  <section id="cv">
+    <h2>Curriculum Vitae</h2>
+    <div class="links bio-links">
+      <a href="LoganLunaCV.pdf" download>Download CV (PDF)</a>
+      <a href="LoganLunaCV.pdf" target="_blank" rel="noopener">Open in a new tab</a>
+    </div>
+    <div class="pdf-container">
+      <embed src="LoganLunaCV.pdf" type="application/pdf">
+    </div>
+  </section>
 
 </div>
 </main>

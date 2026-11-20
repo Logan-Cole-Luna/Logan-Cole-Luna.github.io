@@ -19,7 +19,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261120c">
+  <link rel="stylesheet" href="style.css?v=20261120p">
+  <style>
+    .ct-wrap { display: grid; grid-template-columns: minmax(0, 42rem) 280px; justify-content: start; gap: 3rem 6rem; align-items: center; }
+    .ct-email { display: inline-block; font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 4.2vw, 3rem); line-height: 1.15; color: var(--deep); text-decoration: underline; text-decoration-color: rgba(168, 70, 31, .4); text-decoration-thickness: 2px; text-underline-offset: 6px; overflow-wrap: anywhere; }
+    .ct-email:hover { color: var(--rust); text-decoration-color: currentColor; }
+    .page .ct-open { margin: 1.6rem 0 0; max-width: 36rem; font-size: 1.15rem; line-height: 1.5; color: var(--ink); }
+    .ct-block .links { margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid var(--rule-soft); max-width: 36rem; }
+    .page .ct-where { margin: 1.1rem 0 0; font-size: 16px; color: var(--soft); }
+    .ct-photo { margin: 0; }
+    .ct-photo img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 15%; border: 1px solid var(--rule); }
+    @media (max-width: 800px) {
+      .ct-wrap { grid-template-columns: 1fr; }
+      .ct-photo { max-width: 200px; }
+    }
+  </style>
 </head>
 <body>
 <div class="top">
@@ -31,7 +45,6 @@
       <a href="publications.html">Publications</a>
       <a href="research.html">Research</a>
       <a href="awards.html">Awards</a>
-      <a href="software.html">Software</a>
       <a href="contact.html" class="on" aria-current="page">Contact</a>
       <span class="social">
         <a href="https://github.com/Logan-Cole-Luna" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.192 22 16.439 22 12.017 22 6.484 17.523 2 12 2z"/></svg></a>
@@ -41,22 +54,28 @@
     </nav>
   </header>
   <section class="row page-hero">
-    <p class="pretitle">Logan Luna</p>
     <h1>Contact</h1>
+    <p class="page-intro">The best way to reach me is email.</p>
   </section>
 </div>
 
 <main class="page">
 <div class="row">
 
-  <section>
-    <h2>Contact Information</h2>
-    <ul class="contact-list">
-      <li><span class="label">Email:</span> <a href="mailto:Logan03Luna@gmail.com">Logan03Luna@gmail.com</a></li>
-      <li><span class="label">LinkedIn:</span> <a href="https://www.linkedin.com/in/logan-luna">linkedin.com/in/logan-luna</a></li>
-      <li><span class="label">GitHub:</span> <a href="https://github.com/Logan-Cole-Luna">github.com/Logan-Cole-Luna</a></li>
-      <li><span class="label">Location:</span> Atlanta, GA, USA (during studies)</li>
-    </ul>
+  <section class="ct-wrap">
+    <div class="ct-block">
+      <a class="ct-email" href="mailto:Logan03Luna@gmail.com">Logan03Luna@gmail.com</a>
+      <p class="ct-open">Open to research collaborations and conversations about AI for mathematical reasoning.</p>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/logan-luna">LinkedIn</a>
+        <a href="https://github.com/Logan-Cole-Luna">GitHub</a>
+        <a href="https://scholar.google.com/citations?user=cwfqLqYAAAAJ&hl=en&oi=ao">Google Scholar</a>
+      </div>
+      <p class="ct-where">Atlanta, GA, USA (during studies)</p>
+    </div>
+    <figure class="ct-photo">
+      <img src="pictures/HeadShot.png" alt="Logan Luna">
+    </figure>
   </section>
 </div>
 </main>

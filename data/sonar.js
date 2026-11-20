@@ -15,7 +15,8 @@
      traces    The return at scan 800 (median of the 7 plot columns around it), 128 distance points, in the
                plots' intensity units. Approximate, because they are read back from a colormap.
                The gate echo sits at distance points 22 to 34: raw 233 to 241, kept by CSV (84 to 107),
-               removed by CV (0), which matches the paper's Fig. 8 difference maps. */
+               removed by CV (0), which matches the paper's Fig. 8 difference maps. The figure no longer
+               draws these traces; they ground the "kept" and "removed" gate labels on the waterfalls. */
 window.SONAR_DATA = {
   scans: 1420, dist: 128, rows: 64, cols: 142, scan: 800, gate: [21, 35],
   ms: { csvFilter: 3.1, csvTotal: 3.1, cvFilter: 3.798, cvTotal: 37.419 },

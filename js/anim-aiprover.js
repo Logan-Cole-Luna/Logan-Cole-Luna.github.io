@@ -14,16 +14,16 @@
    ILLUSTRATIVE in the panel: the rollout outcomes (rewards computed from the public ladder), the
    harness fitness values, the gate fitness values, and the unmatched SAM pairs.
    DOM text at real CSS size. Markup: .anim-aiprover > .aip-strip, .aip-main (.aip-eng, .aip-code),
-   .aip-note, .aip-train, svg.aip-wires. Hash: #t=<s> jumps to a moment; #stage=<id>&p=<s> shows a
+   .aip-train, svg.aip-wires. No narrating note line: the stage line, the Lean file and the panel carry it. Hash: #t=<s> jumps to a moment; #stage=<id>&p=<s> shows a
    clicked stage's panel at time p (ids: base, sam, rlsf, hevo, gate). */
 (function () {
   const root = document.querySelector(".anim-aiprover");
   if (!root) return;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = s => root.querySelector(s);
-  const strip = $(".aip-strip"), eng = $(".aip-eng"), code = $(".aip-code"), note = $(".aip-note"), wires = $(".aip-wires");
+  const strip = $(".aip-strip"), eng = $(".aip-eng"), code = $(".aip-code"), wires = $(".aip-wires");
   let train = (root.closest("li.paper") || root).querySelector(".aip-train");
-  if (!train) { train = document.createElement("div"); train.className = "aip-train"; note.after(train); }
+  if (!train) { train = document.createElement("div"); train.className = "aip-train"; $(".aip-main").after(train); }
   const NS = "http://www.w3.org/2000/svg";
   const clamp = x => x < 0 ? 0 : x > 1 ? 1 : x;
   const ease = x => { x = clamp(x); return x * x * (3 - 2 * x); };
@@ -34,7 +34,7 @@
     soft: "#67615a", ink: "#1c1a17", paper: "#efe6d4", bg: "#f7f2e7" };
   const MONO = "'IBM Plex Mono',ui-monospace,monospace", SANS = "'Source Sans 3','Segoe UI',sans-serif";
 
-  /* ---------- strip: clickable training stages ---------- */
+  /* ---------- stage line: plain clickable text, the active stage changes colour ---------- */
   const STAGES = [["base", "Leanstral-1.5"], ["sam", "SAM"], ["rlsf", "Agentic RLSF"], ["hevo", "HarnessEvolve"], ["gate", "gate"]];
   const ARROWS = ["→", "→", "⇄", "→"];
   strip.setAttribute("role", "group");
@@ -85,16 +85,6 @@
   // which training stage is lit, and from when (the panel's clock starts there)
   const SEG = [["base", 0], ["hevo", T.err], ["sam", T.faith], ["rlsf", T.reward], ["gate", T.gate]];
   const segAt = t => { let s = SEG[0]; SEG.forEach(x => { if (t >= x[1]) s = x; }); return s; };
-
-  const NOTES = [
-    [0, "AIProver reads the theorem and writes the Lean statement with a first proof."],
-    [T.err, "Lean rejects line 8. The harness hands the error back to the model."],
-    [T.search, "The model searches Mathlib for a lemma that splits off the last term of the sum."],
-    [T.del, "It rewrites the step with that lemma and the induction hypothesis."],
-    [T.ok, "Lean accepts the file: no errors, no goals left, no sorry."],
-    [T.faith, "The Lean statement is checked against the English one: same theorem, nothing added or dropped."],
-    [T.reward, "In training, sessions like this are scored, and the reward drives Agentic RLSF."],
-    [T.gate, "Each training round is kept only if it does better on held-out problems."]];
 
   function lineHTML(segs, n, opts) {
     let out = "", left = n;
@@ -169,9 +159,6 @@
     const codePairs = [...src.querySelectorAll(".aip-pair")];
     [engPairs, codePairs].forEach(list => list.forEach(e => e.classList.toggle("is-on", pairOn(+e.dataset.p))));
 
-    let nt = NOTES[0][1]; NOTES.forEach(([a, s]) => { if (t >= a) nt = s; });
-    if (note.textContent !== nt) note.textContent = nt;
-
     root.style.setProperty("--aip-fade", 1 - ramp(t, T.hold, T.loop));
 
     // lemma flight: measured on the inner spans so the glyphs land on the same baseline
@@ -224,27 +211,27 @@
   /* ---------- training panel: one small figure per stage ---------- */
   const el = (tag, a, p) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
   const tx = (s, a, p) => { const e = el("text", Object.assign({ "font-family": SANS, "font-size": 13, fill: C.ink }, a), p); e.textContent = s; return e; };
-  const mono = (s, a, p) => tx(s, Object.assign({ "font-family": MONO, "font-size": 12.5 }, a), p);
+  const mono = (s, a, p) => tx(s, Object.assign({ "font-family": MONO, "font-size": 13 }, a), p);
   const op = (e, v) => e.setAttribute("opacity", v);
 
   const PANELS = {
     base: {
       name: "Leanstral-1.5", period: 6.6,
-      desc: "The starting point: Leanstral-1.5, an open-weight Lean model, in a seed harness adapted from Mistral's Vibe with the lean-lsp-mcp tools. It writes Lean and calls Lean tools turn by turn.",
+      desc: "an open-weight Lean model in a seed harness with Lean tools.",
       build(g, W, N) {
         const tools = [["compile with Lean", "1 error"], ["read the goal", "⊢ n ^ 2 + (2 * n + 1) = (n + 1) ^ 2"], ["search Mathlib", "Finset.sum_range_succ"]];
-        const mx = 0, my = 22, tx0 = N ? 18 : 150;
+        const mx = 0, my = 20, tx0 = N ? 18 : 150;
         tx("Leanstral-1.5", { x: mx, y: my, "font-weight": 600, fill: C.deep }, g);
-        tx("+ seed harness", { x: mx, y: my + 17, fill: C.soft, "font-size": 12.5 }, g);
+        tx("+ seed harness", { x: mx, y: my + 18, fill: C.soft }, g);
         const rows = tools.map((tl, i) => {
-          const y = N ? 64 + i * 22 : 16 + i * 26;
+          const y = N ? 62 + i * 22 : 14 + i * 24;
           const path = el("path", { d: N ? `M8,${my + 24} V${y - 4} H${tx0 - 6}` : `M${104},${my - 4} C${126},${my - 4} ${120},${y - 4} ${tx0 - 6},${y - 4}`, fill: "none", stroke: C.line, "stroke-width": 1 }, g);
           const lab = tx(tl[0], { x: tx0, y }, g);
-          const out = mono(tl[1], N ? { x: 0, y: 140, fill: C.green } : { x: tx0 + 128, y, fill: C.green }, g);
+          const out = mono(tl[1], N ? { x: 0, y: 130, fill: C.green } : { x: tx0 + 128, y, fill: C.green }, g);
           return { path, lab, out };
         });
         const dot = el("circle", { r: 3, fill: C.rust }, g);
-        return { rows, dot, H: N ? 148 : 84 };
+        return { rows, dot, H: N ? 136 : 70 };
       },
       update(s, p) {
         const k = Math.floor(p / 2.2) % 3, f = (p % 2.2) / 2.2;
@@ -260,22 +247,25 @@
     },
     sam: {
       name: "SAM", period: 7,
-      desc: "Semantic Alignment Model: the model reads the English at a reserved [PRED] token and the Lean on its own, and a contrastive term pulls the two views of the same theorem together.",
+      desc: "pulls the English and Lean views of one theorem together.",
       build(g, W, N) {
-        const e = tx("", { x: 0, y: 18 }, g);
-        e.innerHTML = `the sum of the first <tspan font-style="italic">n</tspan> odd numbers is <tspan font-style="italic">n</tspan>² <tspan font-family="${MONO}" font-size="12.5" fill="${C.rust}">[PRED]</tspan>`;
-        mono("∑ i ∈ range n, (2 * i + 1) = n ^ 2", { x: 0, y: 46, fill: C.deep }, g);
-        const px = N ? 30 : W - 170, py = N ? 74 : 4, pw = N ? W - 60 : 160, ph = N ? 70 : 70;
+        // each view is marked on its own line (rust circle = English at [PRED], deep triangle = Lean): no legend
+        el("circle", { cx: 5, cy: 13.5, r: 4, fill: "none", stroke: C.rust, "stroke-width": 1.5 }, g);
+        const e = tx("", { x: 16, y: 18 }, g);
+        e.innerHTML = `the sum of the first <tspan font-style="italic">n</tspan> odd numbers is <tspan font-style="italic">n</tspan>² <tspan font-family="${MONO}" fill="${C.rust}">[PRED]</tspan>`;
+        el("path", { d: "M5,37.4 L9.2,45 L0.8,45 Z", fill: C.deep }, g);
+        mono("∑ i ∈ range n, (2 * i + 1) = n ^ 2", { x: 16, y: 46, fill: C.deep }, g);
+        const px = N ? 0 : W - 170, py = N ? 60 : 4, pw = N ? W - 110 : 160, ph = N ? 64 : 70;
         el("rect", { x: px, y: py, width: pw, height: ph, fill: "none", stroke: C.rule }, g);
         const others = [[.2, .25, .75, .8], [.8, .3, .15, .7], [.5, .85, .9, .15]].map(o => ({
           o, c: el("circle", { r: 3.2, fill: "none", stroke: C.line, "stroke-width": 1.2 }, g),
           tr: el("path", { d: "M0,-3.8 L3.4,2.4 L-3.4,2.4 Z", fill: C.line }, g) }));
         const ce = el("circle", { r: 4, fill: "none", stroke: C.rust, "stroke-width": 1.5 }, g);
         const tl = el("path", { d: "M0,-4.6 L4.2,3 L-4.2,3 Z", fill: C.deep }, g);
-        const cosL = tx("matched cosine", { x: N ? px : px, y: py + ph + 18, fill: C.soft, "font-size": 12.5 }, g);
-        const cos = mono("0.11", { x: px + 96, y: py + ph + 18, fill: C.ink, "font-weight": 500 }, g);
-        const leg = tx("○ English view   △ Lean view", { x: N ? px : px, y: N ? py + ph + 36 : py + ph + 36, fill: C.soft, "font-size": 12 }, g);
-        return { px, py, pw, ph, others, ce, tl, cos, H: N ? py + ph + 42 : py + ph + 40 };
+        const lx = N ? px + pw + 12 : 0, ly = N ? py + 26 : 74;
+        tx("matched cosine", { x: lx, y: ly, fill: C.soft }, g);
+        const cos = mono("0.11", N ? { x: lx, y: ly + 20, fill: C.ink, "font-weight": 500 } : { x: lx + 98, y: ly, fill: C.ink, "font-weight": 500 }, g);
+        return { px, py, pw, ph, others, ce, tl, cos, H: N ? py + ph + 4 : 78 };
       },
       update(s, p) {
         const u = ramp(p, 1, 4.6), at = (fx, fy) => [s.px + s.pw * fx, s.py + s.ph * fy];
@@ -292,24 +282,24 @@
     },
     rlsf: {
       name: "Agentic RLSF", period: 6.4,
-      desc: "The model attempts a task several times inside its harness. The Lean kernel and BEq+ score each final file on a graded ladder, and GRPO reinforces the attempts that beat the group's average.",
+      desc: "Lean and BEq+ grade each attempt; GRPO reinforces the above-average ones.",
       build(g, W, N) {
         const R = [["does not compile", .05], ["compiles, sorry left", .5], ["complete, weaker statement", .6], ["complete and faithful", .97]];
-        const lw = N ? 0 : 178, bx = N ? 0 : lw, bw = N ? W - 92 : W - lw - 120, rowH = N ? 34 : 19;
+        const lw = N ? 0 : 184, bx = N ? 0 : lw, bw = N ? W - 92 : W - lw - 130, rowH = N ? 32 : 19;
         const rows = R.map(([lab, r], i) => {
           const y = 14 + i * rowH;
-          tx(lab, { x: 0, y, "font-size": 12.5 }, g);
-          const by = N ? y + 6 : y - 9;
+          tx(lab, { x: 0, y }, g);
+          const by = N ? y + 5 : y - 9;
           el("rect", { x: bx, y: by, width: bw, height: 8, fill: "#ece2cc" }, g);
           const bar = el("rect", { x: bx, y: by, width: 0, height: 8, fill: C.line }, g);
           const val = mono(r.toFixed(2), { x: bx + bw + 8, y: N ? by + 8 : y }, g);
-          const mark = tx("", { x: bx + bw + 46, y: N ? by + 8 : y, "font-size": 12.5 }, g);
+          const mark = tx("", { x: bx + bw + 48, y: N ? by + 8 : y }, g);
           return { r, bar, val, mark, by };
         });
         const mean = R.reduce((a, b) => a + b[1], 0) / R.length;
         const bot = rows[3].by + 12, mx = bx + bw * mean;
         const ml = el("path", { d: rows.map(r => `M${mx},${r.by - 3} V${r.by + 11}`).join(" "), stroke: C.rust, "stroke-width": 1.2 }, g);
-        const mt = tx(`group mean ${mean.toFixed(2)}`, { x: bx + bw * mean + 5, y: bot + 13, "font-size": 12, fill: C.rust }, g);
+        const mt = tx(`group mean ${mean.toFixed(2)}`, { x: mx + 5, y: bot + 13, fill: C.rust }, g);
         return { rows, ml, mt, bw, mean, N, H: bot + 18 };
       },
       update(s, p) {
@@ -326,15 +316,15 @@
     },
     hevo: {
       name: "HarnessEvolve", period: 8,
-      desc: "With the model frozen, a parent harness is picked from the search tree and a coding agent edits it. The child becomes the new best only if its fitness is higher; rejected children stay in the tree.",
+      desc: "a coding agent edits harnesses; a child is kept only if it beats the best.",
       build(g, W, N) {
-        const sx = N ? 86 : 120, x0 = 14;
+        const sx = N ? 86 : 110, x0 = 14;
         const nodes = [
-          { x: x0, y: 44, f: .42, lab: "H₀" },
-          { x: x0 + sx, y: 22, f: .47, par: 0, acc: 1 },
-          { x: x0 + sx * 2, y: 6, f: .45, par: 1, acc: 0 },
-          { x: x0 + sx * 2, y: 44, f: .51, par: 1, acc: 1 },
-          { x: x0 + sx, y: 70, f: .39, par: 0, acc: 0 }];
+          { x: x0, y: 40, f: .42, lab: "H₀" },
+          { x: x0 + sx, y: 20, f: .47, par: 0, acc: 1 },
+          { x: x0 + sx * 2, y: 2, f: .45, par: 1, acc: 0 },
+          { x: x0 + sx * 2, y: 38, f: .51, par: 1, acc: 1 },
+          { x: x0 + sx, y: 60, f: .39, par: 0, acc: 0 }];
         const G = nodes.map((n, i) => {
           const gg = el("g", {}, g);
           let edge = null;
@@ -345,9 +335,11 @@
           if (i === 0) lbl.setAttribute("x", n.x - 6);
           return { n, gg, edge, ring };
         });
-        const verdict = tx("", { x: 0, y: N ? 118 : 110, "font-size": 12.5 }, g);
-        const best = tx("", { x: N ? 0 : W, y: N ? 136 : 110, "font-size": 12.5, fill: C.soft, "text-anchor": N ? "start" : "end" }, g);
-        return { G, verdict, best, H: N ? 142 : 114 };
+        // verdict beside the tree in the wide layout, under it in the narrow one
+        const vx = N ? 0 : x0 + sx * 2 + 56;
+        const verdict = tx("", { x: vx, y: N ? 104 : 38 }, g);
+        const best = tx("", { x: vx, y: N ? 124 : 60, fill: C.soft }, g);
+        return { G, verdict, best, H: N ? 130 : 84 };
       },
       update(s, p) {
         const step = 1.55, k = Math.min(4, Math.floor(p / step)), f = (p - k * step) / step;
@@ -358,17 +350,17 @@
           op(o.gg, shown ? 1 : 0);
           if (o.edge) { const L = o.edge.getTotalLength(); o.edge.setAttribute("stroke-dasharray", o.n.acc ? `${L * edgeU} ${L}` : (edgeU >= 1 ? "3 3" : `${L * edgeU} ${L}`)); }
           if (shown && o.n.acc) bestF = Math.max(bestF, o.n.f);
-          if (i === k && f > .55) msg = o.n.acc ? `accepted: ${o.n.f.toFixed(2)} beats the best so far` : `rejected: ${o.n.f.toFixed(2)}, kept in the tree as evidence`;
+          if (i === k && f > .55) msg = o.n.acc ? `accepted, ${o.n.f.toFixed(2)} is the new best` : `rejected, kept in the tree`;
         });
         s.G.forEach((o, i) => op(o.ring, i === (k >= 1 && k <= 4 ? s.G[k].n.par : -1) && f < .45 ? 1 : 0));
-        if (k >= 1 && f < .55) msg = "parent picked; a coding agent edits it";
+        if (k >= 1 && f < .55) msg = "parent picked, an agent edits it";
         s.verdict.textContent = msg; s.verdict.setAttribute("fill", /^rej/.test(msg) ? C.soft : /^acc/.test(msg) ? C.green : C.ink);
         s.best.textContent = `best fitness ${bestF.toFixed(2)}`;
       }
     },
     gate: {
       name: "Gate", period: 8,
-      desc: "After each round, the new model and harness are kept only if held-out fitness improves; otherwise the round is rolled back and the previous pair stays.",
+      desc: "a round is kept only if held-out fitness improves.",
       build(g, W, N) {
         const lw = N ? 0 : 150, bw = N ? W - 70 : W - lw - 140;
         const row = (lab, y) => {
@@ -380,9 +372,9 @@
           return { bar, v, by };
         };
         const a = row("current round", N ? 20 : 24), b = row("candidate round", N ? 62 : 48);
-        const verdict = tx("", { x: 0, y: N ? 112 : 78, "font-size": 13.5, "font-weight": 600 }, g);
-        tx("held-out fitness", { x: N ? W : lw + bw, y: N ? 0 : 2, "text-anchor": "end", "font-size": 12, fill: C.soft }, g);
-        return { a, b, bw, verdict, H: N ? 120 : 84 };
+        const verdict = tx("", { x: N ? 0 : lw, y: N ? 108 : 76, "font-weight": 600 }, g);
+        tx("held-out fitness", { x: N ? W : lw + bw, y: N ? 0 : 2, "text-anchor": "end", fill: C.soft }, g);
+        return { a, b, bw, verdict, H: N ? 114 : 82 };
       },
       update(s, p) {
         const second = p >= 4, q = second ? p - 4 : p, cur = .53, cand = second ? .5 : .58;
@@ -392,14 +384,15 @@
         const kept = cand > cur, show = q > 2;
         s.b.bar.setAttribute("fill", show ? (kept ? C.green : C.rust) : C.line);
         op(s.b.bar, show && !kept ? 1 - .6 * ramp(q, 2.6, 3.4) : 1);
-        s.verdict.textContent = show ? (kept ? "✓ kept: the next round starts from it" : "↺ rolled back: the current round stays") : "";
+        s.verdict.textContent = show ? (kept ? "✓ kept" : "↺ rolled back") : "";
         s.verdict.setAttribute("fill", kept ? C.green : C.rust);
       }
     }
   };
 
-  train.innerHTML = `<div class="aip-train-head"><span class="aip-train-name"></span><button type="button" class="aip-resume" hidden>Resume session</button></div>` +
-    `<p class="aip-train-desc"></p><div class="aip-train-fig"></div>`;
+  // one line: the stage name, its one-line description, and Resume when a stage was chosen by hand
+  train.innerHTML = `<p class="aip-train-head"><button type="button" class="aip-resume" hidden>Resume</button>` +
+    `<span class="aip-train-name"></span> <span class="aip-train-desc"></span></p><div class="aip-train-fig"></div>`;
   const tName = train.querySelector(".aip-train-name"), tDesc = train.querySelector(".aip-train-desc"),
     tFig = train.querySelector(".aip-train-fig"), resumeBtn = train.querySelector(".aip-resume");
   let cur = null, curState = null, curW = 0;
@@ -443,7 +436,7 @@
     resumeBtn.hidden = !manual;
   }
   /* ---------- fixed height at a given width ----------
-     Measure every state once (each note, the code box over the whole session, each stage's panel),
+     Measure every state once (the code box over the whole session, each stage's panel, the stage line),
      reserve the tallest of each part, then render the current moment again. Redone on resize. */
   const fileEl = code.querySelector(".aip-file");
   let fitW = -1;
@@ -451,17 +444,18 @@
     const w = root.clientWidth;
     if (!w || w === fitW) return;
     fitW = w;
-    const parts = [note, fileEl, src, train], max = parts.map(() => 0);
+    const parts = [fileEl, src, train, strip], max = parts.map(() => 0);
     const measure = (...ix) => ix.forEach(i => (max[i] = Math.max(max[i], parts[i].getBoundingClientRect().height)));
     parts.forEach(e => (e.style.minHeight = "0px"));
-    NOTES.forEach(([, s]) => { note.textContent = s; measure(0); });
     // the whole session every 0.1 s, with and without the caret, and finely where line 9 finishes
     // typing while the messages above it collapse (the tallest moment lasts only a few frames)
     const ts = [];
     for (let x = T.lines[5][0]; x <= T.reward + .5; x += .1) ts.push(x);
     for (let x = T.l9b; x <= T.collapse + .45; x += .01) ts.push(x);
-    ts.forEach(x => [true, false].forEach(m => { renderSession(x, m); measure(1, 2); }));
-    Object.keys(PANELS).forEach(id => { cur = null; showPanel(id); measure(3); });   // the panel as a whole: its tallest stage
+    ts.forEach(x => [true, false].forEach(m => { renderSession(x, m); measure(0, 1); }));
+    // the panel as a whole: its tallest stage, with and without Resume showing; the stage line with any stage pressed
+    [true, false].forEach(h => { resumeBtn.hidden = h; Object.keys(PANELS).forEach(id => { cur = null; showPanel(id); measure(2); }); });
+    Object.keys(stageEl).forEach(k => { stageEl[k].classList.add("is-on"); measure(3); stageEl[k].classList.remove("is-on"); });
     parts.forEach((e, i) => (e.style.minHeight = Math.ceil(max[i]) + "px"));
     cur = null; render();
   }

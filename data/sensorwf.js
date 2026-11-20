@@ -19,7 +19,7 @@
           M4      987 nodes, 882 edges over 7 sessions (paper). hash: two reruns as for ECG.
      Adapter sizes (167, 185, 502 lines) and "M2-M5 required no code modifications" are from the paper
      (documentation/SensorWF/main.tex, Generalizability and Adapter Effort). seed = 42 is the repo default.
-   Nothing here is invented; the only illustrative element is the hex "scramble" the animation shows before a digest settles. */
+   Nothing here is invented. The figure no longer shows the digests (kept for reference); its only illustrative element is the order and timing in which the core visits each signal. */
 window.SENSORWF_DATA = {
   seed: 42,
   families: ["raw","d","rm","rs","sk","ku","zcr","se","df"],

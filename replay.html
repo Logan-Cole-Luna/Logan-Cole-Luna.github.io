@@ -19,52 +19,51 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261120c">
+  <link rel="stylesheet" href="style.css?v=20261120p">
   <style>
-  :root { --ochre: #c08a2b; --lgreen: #d3e4d8; }
-
-  * { box-sizing: border-box; }
-  .replay-sub { color: var(--soft); margin: 0 0 1.4rem; font-size: 16px; }
-  .panel { background: var(--cream); border: 1px solid var(--rule); border-radius: 3px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; }
-  .stage { position: relative; padding: 1rem; min-width: 0; }
-  svg { width: 100%; height: auto; display: block; }
-  .side { border-left: 1px solid var(--rule); padding: 1.2rem 1.2rem 1rem; display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
-  .clock { font-family: "IBM Plex Mono", monospace; font-size: 28px; color: var(--deep); line-height: 1; }
-  .clock small { display: block; font-family: "Source Sans 3", sans-serif; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); margin-bottom: .4rem; }
-  .status { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .6rem; background: #e6dcc6; color: #4e4a44; align-self: flex-start; }
-  .status.done { background: #dde7da; color: #2f6b45; }
-  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; font-size: 13px; color: var(--soft); }
-  .stats b { display: block; font-family: "DM Serif Display", serif; font-weight: 400; font-size: 22px; color: var(--ink); }
-  /* the log is a fixed region: it fills what the stage leaves (never less than 180px) and never grows the panel */
-  .log { list-style: none; margin: 0; padding: 0; font-size: 13.5px; line-height: 1.35; flex: 1 1 0px; overflow: hidden; min-height: 180px; }
-  .log li { padding: .35rem 0 .35rem .7rem; border-left: 2px solid var(--rule); margin-bottom: .3rem; animation: in .35s ease; }
-  .log li.fail { border-color: var(--rust); } .log li.esc { border-color: var(--ochre); } .log li.ok { border-color: var(--green); }
-  .log time { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--soft); margin-right: .4rem; }
-  .log code { font-family: "IBM Plex Mono", monospace; font-size: 12px; word-break: break-all; }
-  @keyframes in { from { opacity: 0; transform: translateY(-4px); } }
-  .controls { display: flex; gap: .5rem; }
-  .controls button { font: 600 13px "Source Sans 3", sans-serif; background: none; border: 1.5px solid var(--deep); color: var(--deep); padding: .35rem .8rem; cursor: pointer; border-radius: 2px; }
-  .controls button:hover { background: rgba(23,63,53,.06); }
-  .legend { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; font-size: 13px; color: var(--soft); margin-top: 1rem; }
-  .legend span::before { content: ""; display: inline-block; width: 14px; height: 10px; border-radius: 2px; margin-right: .4rem; vertical-align: -1px; border: 1.5px solid; }
-  .lg-sk::before { border-color: #b9ab8c !important; border-style: dashed !important; background: #fbf8f1; }
-  .lg-run::before { border-color: var(--rust) !important; background: #fbf8f1; }
-  .lg-fail::before { border-color: var(--rust) !important; background: #f3dccd; }
-  .lg-esc::before { border-color: var(--ochre) !important; background: #f6e7c8; }
-  .lg-ok::before { border-color: var(--green) !important; background: var(--green); }
-  .lg-def::before { border-color: #cfc2a7 !important; background: var(--sand); }
-  /* svg */
-  .edge { fill: none; stroke: #cdbf9f; stroke-width: 1.1; transition: stroke .5s, opacity .5s; }
-  .edge.on { stroke: var(--green); opacity: .55; }
-  .edge.def { stroke-dasharray: 2 3; opacity: .45; } .edge.def.on { opacity: .25; }
-  .node rect { transition: fill .35s, stroke .35s; }
-  .node text { font-family: "IBM Plex Mono", monospace; font-size: 9.6px; transition: fill .35s; }
-  .node { transition: opacity .5s; }
-  .ring { fill: none; stroke: var(--rust); stroke-width: 2; opacity: 0; }
-  .ring.on { animation: pulse 1.2s ease-out infinite; }
-  @keyframes pulse { 0% { opacity: .7; } 100% { opacity: 0; transform: scale(1.12); } }
-  .badge { font-family: "Source Sans 3", sans-serif !important; font-size: 9px !important; font-weight: 700; letter-spacing: .06em; }
-  @media (max-width: 900px) { .panel { grid-template-columns: 1fr; } .side { border-left: 0; border-top: 1px solid var(--rule); } .log { flex: none; height: 220px; min-height: 0; } }
+  :root { --ochre: #c08a2b; --ochre-ink: #8a6418; --rp-bg: #f7f2e7; }
+  .rp-panel { background: var(--rp-bg); border: 1px solid var(--rule); border-radius: 3px; padding: 1.1rem 1.4rem 0; }
+  .rp-graph { min-width: 0; }
+  .rp-graph svg { display: block; overflow: visible; }
+  .rp-live g, .rp-live path, .rp-live text { transition: opacity .4s, fill .3s, stroke .3s; }
+  .rp-lemma { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; paint-order: stroke; stroke: var(--rp-bg); stroke-width: 4px; stroke-linejoin: round; }
+  .rp-thm { font-family: var(--sans); font-size: 14px; font-weight: 600; paint-order: stroke; stroke: var(--rp-bg); stroke-width: 4px; stroke-linejoin: round; }
+  .rp-key { margin: .6rem 0 0; font-size: 14px; line-height: 1.5; color: var(--soft); }
+  .rp-key b { font-weight: 600; }
+  .rp-key code { font-family: "IBM Plex Mono", monospace; font-size: 13px; }
+  .rp-k-hollow { color: #8b7f66; } .rp-k-run, .rp-k-fail { color: var(--rust); } .rp-k-esc { color: var(--ochre-ink); } .rp-k-ok { color: var(--green); }
+  /* timeline: quiet text button, thin scrubber, run clock */
+  .rp-bar { display: flex; align-items: center; gap: 1rem; margin: .9rem 0 0; padding: .55rem 0; border-top: 1px solid var(--rule); }
+  .rp-play { font: 400 14px var(--sans); color: var(--rust); background: none; border: 0; padding: .2rem 0; cursor: pointer; width: 2.6rem; text-align: left; }
+  .rp-play:hover, .rp-play:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+  .rp-scrub { position: relative; flex: 1 1 auto; height: 26px; cursor: pointer; touch-action: none; outline: none; }
+  .rp-track { position: absolute; left: 0; right: 0; top: 12px; height: 2px; background: var(--rule); }
+  .rp-fill { height: 100%; width: 0; background: var(--deep); }
+  .rp-knob { position: absolute; top: 8px; left: 0; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--deep); }
+  .rp-scrub:hover .rp-knob, .rp-scrub:focus-visible .rp-knob { box-shadow: 0 0 0 4px rgba(23, 63, 53, .14); }
+  .rp-clock { font-size: 14px; color: var(--soft); white-space: nowrap; }
+  .rp-clock span { font-family: "IBM Plex Mono", monospace; color: var(--deep); display: inline-block; min-width: 3.1em; text-align: right; }
+  /* below the graph: the event log (fixed height) and the current status in plain text */
+  .rp-below { display: grid; grid-template-columns: minmax(0, 1fr) 21rem; gap: 2.4rem; border-top: 1px solid var(--rule); padding: 1rem 0 1.2rem; }
+  .rp-log { list-style: none; margin: 0; padding: 0; font-size: 14px; line-height: 1.35; height: 196px; overflow: hidden; }
+  .rp-log li { padding: .3rem 0 .3rem .7rem; border-left: 2px solid var(--rule); margin-bottom: .3rem; }
+  .rp-log li.new { animation: rp-in .35s ease; }
+  .rp-log li.fail { border-color: var(--rust); } .rp-log li.esc { border-color: var(--ochre); } .rp-log li.ok { border-color: var(--green); }
+  .rp-log time { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--soft); margin-right: .5rem; }
+  .rp-log code { font-family: "IBM Plex Mono", monospace; font-size: 13px; word-break: break-all; }
+  @keyframes rp-in { from { opacity: 0; transform: translateY(-4px); } }
+  .rp-status { font-family: var(--serif); font-size: 1.45rem; line-height: 1.2; color: var(--deep); margin: 0 0 .4rem; }
+  .rp-status.done { color: var(--green); }
+  .rp-stats { margin: 0; font-size: 15px; line-height: 1.5; color: var(--soft); }
+  @media (max-width: 900px) {
+    .rp-below { grid-template-columns: 1fr; gap: 1rem; }
+    .rp-now { order: -1; }
+    .rp-log { height: 232px; }
+  }
+  @media (max-width: 560px) {
+    .rp-panel { padding: .8rem .9rem 0; }
+    .rp-bar { gap: .7rem; }
+  }
   </style>
 </head>
 <body>
@@ -77,7 +76,6 @@
       <a href="publications.html">Publications</a>
       <a href="research.html">Research</a>
       <a href="awards.html">Awards</a>
-      <a href="software.html">Software</a>
       <a href="contact.html">Contact</a>
       <span class="social">
         <a href="https://github.com/Logan-Cole-Luna" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.192 22 16.439 22 12.017 22 6.484 17.523 2 12 2z"/></svg></a>
@@ -89,31 +87,29 @@
   <section class="row page-hero">
     <p class="pretitle">Orchestration run replay</p>
     <h1>Erdős's conjecture on large totient fibers</h1>
+    <p class="page-intro">A real run of the orchestration, replayed from its trace: formalization, a 20-lemma sketch, AIProver jobs checked by Lean, and the lemmas that were handed back to the orchestrator. Conditional on the smooth shifted primes hypothesis (H).</p>
   </section>
 </div>
 
 <main class="page">
 <div class="row">
-  <p class="replay-sub">A real run of the orchestration, replayed from its trace: formalization, a 20-lemma sketch, AIProver jobs checked by Lean, and the lemmas that were handed back to the orchestrator. Conditional on the smooth shifted primes hypothesis (H).</p>
-
-  <div class="panel">
-    <div class="stage"><svg id="g" role="img" aria-label="Animated dependency tree of the proof"></svg></div>
-    <aside class="side">
-      <div class="clock"><small>Run time</small><span id="clock">0:00</span><span style="font-size:14px;color:var(--soft)"> h</span></div>
-      <span class="status" id="status">Formalizing</span>
-      <div class="stats">
-        <div><b id="sProved">0</b>lemmas proved</div>
-        <div><b id="sChecks">0</b>Lean checks</div>
-        <div><b id="sFail">0</b>rejected by Lean</div>
-        <div><b id="sEsc">0</b>escalated</div>
+  <div class="rp-panel">
+    <div class="rp-graph" id="graph" role="img" aria-label="Animated dependency tree of the proof: each lemma is a dot that fills as Lean accepts it"></div>
+    <p class="rp-key">Each dot is a lemma, joined to the lemmas it uses above it: <b class="rp-k-hollow">hollow</b> while sketched with <code>sorry</code>, <b class="rp-k-run">rust outline</b> while AIProver works on it, <b class="rp-k-fail">solid rust</b> when Lean rejects an attempt, <b class="rp-k-esc">ochre</b> when handed back to the orchestrator, <b class="rp-k-ok">green</b> once proved.</p>
+    <div class="rp-bar">
+      <button class="rp-play" id="play" type="button">Pause</button>
+      <div class="rp-scrub" id="scrub" role="slider" tabindex="0" aria-label="Replay position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="rp-track"><div class="rp-fill" id="fill"></div></div><div class="rp-knob" id="knob"></div>
       </div>
-      <ul class="log" id="log"></ul>
-      <div class="controls"><button id="play">Pause</button><button id="restart">Restart</button></div>
-    </aside>
-  </div>
-  <div class="legend">
-    <span class="lg-def">Definition</span><span class="lg-sk">Sketched (sorry)</span><span class="lg-run">AIProver working</span>
-    <span class="lg-fail">Rejected by Lean</span><span class="lg-esc">Handed back to orchestrator</span><span class="lg-ok">Proved</span>
+      <span class="rp-clock"><span id="clock">0:00</span> of <span id="total">0:00</span> h</span>
+    </div>
+    <div class="rp-below">
+      <ul class="rp-log" id="log" aria-live="off"></ul>
+      <div class="rp-now" id="now">
+        <p class="rp-status" id="status">Formalizing</p>
+        <p class="rp-stats" id="stats"></p>
+      </div>
+    </div>
   </div>
 </div>
 </main>
@@ -133,148 +129,252 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
-<script src="data/run011.js?v=20261120c"></script>
-<script src="js/aimath-layout.js?v=20261120c"></script>
+<script src="data/run011.js?v=20261120p"></script>
+<script src="js/aimath-layout.js?v=20261120p"></script>
 <script>
 (() => {
+  /* Replay of a real orchestration run (data/run011.js), drawn like the homepage hero (js/proof-hero.js):
+     each lemma is a dot that fills as Lean accepts it, with its real name beside it in mono.
+     The order of events, the tree, the names and the run clock come from the trace; the pacing is compressed. */
   const RUN = window.RUN, NS = "http://www.w3.org/2000/svg";
-  const svg = document.getElementById("g");
-  const NW = 124, NH = 34;
-  const lay = layoutDag(RUN, { colW: 140, rowH: 74, pad: 70 });
-  svg.setAttribute("viewBox", `0 0 ${lay.width} ${lay.height}`);
-  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent || svg).appendChild(e); return e; };
-
-  const byName = {}; RUN.nodes.forEach(n => (byName[n.name] = n));
-  const edgesG = el("g", {}), nodesG = el("g", {});
-  const edgeEls = RUN.edges.map(([a, b]) => {
-    const p = lay.xy[a], q = lay.xy[b];
-    const y1 = q.y + NH / 2, y2 = p.y - NH / 2, my = (y1 + y2) / 2;
-    const isDef = byName[b].kind === "def";
-    const e = el("path", { class: "edge" + (isDef ? " def" : ""), d: `M${q.x},${y1} C${q.x},${my} ${p.x},${my} ${p.x},${y2}` }, edgesG);
-    return { a, b, e };
-  });
-
-  const N = {};
-  RUN.nodes.forEach(n => {
-    const { x, y } = lay.xy[n.name];
-    const main = n.kind === "main";
-    const w = main ? 150 : NW, h = main ? 44 : NH;
-    const g = el("g", { class: "node", transform: `translate(${x},${y})`, opacity: 0 }, nodesG);
-    const ring = el("rect", { class: "ring", x: -w / 2 - 4, y: -h / 2 - 4, width: w + 8, height: h + 8, rx: 9, style: "transform-box: fill-box; transform-origin: center" }, g);
-    const r = el("rect", { x: -w / 2, y: -h / 2, width: w, height: h, rx: 6 }, g);
-    const t = el("text", { "text-anchor": "middle" }, g);
-    const lines = main ? ["Main theorem", "solution"] : splitName(n.name, 20);
-    lines.forEach((s, i) => { const ts = el("tspan", { x: 0, y: (i - (lines.length - 1) / 2) * 11 + 3.5 }, t); ts.textContent = s; });
-    if (main) t.firstChild.setAttribute("style", "font-family:'DM Serif Display',serif;font-size:13px");
-    const badge = el("text", { class: "badge", x: w / 2 - 2, y: -h / 2 - 5, "text-anchor": "end", fill: "#c08a2b", opacity: 0 }, g);
-    badge.textContent = "ESCALATED";
-    N[n.name] = { n, g, r, t, ring, badge, state: "hidden", proved: false };
-  });
-
-  const STY = {
-    def: ["#ece2cc", "#cfc2a7", "#4e4a44", ""],
-    sketch: ["#fbf8f1", "#b9ab8c", "#4e4a44", "4 3"],
-    run: ["#fbf8f1", "#a8461f", "#1c1a17", ""],
-    fail: ["#f3dccd", "#a8461f", "#7a2f12", ""],
-    esc: ["#f6e7c8", "#c08a2b", "#5e4410", ""],
-    ok: ["#1f6b57", "#1f6b57", "#f6f0e3", ""],
-    main: ["#fbf8f1", "#173f35", "#173f35", "4 3"],
-    done: ["#173f35", "#173f35", "#f6f0e3", ""]
-  };
-  function set(name, s) {
-    const o = N[name]; if (!o) return;
-    const [f, st, tx, dash] = STY[s];
-    o.state = s; o.g.setAttribute("opacity", 1);
-    o.r.setAttribute("fill", f); o.r.setAttribute("stroke", st); o.r.setAttribute("stroke-width", s === "main" || s === "done" ? 2 : 1.3);
-    o.r.setAttribute("stroke-dasharray", dash); o.t.setAttribute("fill", tx);
-    o.ring.classList.toggle("on", s === "run");
-    if (s === "ok" || s === "done") { o.proved = true; edgeEls.forEach(x => { if (x.b === name || x.a === name) x.e.classList.toggle("on", N[x.a].proved && N[x.b].proved); }); }
-  }
-
-  // timeline: event-driven pacing, real clock
-  const DT = { formalized: 1.2, audit: .8, sketch: 1.6, job: .1, budget: .05, grown: .04, check_fail: .45, check_ok: .18, proved: .32, handback: .75, captain: .35, verified: 1.4, review: 1.0, report: .9 };
-  const evs = RUN.events.filter(e => e[1] in DT);
-  let schedule = [], T = 0;
-  evs.forEach(e => { schedule.push({ t: T, e }); T += DT[e[1]]; });
-  const END = T + 4.5;
-
-  const log = document.getElementById("log"), clock = document.getElementById("clock"), status = document.getElementById("status");
-  const S = { proved: 0, checks: 0, fail: 0, esc: 0 };
-  const fmtH = h => { const hh = Math.floor(h), mm = Math.round((h - hh) * 60); return `${hh}:${String(mm === 60 ? 59 : mm).padStart(2, "0")}`; };
-  function push(h, html, cls) {
-    const li = document.createElement("li"); if (cls) li.className = cls;
-    li.innerHTML = `<time>${fmtH(h)}</time>${html}`; log.prepend(li);
-    while (log.children.length > 7) log.lastChild.remove();
-    // keep whole entries only: drop the oldest ones that no longer fit the fixed log height
-    const bottom = log.getBoundingClientRect().bottom;
-    while (log.children.length > 1 && log.lastChild.getBoundingClientRect().bottom > bottom + .5) log.lastChild.remove();
-  }
-  const code = n => `<code>${n}</code>`;
-  function stat() { for (const k in S) document.getElementById("s" + k[0].toUpperCase() + k.slice(1)).textContent = S[k]; }
-
-  function apply({ e: [h, type, lem] }) {
-    clock.textContent = fmtH(h);
-    switch (type) {
-      case "formalized":
-        RUN.nodes.forEach(n => { if (n.kind === "def") set(n.name, "def"); });
-        set("solution", "main"); status.textContent = "Formalized"; push(h, "Statement and definitions compile in Lean"); break;
-      case "audit": push(h, "Blind back-translation judged <b>faithful</b>", "ok"); status.textContent = "Faithful"; break;
-      case "sketch":
-        RUN.nodes.forEach(n => { if (n.kind === "lemma" && !n.added && N[n.name].state === "hidden") set(n.name, "sketch"); });
-        status.textContent = "Proving lemmas"; push(h, "Sketch accepted: lemmas stated with <code>sorry</code>"); break;
-      case "job": if (!N[lem]) break; if (N[lem].state === "hidden") set(lem, "sketch"); if (!N[lem].proved) set(lem, "run"); break;
-      case "check_fail": if (!N[lem]) break; S.checks++; S.fail++; set(lem, "fail"); push(h, `Lean rejects ${code(lem)}`, "fail");
-        setTimeout(() => { if (N[lem].state === "fail") set(lem, "run"); }, 380); break;
-      case "check_ok": if (!N[lem]) break; S.checks++; break;
-      case "handback": if (!N[lem]) break; S.esc++; set(lem, "esc"); N[lem].badge.setAttribute("opacity", 1); push(h, `${code(lem)} handed back to the orchestrator`, "esc"); break;
-      case "captain": if (lem && N[lem] && !N[lem].proved) { if (N[lem].state === "hidden") set(lem, "sketch"); set(lem, "esc"); push(h, `Orchestrator splits or proves ${code(lem)}`, "esc"); } break;
-      case "proved": if (!N[lem] || N[lem].proved) break; S.proved++; set(lem, "ok"); push(h, `${code(lem)} proved`, "ok"); break;
-      case "verified": set("solution", "done"); status.textContent = "Verified"; status.classList.add("done"); push(h, "Assembled proof compiles: no <code>sorry</code>, standard axioms only", "ok"); break;
-      case "review": status.textContent = "Proved, verified, reviewed"; push(h, "Independent review: <b>faithful</b>", "ok"); break;
-      case "report": push(h, "Report and informal proof written"); break;
-    }
-    stat();
-  }
-
-  // the status line's height is reserved for its longest wording, measured at load and on resize
-  const STATUS = [["Formalizing"], ["Formalized"], ["Faithful"], ["Proving lemmas"], ["Verified", 1], ["Proved, verified, reviewed", 1]];
-  function fitStatus() {
-    const keep = [status.textContent, status.classList.contains("done")]; let h = 0;
-    status.style.minHeight = "0px";
-    STATUS.forEach(([s, d]) => { status.textContent = s; status.classList.toggle("done", !!d); h = Math.max(h, status.getBoundingClientRect().height); });
-    status.textContent = keep[0]; status.classList.toggle("done", keep[1]); status.style.minHeight = Math.ceil(h) + "px";
-  }
-  fitStatus(); addEventListener("resize", fitStatus);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitStatus);
-
-  function reset() {
-    Object.values(N).forEach(o => { o.state = "hidden"; o.proved = false; o.g.setAttribute("opacity", 0); o.ring.classList.remove("on"); o.badge.setAttribute("opacity", 0); });
-    edgeEls.forEach(x => x.e.classList.remove("on"));
-    for (const k in S) S[k] = 0; stat(); log.innerHTML = ""; clock.textContent = "0:00";
-    status.textContent = "Formalizing"; status.classList.remove("done"); idx = 0; tl = 0;
-  }
-  // edges fade in with their nodes
-  function syncEdges() { edgeEls.forEach(x => x.e.style.opacity = (N[x.a].state !== "hidden" && N[x.b].state !== "hidden") ? "" : 0); }
-
-  let idx = 0, tl = 0, last = null, playing = true;
+  const host = document.getElementById("graph");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function tick(now) {
-    if (last !== null && playing) tl += Math.min(.1, (now - last) / 1000);
-    last = now;
-    while (idx < schedule.length && schedule[idx].t <= tl) apply(schedule[idx++]);
-    syncEdges();
-    if (tl > END) reset();
-    requestAnimationFrame(tick);
+  const C = { deep: "#173f35", green: "#1f6b57", rust: "#a8461f", ochre: "#c08a2b", ochreInk: "#8a6418",
+    hollow: "#a99c80", edge: "#cdbf9f", paper: "#f7f2e7", soft: "#67615a" };
+  // lemmas and the theorem; the three definitions (and their dotted uses) stay out of the picture, as on the homepage
+  const NODES = RUN.nodes.filter(n => n.kind !== "def"), keep = new Set(NODES.map(n => n.name));
+  const EDGES = RUN.edges.filter(([a, b]) => keep.has(a) && keep.has(b));
+  const unit = layoutDag({ nodes: NODES, edges: EDGES }, { colW: 1, rowH: 1, pad: 0 });
+  const nCols = Math.max(...unit.rows.map(r => r.length)), nRows = unit.rows.length;
+  // on narrow screens only these names are shown (the homepage set); the log names the rest
+  const FEW = { totient_fiber_finite: "above", smooth_count: "below", asymp_main: "right", exists_good_n_large: "right", solution: "right" };
+  const thmText = "Main theorem";
+
+  const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+  let svg, G = {}, edges = [], W = 0;
+
+  function build(w) {
+    W = w; host.textContent = "";
+    svg = el("svg", { width: w, height: 10, "aria-hidden": "true" }, host);
+    // measure every label in its lines first (two lines for long names)
+    const lines = {}, lw = {};
+    NODES.forEach(n => {
+      const main = n.kind === "main";
+      lines[n.name] = main ? [thmText] : (n.name.length > 20 ? splitName(n.name, 18) : [n.name]);
+      lw[n.name] = Math.max(...lines[n.name].map(s => {
+        const t = el("text", { class: main ? "rp-thm" : "rp-lemma" }, svg); t.textContent = s;
+        const v = t.getComputedTextLength() || s.length * 7.8; t.remove(); return v;
+      }));
+    });
+    const maxW = Math.max(...NODES.filter(n => n.kind !== "main").map(n => lw[n.name]));
+    const gap = 11, padL = 14, padR = maxW + gap + 6;
+    const step = (w - padL - padR) / (nCols - 1);
+    const all = step >= maxW + gap + 18;           // room to name every lemma beside its dot
+    let X, rowH, top, bottom;
+    if (all) { rowH = 70; top = 26; bottom = 26; X = x => padL + (x - .5) * step; }
+    else { const px = w < 420 ? 12 : 22; rowH = Math.max(40, Math.min(48, w * .1)); top = 34; bottom = 18; X = x => px + (x - .5) / (nCols - 1) * (w - 2 * px); }
+    const H = top + (nRows - 1) * rowH + bottom;
+    svg.setAttribute("height", H); svg.setAttribute("viewBox", `0 0 ${w} ${H}`);
+    const xy = {};
+    for (const n in unit.xy) xy[n] = { x: X(unit.xy[n].x), y: top + unit.xy[n].y * rowH };
+
+    const eG = el("g", {}, svg), nG = el("g", {}, svg), lG = el("g", {}, svg);
+    edges = EDGES.map(([a, b]) => {
+      const p = xy[a], q = xy[b], y1 = q.y + 6, y2 = p.y - 7, my = (y1 + y2) / 2;
+      return { a, b, e: el("path", { d: `M${q.x},${y1} C${q.x},${my} ${p.x},${my} ${p.x},${y2}`, fill: "none", "stroke-width": 1.3 }, eG) };
+    });
+    G = {};
+    NODES.forEach(n => {
+      const { x, y } = xy[n.name], main = n.kind === "main";
+      const g = el("g", { transform: `translate(${x},${y})` }, nG);
+      const dot = el("circle", { r: main ? 7.5 : 5 }, g);
+      let label = null;
+      const side = all ? "right" : FEW[n.name];
+      if (side) {
+        label = el("text", { class: main ? "rp-thm" : "rp-lemma" }, lG);
+        const ls = all ? lines[n.name] : [main ? thmText : n.name], w0 = all ? lw[n.name] : null;
+        let lx = x, ly = y, anchor = "start";
+        if (side === "right") {
+          lx = x + (main ? 14 : gap); ly = y + 4.5 - (ls.length - 1) * 7.5;
+          if (!all) {
+            const wf = measure(label, ls[0]);
+            if (lx + wf > w - 3) {
+              if (w - 3 - wf > x + 7) { lx = w - 3; anchor = "end"; }                       // pull it in, still clear of the dot
+              else { lx = x - (main ? 14 : gap); anchor = "end"; if (lx - wf < 3) { label.remove(); label = null; } }
+            }
+          }
+        } else {
+          const wf = measure(label, ls[0]); ly = side === "above" ? y - 13 : y + 26; anchor = "middle";
+          if (lx - wf / 2 < 3) { lx = 3; anchor = "start"; } else if (lx + wf / 2 > w - 3) { lx = w - 3; anchor = "end"; }
+        }
+        if (label) {
+          label.textContent = "";
+          label.setAttribute("text-anchor", anchor);
+          ls.forEach((s, i) => { const ts = el("tspan", { x: lx, y: ly + i * 15 }, label); ts.textContent = s; });
+        }
+      }
+      G[n.name] = { g, dot, label, main };
+    });
   }
-  reset();
-  if (reduce) { schedule.forEach(apply); syncEdges(); playing = false; document.getElementById("play").textContent = "Play"; idx = schedule.length; tl = T; }
-  requestAnimationFrame(tick);
-  document.getElementById("play").onclick = e => { playing = !playing; e.target.textContent = playing ? "Pause" : "Play"; if (playing && idx >= schedule.length) reset(); };
-  document.getElementById("restart").onclick = () => { reset(); playing = true; document.getElementById("play").textContent = "Pause"; };
-  if (location.hash.includes("static")) { const st = document.createElement("style"); st.textContent = "*{transition:none!important;animation:none!important}"; document.head.appendChild(st); }
-  const m = location.hash.match(/t=([\d.]+)/);
-  if (m) setTimeout(() => window.__seek(parseFloat(m[1])), 0);
-  window.__seek = s => { reset(); while (idx < schedule.length && schedule[idx].t <= s) apply(schedule[idx++]); tl = s; syncEdges(); playing = false; };
+  function measure(t, s) { t.textContent = s; return t.getComputedTextLength() || s.length * 7.8; }
+
+  // ---- state, kept apart from the drawing so a resize can redraw the same moment
+  const st = {}, failAt = {}, S = { proved: 0, checks: 0, fail: 0, esc: 0 };
+  let status = "Formalizing", done = false, entries = [];
+  const STY = { sketch: [C.paper, C.hollow, C.soft], run: [C.paper, C.rust, C.rust],
+    fail: [C.rust, C.rust, C.rust], esc: [C.ochre, C.ochre, C.ochreInk], ok: [C.green, C.green, C.deep],
+    main: [C.paper, C.deep, C.deep], done: [C.deep, C.deep, C.deep] };
+  function paint(n) {
+    const o = G[n]; if (!o) return; const s = st[n];
+    o.g.style.opacity = s ? 1 : 0; if (o.label) o.label.style.opacity = s ? 1 : 0;
+    if (!s) return;
+    const [f, k, l] = STY[s];
+    o.dot.setAttribute("fill", f); o.dot.setAttribute("stroke", k);
+    o.dot.setAttribute("stroke-width", o.main ? 1.8 : s === "run" ? 2 : 1.4);
+    o.dot.setAttribute("stroke-dasharray", s === "main" ? "3 2.5" : "");
+    if (o.label) o.label.setAttribute("fill", l);
+  }
+  function paintEdges() {
+    edges.forEach(x => {
+      x.e.style.opacity = st[x.a] && st[x.b] ? 1 : 0;
+      x.e.setAttribute("stroke", (st[x.a] === "ok" || st[x.a] === "done") && st[x.b] === "ok" ? C.green : C.edge);
+    });
+  }
+  const paintAll = () => { NODES.forEach(n => paint(n.name)); paintEdges(); };
+
+  const fmtH = h => { const hh = Math.floor(h), mm = Math.round((h - hh) * 60); return `${hh}:${String(mm === 60 ? 59 : mm).padStart(2, "0")}`; };
+  const code = n => `<code>${n}</code>`;
+  let clockH = 0;
+  function set(n, s, live) { if (!G[n]) return; st[n] = s; if (live) paint(n); }
+  function note(h, html, cls, live) { entries.push({ h, html, cls }); if (live) pushLi(entries[entries.length - 1], true); }
+
+  function apply([h, type, lem], live, t) {
+    clockH = h;
+    switch (type) {
+      case "formalized": set("solution", "main", live); status = "Formalized"; note(h, "Statement and definitions compile in Lean", "", live); break;
+      case "audit": status = "Faithful"; note(h, "Blind back-translation judged <b>faithful</b>", "ok", live); break;
+      case "sketch":
+        NODES.forEach(n => { if (n.kind === "lemma" && !n.added && !st[n.name]) set(n.name, "sketch", live); });
+        status = "Proving lemmas"; note(h, "Sketch accepted: lemmas stated with <code>sorry</code>", "", live); break;
+      case "job": if (G[lem] && st[lem] !== "ok") set(lem, "run", live); break;
+      case "check_fail": if (!G[lem]) break; S.checks++; S.fail++; set(lem, "fail", live); failAt[lem] = t; note(h, `Lean rejects ${code(lem)}`, "fail", live); break;
+      case "check_ok": if (G[lem]) S.checks++; break;
+      case "handback": if (!G[lem]) break; S.esc++; if (st[lem] !== "ok") set(lem, "esc", live); note(h, `${code(lem)} handed back to the orchestrator`, "esc", live); break;
+      case "captain": if (lem && G[lem] && st[lem] !== "ok") { set(lem, "esc", live); note(h, `Orchestrator splits or proves ${code(lem)}`, "esc", live); } break;
+      case "proved": if (!G[lem] || st[lem] === "ok") break; S.proved++; set(lem, "ok", live); note(h, `${code(lem)} proved`, "ok", live); break;
+      case "verified": set("solution", "done", live); status = "Verified"; done = true; note(h, "Assembled proof compiles: no <code>sorry</code>, standard axioms only", "ok", live); break;
+      case "review": status = "Proved, verified, reviewed"; note(h, "Independent review: <b>faithful</b>", "ok", live); break;
+      case "report": note(h, "Report and informal proof written", "", live); break;
+    }
+  }
+  // a rejected attempt shows solid rust briefly, then the job carries on
+  function expireFails(live) {
+    for (const n in failAt) if (st[n] === "fail" && tl - failAt[n] > .4) { set(n, "run", live); delete failAt[n]; }
+  }
+
+  // ---- text: log, status, stats
+  const logEl = document.getElementById("log"), statusEl = document.getElementById("status"), statsEl = document.getElementById("stats");
+  const clockEl = document.getElementById("clock");
+  document.getElementById("total").textContent = fmtH(RUN.hours);
+  function makeLi(x) { const li = document.createElement("li"); if (x.cls) li.className = x.cls; li.innerHTML = `<time>${fmtH(x.h)}</time>${x.html}`; return li; }
+  function trimLog() {   // whole entries only: drop the oldest ones that no longer fit the fixed height
+    const bottom = logEl.getBoundingClientRect().bottom;
+    while (logEl.children.length > 1 && logEl.lastChild.getBoundingClientRect().bottom > bottom + .5) logEl.lastChild.remove();
+  }
+  function pushLi(x, anim) { const li = makeLi(x); if (anim) li.classList.add("new"); logEl.prepend(li); while (logEl.children.length > 9) logEl.lastChild.remove(); trimLog(); }
+  function renderLog() { logEl.textContent = ""; entries.slice(-9).forEach(x => logEl.prepend(makeLi(x))); trimLog(); }
+  const statsText = s => `${s.proved} lemmas proved, ${s.checks} Lean checks, ${s.fail} rejected by Lean, ${s.esc} handed back to the orchestrator.`;
+  function renderText() {
+    statusEl.textContent = status; statusEl.classList.toggle("done", done);
+    statsEl.textContent = statsText(S); clockEl.textContent = fmtH(clockH);
+  }
+  // the status block's height is reserved for its longest wording, so stacked layouts never shift
+  const nowEl = document.getElementById("now");
+  function fitNow() {
+    nowEl.style.minHeight = "0px";
+    const keep = [statusEl.textContent, statsEl.textContent];
+    let h = 0;
+    ["Formalizing", "Proving lemmas", "Proved, verified, reviewed"].forEach(s => {
+      statusEl.textContent = s; statsEl.textContent = statsText({ proved: 88, checks: 88, fail: 88, esc: 88 });
+      h = Math.max(h, nowEl.getBoundingClientRect().height);
+    });
+    statusEl.textContent = keep[0]; statsEl.textContent = keep[1]; nowEl.style.minHeight = Math.ceil(h) + "px";
+  }
+
+  // ---- timeline: event-driven pacing over the real event order
+  const DT = { formalized: .6, audit: .6, sketch: 1.6, job: .1, budget: .05, grown: .04, check_fail: .45, check_ok: .18, proved: .32, handback: .75, captain: .35, verified: 1.4, review: 1.0, report: .9 };
+  const sched = []; let T = 0;
+  RUN.events.forEach(e => { if (e[1] in DT) { sched.push({ t: T, e }); T += DT[e[1]]; } });
+  const END = T + 4.5;
+  const START = sched.find(x => x.e[1] === "sketch").t + .05;   // first frame: the sketch is already drawn
+
+  let tl = 0, idx = 0, last = null, playing = !reduce, dragging = false;
+  function seek(s) {
+    s = Math.max(0, Math.min(END, s));
+    for (const n in st) delete st[n]; for (const n in failAt) delete failAt[n];
+    for (const k in S) S[k] = 0; status = "Formalizing"; done = false; entries = []; clockH = 0;
+    idx = 0; tl = s;
+    while (idx < sched.length && sched[idx].t <= s) { apply(sched[idx].e, false, sched[idx].t); idx++; }
+    expireFails(false);
+    paintAll(); renderLog(); renderText(); renderBar();
+  }
+  function advance() {
+    let moved = false;
+    while (idx < sched.length && sched[idx].t <= tl) { apply(sched[idx].e, true, sched[idx].t); idx++; moved = true; }
+    for (const n in failAt) if (st[n] === "fail" && tl - failAt[n] > .4) moved = true;
+    expireFails(true);
+    if (moved) { paintEdges(); renderText(); }
+  }
+
+  const fill = document.getElementById("fill"), knob = document.getElementById("knob"), scrub = document.getElementById("scrub"), playBtn = document.getElementById("play");
+  function renderBar() {
+    const p = Math.min(100, tl / END * 100);
+    fill.style.width = p + "%"; knob.style.left = p + "%";
+    scrub.setAttribute("aria-valuenow", Math.round(p)); scrub.setAttribute("aria-valuetext", `${fmtH(clockH)} hours into the run`);
+  }
+  function setPlaying(v) { playing = v; playBtn.textContent = v ? "Pause" : "Play"; last = null; }
+
+  function frame(now) {
+    const dt = last === null ? 0 : Math.min(.1, (now - last) / 1000); last = now;
+    if (playing && !dragging) {
+      tl += dt;
+      if (tl > END) seek(START); else advance();
+      renderBar();
+    }
+    requestAnimationFrame(frame);
+  }
+
+  playBtn.onclick = () => { if (!playing && idx >= sched.length) seek(START); setPlaying(!playing); };
+  const posToT = e => { const r = scrub.getBoundingClientRect(); return (e.clientX - r.left) / r.width * END; };
+  scrub.addEventListener("pointerdown", e => { dragging = true; scrub.setPointerCapture(e.pointerId); seek(posToT(e)); e.preventDefault(); scrub.focus(); });
+  scrub.addEventListener("pointermove", e => { if (dragging) seek(posToT(e)); });
+  const endDrag = () => { if (dragging) { dragging = false; last = null; } };
+  scrub.addEventListener("pointerup", endDrag); scrub.addEventListener("pointercancel", endDrag);
+  scrub.addEventListener("keydown", e => {
+    const k = { ArrowLeft: -2, ArrowDown: -2, ArrowRight: 2, ArrowUp: 2, PageDown: -8, PageUp: 8 }[e.key];
+    if (k !== undefined) { seek(tl + k); e.preventDefault(); }
+    else if (e.key === "Home") { seek(0); e.preventDefault(); }
+    else if (e.key === "End") { seek(END); e.preventDefault(); }
+  });
+
+  // Graph height depends only on width: redrawn on resize at the same moment.
+  function fit() { const w = Math.floor(host.clientWidth); if (!w || w === W) return; svg.classList.remove("rp-live"); build(w); paintAll(); liven(); }
+  function liven() { if (!/static/.test(location.hash)) requestAnimationFrame(() => requestAnimationFrame(() => svg.classList.add("rp-live"))); }
+  if (/static/.test(location.hash)) { const s = document.createElement("style"); s.textContent = "*{transition:none!important;animation:none!important}"; document.head.appendChild(s); }
+
+  build(Math.floor(host.clientWidth) || 800);
+  fitNow();
+  const ht = /t=([\d.]+)/.exec(location.hash);   // #t=<s> jumps to a moment and pauses there
+  if (reduce) seek(END);
+  else if (ht) { seek(parseFloat(ht[1])); setPlaying(false); }
+  else seek(START);
+  liven();
+  window.__seek = s => { seek(s); setPlaying(false); };
+
+  let fitRaf = 0;
+  addEventListener("resize", () => { if (!fitRaf) fitRaf = requestAnimationFrame(() => { fitRaf = 0; fit(); fitNow(); renderLog(); }); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { W = 0; fit(); fitNow(); renderLog(); });
+  requestAnimationFrame(frame);
 })();
 </script>
 </body>

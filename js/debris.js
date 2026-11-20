@@ -18,7 +18,7 @@
       lineBack: 0.09, lineFront: 0.1, dotBack: 0.28, dotFront: 0.78
     },
     paper: {
-      bg: ["#fbf8f1", "#f3ecdf"],
+      bg: null,   // drawn straight on the card paper
       earth: ["rgb(118,160,186)", "rgb(62,108,140)", "rgb(26,56,80)"],
       grid: "rgba(236,226,204,0.30)", limb: "rgba(10,25,40,0.30)",
       colors: [[168, 70, 31], [192, 138, 43], [90, 106, 98]],
@@ -264,13 +264,10 @@
     const dev = s => DEV * smooth(XB, -0.12, s) * (1 - 0.75 * smooth(0.3, 0.98, s));
     const deb = s => [ccx - s * 0.36 * hw, ccy + s * hh];       // fragment track, crosses nominal at centre
 
-    ctx.font = `600 ${8.6 * u}px "Source Sans 3", sans-serif`;
+    ctx.font = `500 ${10 * u}px "Source Sans 3", sans-serif`;
     ctx.textBaseline = "top";
     ctx.fillStyle = `rgba(${RUST},1)`; ctx.textAlign = "left";
-    ctx.fillText("ENCOUNTER, ×200", bx + 7 * u, by + 6 * u);
-    ctx.font = `italic ${8.6 * u}px "Source Sans 3", sans-serif`;
-    ctx.fillStyle = `rgba(${SOFT},0.9)`; ctx.textAlign = "right";
-    ctx.fillText("illustrative", bx + bw - 7 * u, by + 6 * u);
+    ctx.fillText("Encounter, ×200", bx + 7 * u, by + 6 * u);
 
     // nominal path (would collide)
     ctx.setLineDash([3 * u, 3 * u]); ctx.strokeStyle = `rgba(${SOFT},0.55)`; ctx.lineWidth = 1 * u;

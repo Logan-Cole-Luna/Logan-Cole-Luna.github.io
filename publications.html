@@ -19,7 +19,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261120c">
+  <link rel="stylesheet" href="style.css?v=20261120p">
+  <style>
+    .pub-sec h2 { margin-bottom: 1.2rem; }
+    .pub-list > li { scroll-margin-top: 1.5rem; }
+    .pub-list .rail-key { display: flex; flex-direction: column; gap: .2rem; }
+    .pub-num { font-weight: 400; color: var(--soft); }
+    .pub-list .rail-body { max-width: none; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: .2rem 3rem; }
+    .pub-head { min-width: 0; }
+    .pub-list .pub-title { font-family: var(--serif); font-weight: 400; font-size: 1.36rem; line-height: 1.25; color: var(--ink); margin: 0 0 .6rem; }
+    .pub-venue { font-size: 15px; color: var(--soft); margin: 0 0 .45rem; }
+    .pub-venue .award { color: var(--green); font-weight: 600; }
+    .pub-authors { font-size: 15px; color: var(--soft); margin: 0; }
+    .pub-authors strong { color: var(--ink); }
+    .pub-res { min-width: 0; }
+    .pub-res p { font-size: 15.5px; margin: 0 0 .5rem; }
+    .pub-res .links { margin-top: .7rem; }
+    .pub-list a.pub-ref { color: var(--rust); text-decoration: underline; text-decoration-color: rgba(168, 70, 31, .35); text-underline-offset: 3px; }
+    .vk-poster { background: #dde7da; color: #2f6b45; }
+    @media (max-width: 1000px) {
+      .pub-list .rail-body { grid-template-columns: 1fr; }
+      .pub-res { margin-top: .5rem; }
+    }
+    @media (max-width: 700px) {
+      .pub-list .rail-key { flex-direction: row; gap: .7rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -32,7 +57,6 @@
       <a href="publications.html" class="on" aria-current="page">Publications</a>
       <a href="research.html">Research</a>
       <a href="awards.html">Awards</a>
-      <a href="software.html">Software</a>
       <a href="contact.html">Contact</a>
       <span class="social">
         <a href="https://github.com/Logan-Cole-Luna" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.192 22 16.439 22 12.017 22 6.484 17.523 2 12 2z"/></svg></a>
@@ -42,143 +66,171 @@
     </nav>
   </header>
   <section class="row page-hero">
-    <p class="pretitle">Logan Luna</p>
     <h1>Publications</h1>
+    <p class="page-intro">Papers, preprints and posters, newest first.</p>
   </section>
 </div>
 
 <main class="page">
 <div class="row">
 
-  <section>
+  <section class="pub-sec">
     <h2>Journal Articles</h2>
-    <ul>
-      <li>
-        <strong>[J1]</strong>
-        <span class="item-title">
-          Satellite Trajectory Optimization via Proximal Policy Optimization for Space Debris Avoidance
-        </span><br>
-        <strong>Logan Luna</strong>, Juan Ortiz Couder, Raul Alejandro Vargas-Acosta.<br>
-        <em>IEEE Access, 2026.</em>
-        DOI: <a href="https://doi.org/10.1109/ACCESS.2026.3655237">10.1109/ACCESS.2026.3655237</a><br>
-        97.5% collision-avoidance success over 1,000 deterministic GEO episodes, 76.8 and 70.0
-        percentage points above the rule-based and impulsive &Delta;v baselines.
+    <ul class="rail pub-list">
+      <li id="J1">
+        <div class="rail-key"><span>2026</span><span class="pub-num">[J1]</span></div>
+        <div class="rail-body">
+          <div class="pub-head">
+            <h3 class="pub-title">Satellite Trajectory Optimization via Proximal Policy Optimization for Space Debris Avoidance</h3>
+            <p class="pub-venue"><span class="vkind vk-journal">Journal</span>IEEE Access, 2026</p>
+            <p class="pub-authors"><strong>Logan Luna</strong>, Juan Ortiz Couder, Raul Alejandro Vargas-Acosta.</p>
+          </div>
+          <div class="pub-res">
+            <p>97.5% collision-avoidance success over 1,000 deterministic GEO episodes, 76.8 and 70.0 percentage points above the rule-based and impulsive &Delta;v baselines.</p>
+            <div class="links"><a href="https://doi.org/10.1109/ACCESS.2026.3655237">DOI</a><a href="https://github.com/Logan-Cole-Luna/sat-trajectory-avoidance">Code</a><a href="index.html#fig-satellite">Figure</a></div>
+          </div>
+        </div>
       </li>
     </ul>
   </section>
 
-  <section>
-    <h2>Peer-Reviewed Conference Papers</h2>
-    <ul>
-      <li>
-        <strong>[C1]</strong>
-        <span class="item-title">Dueling Deep Q-Learning for Intrusion Detection</span><br>
-        <strong>Logan Luna</strong>, Matthew P. Berkowitz, Laxima Niure Kandel, Sirio Jansen-Sánchez.<br>
-        <em>IEEE SoutheastCon 2025.</em> <strong>Best Paper Award (IEEE–Eta Kappa Nu).</strong>
-        DOI: <a href="https://doi.org/10.1109/SoutheastCon56624.2025.10971436">10.1109/SoutheastCon56624.2025.10971436</a><br>
-        99.68% multi-class accuracy on 2.18M CIC-IDS2018 flows, against 88% for prior DQN-based
-        detection and 98.4–99% for tree-ensemble and random-forest IDSs; SHAP attribution of the
-        learned policy.
+  <section class="pub-sec">
+    <h2>Conference Papers</h2>
+    <ul class="rail pub-list">
+      <li id="C1">
+        <div class="rail-key"><span>2025</span><span class="pub-num">[C1]</span></div>
+        <div class="rail-body">
+          <div class="pub-head">
+            <h3 class="pub-title">Dueling Deep Q-Learning for Intrusion Detection</h3>
+            <p class="pub-venue"><span class="vkind vk-conf">Conference</span>IEEE SoutheastCon 2025, <span class="award">Best Paper Award (IEEE&ndash;Eta Kappa Nu)</span></p>
+            <p class="pub-authors"><strong>Logan Luna</strong>, Matthew P. Berkowitz, Laxima Niure Kandel, Sirio Jansen-Sánchez.</p>
+          </div>
+          <div class="pub-res">
+            <p>99.68% multi-class accuracy on 2.18M CIC-IDS2018 flows, against 88% for prior DQN-based detection and 98.4–99% for tree-ensemble and random-forest IDSs; SHAP attribution of the learned policy.</p>
+            <div class="links"><a href="https://doi.org/10.1109/SoutheastCon56624.2025.10971436">DOI</a><a href="https://github.com/Logan-Cole-Luna/Hierarchical-Q-Learning-Threat-Hunting">Code</a><a href="index.html#fig-dqn">Figure</a></div>
+          </div>
+        </div>
       </li>
-      <li>
-        <strong>[C2]</strong>
-        <span class="item-title">
-          Signal-Centric Remote Sensing via Alternative Preprocessing and Acoustic Processing
-          for ML-Driven Applications
-        </span><br>
-        <strong>Logan Luna</strong>, Sirio Jansen-Sánchez, Ilteris Demirkiran, Leo Ghelarducci.<br>
-        <em>IEEE SoutheastCon 2025, Concord, NC.</em>
-        DOI: <a href="https://doi.org/10.1109/SoutheastCon56624.2025.10971547">10.1109/SoutheastCon56624.2025.10971547</a><br>
-        arXiv: <a href="https://arxiv.org/abs/2609.21123">2609.21123</a><br>
-        91.2% reduction in total sonar processing time (13.1% in filtering alone) against
-        image-based CV processing, while preserving target structure the image pipeline removed.
+      <li id="C2">
+        <div class="rail-key"><span>2025</span><span class="pub-num">[C2]</span></div>
+        <div class="rail-body">
+          <div class="pub-head">
+            <h3 class="pub-title">Signal-Centric Remote Sensing via Alternative Preprocessing and Acoustic Processing for ML-Driven Applications</h3>
+            <p class="pub-venue"><span class="vkind vk-conf">Conference</span>IEEE SoutheastCon 2025, Concord, NC</p>
+            <p class="pub-authors"><strong>Logan Luna</strong>, Sirio Jansen-Sánchez, Ilteris Demirkiran, Leo Ghelarducci.</p>
+          </div>
+          <div class="pub-res">
+            <p>91.2% reduction in total sonar processing time (13.1% in filtering alone) against image-based CV processing, while preserving target structure the image pipeline removed.</p>
+            <div class="links"><a href="https://doi.org/10.1109/SoutheastCon56624.2025.10971547">DOI</a><a href="https://arxiv.org/abs/2609.21123">arXiv</a><a href="index.html#fig-sonar">Figure</a></div>
+          </div>
+        </div>
       </li>
-      <li>
-        <strong>[C3]</strong>
-        <span class="item-title">
-          SensorWF: A FAIR Generalizable Workflow Framework for Scientific Time-Series Analysis
-        </span><br>
-        <strong>Logan Luna</strong>, Joseph Rigo, Kellan Shew, Raul Alejandro Vargas-Acosta.<br>
-        <em>IEEE eScience 2026 (ReWorDS Workshop), Naples, Italy.</em>
-        arXiv: <a href="https://arxiv.org/abs/2609.21110">2609.21110</a><br>
-        Code: <a href="https://github.com/Logan-Cole-Luna/SensorWF">github.com/Logan-Cole-Luna/SensorWF</a><br>
-        One analytical core carried across spacecraft telemetry, ECG, and climate data with small
-        domain adapters and no core changes; bit-identical outputs under fixed seeds; best-detector
-        AUC-ROC of 0.772 on 18 injected fault types across 122 CubeSat channels (vs. 0.610 for a
-        z-score baseline), 0.918 on ECG, and 0.835 on climate data.
+      <li id="C3">
+        <div class="rail-key"><span>2026</span><span class="pub-num">[C3]</span></div>
+        <div class="rail-body">
+          <div class="pub-head">
+            <h3 class="pub-title">SensorWF: A FAIR Generalizable Workflow Framework for Scientific Time-Series Analysis</h3>
+            <p class="pub-venue"><span class="vkind vk-workshop">Workshop</span>IEEE eScience 2026 (ReWorDS Workshop), Naples, Italy</p>
+            <p class="pub-authors"><strong>Logan Luna</strong>, Joseph Rigo, Kellan Shew, Raul Alejandro Vargas-Acosta.</p>
+          </div>
+          <div class="pub-res">
+            <p>One analytical core carried across spacecraft telemetry, ECG, and climate data with small domain adapters and no core changes; bit-identical outputs under fixed seeds; best-detector AUC-ROC of 0.772 on 18 injected fault types across 122 CubeSat channels (vs. 0.610 for a z-score baseline), 0.918 on ECG, and 0.835 on climate data.</p>
+            <div class="links"><a href="https://arxiv.org/abs/2609.21110">arXiv</a><a href="https://github.com/Logan-Cole-Luna/SensorWF">Code</a><a href="index.html#fig-sensorwf">Figure</a></div>
+          </div>
+        </div>
       </li>
     </ul>
   </section>
 
-  <section>
+  <section class="pub-sec">
     <h2>Under Review</h2>
-    <ul>
-      <li>
-        <strong>[C4]</strong>
-        <span class="item-title">
-          AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolving Harness
-        </span><br>
-        Prithwish Jana, Viet Bach Hoang, <strong>Logan Luna</strong>, Viresh Pati, Akash Singirikonda,
-        Cy Xie, Lisa Carbone, Wuyang Chen, Walter Moreira, Joe Stubbs, Sriram Vishwanath, Vijay Ganesh.<br>
-        <em>Under review, ICLR 2027.</em><br>
-        <em>Contribution:</em> RL pipeline and reward, BEq+ extension, distillation pipeline and
-        dataset, Semantic Alignment Model.<br>
-        <em>Results:</em> pass@4 semantic correctness from 15.7% to 36.7% standalone (above GPT-5.6-Sol
-        and Codex); 41.9% to 79.8% as a Claude Code skill.
+    <ul class="rail pub-list">
+      <li id="C4">
+        <div class="rail-key"><span>2026</span><span class="pub-num">[C4]</span></div>
+        <div class="rail-body">
+          <div class="pub-head">
+            <h3 class="pub-title">AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolving Harness</h3>
+            <p class="pub-venue"><span class="vkind vk-review">Under review</span>ICLR 2027</p>
+            <p class="pub-authors">Prithwish Jana, Viet Bach Hoang, <strong>Logan Luna</strong>, Viresh Pati, Akash Singirikonda, Cy Xie, Lisa Carbone, Wuyang Chen, Walter Moreira, Joe Stubbs, Sriram Vishwanath, Vijay Ganesh.</p>
+          </div>
+          <div class="pub-res">
+            <p><em>Contribution:</em> RL pipeline and reward, BEq+ extension, distillation pipeline and dataset, Semantic Alignment Model.</p>
+            <p><em>Results:</em> pass@4 semantic correctness from 15.7% to 36.7% standalone (above GPT-5.6-Sol and Codex); 41.9% to 79.8% as a Claude Code skill.</p>
+            <div class="links"><a href="https://jprithwish.github.io/AIProver/">Project page</a><a href="index.html#fig-aiprover">Figure</a></div>
+          </div>
+        </div>
       </li>
-      <li>
-        <strong>[C5]</strong>
-        <span class="item-title">
-          Direct Policy Transfer from Simulator to Firmware: Verification Boundaries for Learned UAV Autonomy
-        </span><br>
-        Illia Biblyi, Elsy Fuentes Montiel, Andressa C. Ojeda, <strong>Logan Luna</strong>, Kolton Galie,
-        Vincent Reggi, Nicolas Andricos, Sirio Jansen-Sánchez, M. Ilhan Akbas.<br>
-        <em>Under review, EA Track 8: Operational Boundary Assurance for Trustworthy Agentic and Autonomous Systems.</em><br>
-        Verification framework for compiling Isaac Lab policies directly into Crazyflie nano-UAV firmware,
-        with executable checks from observation replay to source-to-binary traceability; 2–3 cm hover
-        altitude error onboard.
+      <li id="C5">
+        <div class="rail-key"><span>2026</span><span class="pub-num">[C5]</span></div>
+        <div class="rail-body">
+          <div class="pub-head">
+            <h3 class="pub-title">Direct Policy Transfer from Simulator to Firmware: Verification Boundaries for Learned UAV Autonomy</h3>
+            <p class="pub-venue"><span class="vkind vk-review">Under review</span>ACM International Conference on Trustworthy and Responsible AI and Computing Systems</p>
+            <p class="pub-authors">Illia Biblyi, Elsy Fuentes Montiel, Andressa C. Ojeda, <strong>Logan Luna</strong>, Kolton Galie, Vincent Reggi, Nicolas Andricos, Sirio Jansen-Sánchez, M. Ilhan Akbas.</p>
+          </div>
+          <div class="pub-res">
+            <p>Verification framework for compiling Isaac Lab policies directly into Crazyflie nano-UAV firmware, with executable checks from observation replay to source-to-binary traceability; 2–3 cm hover altitude error onboard.</p>
+            <div class="links"><a href="index.html#fig-uav">Figure</a></div>
+          </div>
+        </div>
       </li>
     </ul>
   </section>
 
-  <section>
-    <h2>Research Posters &amp; Presentations</h2>
-    <ul>
-      <li>
-        <strong>[P1]</strong>
-        <span class="item-title">AERO-Sim2Real: Reinforcement Learning for Sim-to-Real Drone Deployment</span><br>
-        <strong>Logan Luna</strong>, Sirio Jansen-Sánchez, Vincent Reggi, Kolton Galie, Nicolas Andricos.<br>
-        <em>Senior Design, Embry-Riddle, 2026.</em><br>
-        PPO policies trained in NVIDIA Isaac Lab and flown autonomously on Crazyflie 2.1 hardware;
-        hover transferred at 1.3/2.1/0.7 cm real-vs-sim RMSE, while a figure-eight task isolated
-        aggressive horizontal maneuvering as the dominant transfer gap.
+  <section class="pub-sec">
+    <h2>Posters &amp; Presentations</h2>
+    <ul class="rail pub-list">
+      <li id="P1">
+        <div class="rail-key"><span>2026</span><span class="pub-num">[P1]</span></div>
+        <div class="rail-body">
+          <div class="pub-head">
+            <h3 class="pub-title">AERO-Sim2Real: Reinforcement Learning for Sim-to-Real Drone Deployment</h3>
+            <p class="pub-venue"><span class="vkind vk-poster">Poster</span>Senior Design, Embry-Riddle, 2026</p>
+            <p class="pub-authors"><strong>Logan Luna</strong>, Sirio Jansen-Sánchez, Vincent Reggi, Kolton Galie, Nicolas Andricos.</p>
+          </div>
+          <div class="pub-res">
+            <p>PPO policies trained in NVIDIA Isaac Lab and flown autonomously on Crazyflie 2.1 hardware; hover transferred at 1.3/2.1/0.7 cm real-vs-sim RMSE, while a figure-eight task isolated aggressive horizontal maneuvering as the dominant transfer gap.</p>
+          </div>
+        </div>
       </li>
-      <li>
-        <strong>[P2]</strong>
-        <span class="item-title">Learning Causal Structures from Aviation Accident Narratives</span><br>
-        Madeline Gorman, Katherine Hoffsetz, <strong>Logan Luna</strong>, Stephanie Ramsey (alphabetical).<br>
-        <em>Discovery Day, Embry-Riddle, 2025.</em><br>
-        Rule-based NLP, fine-tuned DistilBERT, and few-shot Mistral-7B compared for causal-triple
-        extraction from 6,059 NTSB narratives; the LLM more than doubled narrative coverage (94.5%
-        vs. 44.9%) without improving category alignment, separating coverage from correctness.
+      <li id="P2">
+        <div class="rail-key"><span>2025</span><span class="pub-num">[P2]</span></div>
+        <div class="rail-body">
+          <div class="pub-head">
+            <h3 class="pub-title">Learning Causal Structures from Aviation Accident Narratives</h3>
+            <p class="pub-venue"><span class="vkind vk-poster">Poster</span>Discovery Day, Embry-Riddle, 2025</p>
+            <p class="pub-authors">Madeline Gorman, Katherine Hoffsetz, <strong>Logan Luna</strong>, Stephanie Ramsey (alphabetical).</p>
+          </div>
+          <div class="pub-res">
+            <p>Rule-based NLP, fine-tuned DistilBERT, and few-shot Mistral-7B compared for causal-triple extraction from 6,059 NTSB narratives; the LLM more than doubled narrative coverage (94.5% vs. 44.9%) without improving category alignment, separating coverage from correctness.</p>
+          </div>
+        </div>
       </li>
-      <li>
-        <strong>[P3]</strong>
-        <span class="item-title">Techniques for Filtering Noise in Sonar Data while Managing Time Complexity of Machine Learning Algorithms</span><br>
-        <strong>Logan Luna</strong> (Autonomous Maritime Robotics Association).<br>
-        <em>Student Research Symposium, Embry-Riddle, 2024.</em><br>
-        Sonar noise-filtering and detection study weighing accuracy against time complexity for
-        onboard AUV use; progressed into [C2].
+      <li id="P3">
+        <div class="rail-key"><span>2024</span><span class="pub-num">[P3]</span></div>
+        <div class="rail-body">
+          <div class="pub-head">
+            <h3 class="pub-title">Techniques for Filtering Noise in Sonar Data while Managing Time Complexity of Machine Learning Algorithms</h3>
+            <p class="pub-venue"><span class="vkind vk-poster">Poster</span>Student Research Symposium, Embry-Riddle, 2024</p>
+            <p class="pub-authors"><strong>Logan Luna</strong> (Autonomous Maritime Robotics Association).</p>
+          </div>
+          <div class="pub-res">
+            <p>Sonar noise-filtering and detection study weighing accuracy against time complexity for onboard AUV use; progressed into <a class="pub-ref" href="#C2">[C2]</a>.</p>
+          </div>
+        </div>
       </li>
-      <li>
-        <strong>[P4]</strong>
-        <span class="item-title">Enhancing Aircraft Recognition and Localization through Object Detection and Feature Point Tracking with Kalman Filtering</span><br>
-        <strong>Logan Luna</strong>.<br>
-        <em>National Conference on Undergraduate Research 2023; Student Research Symposium, Embry-Riddle, 2023.</em>
-        <strong>1st Place, Student Research Symposium.</strong><br>
-        YOLO detection, ORB feature tracking, and Kalman prediction; ORB matching sustained track
-        identity through partial occlusion and low-confidence detections where YOLO alone dropped
-        the target.
+      <li id="P4">
+        <div class="rail-key"><span>2023</span><span class="pub-num">[P4]</span></div>
+        <div class="rail-body">
+          <div class="pub-head">
+            <h3 class="pub-title">Enhancing Aircraft Recognition and Localization through Object Detection and Feature Point Tracking with Kalman Filtering</h3>
+            <p class="pub-venue"><span class="vkind vk-poster">Poster</span>National Conference on Undergraduate Research 2023; Student Research Symposium, Embry-Riddle, 2023, <span class="award">1st Place, Student Research Symposium</span></p>
+            <p class="pub-authors"><strong>Logan Luna</strong>.</p>
+          </div>
+          <div class="pub-res">
+            <p>YOLO detection, ORB feature tracking, and Kalman prediction; ORB matching sustained track identity through partial occlusion and low-confidence detections where YOLO alone dropped the target.</p>
+          </div>
+        </div>
       </li>
     </ul>
   </section>

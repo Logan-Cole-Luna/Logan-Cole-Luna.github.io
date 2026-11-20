@@ -7,9 +7,10 @@
    real-minus-sim deviation is exaggerated EXAG times, attitude tilt TILT times, and the drone is drawn
    DRONE times its true size, so they read at figure scale. The figcaption says so.
    Hand-rolled perspective projection, no libraries. Drawn in CSS pixels on a DPR-scaled canvas.
-   Below the panels, a compact strip plots the same tracks over time (altitude for both, real minus
-   sim in cm at true scale, battery voltage) with one cursor at the moment the drones are at.
-   Layout stability: the canvas height is fixed per width (set only on resize), and the note's min-height fits its longest sentence. #t=<s> jumps to a moment. */
+   The panels are unframed, drawn on the card's paper, and labelled directly. A small inset in the
+   top-right corner of the real panel plots the real drone's height minus the simulated one over time, in cm at
+   TRUE scale (no exaggeration), with a dot at the current moment.
+   Layout stability: the canvas height is fixed per width (set only on resize). #t=<s> jumps to a moment. */
 (function () {
   const root = document.querySelector(".anim-uav");
   const D = window.UAV_DATA;
@@ -17,13 +18,13 @@
   const canvas = root.querySelector(".uav-canvas");
   if (!canvas || !canvas.getContext) return;
   const ctx = canvas.getContext("2d");
-  const note = root.querySelector(".uav-note");
   const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const EXAG = 4, TILT = 2.2, DRONE = 4;      // illustrative exaggerations (see caption)
   const D2R = Math.PI / 180;
   const INK = "#1c1a17", DEEP = "#173f35", GREEN = "#1f6b57", RUST = "#a8461f", OCHRE = "#c08a2b";
-  const SANS = '"Source Sans 3","Segoe UI",sans-serif';
+  const SOFT = "#67615a", CARD = "#f9f5ec";   // CARD = the paper card's background (--cream)
+  const SANS = '"Source Sans 3","Segoe UI",sans-serif', MONO = '"IBM Plex Mono",ui-monospace,monospace';
   const N = D.sim.x.length, TEND = (N - 1) * D.dt, RESET = 1.2, LOOP = TEND + RESET;
   const clamp = x => x < 0 ? 0 : x > 1 ? 1 : x;
   const ease = x => { x = clamp(x); return x * x * (3 - 2 * x); };
@@ -61,33 +62,13 @@
     return [x, y, n];
   }
 
-  /* ---------- the note line (fixed set, so its height can be reserved) ---------- */
-  const S = [
-    "The same checkpoint runs in simulation and on the Crazyflie; the propellers spin up.",
-    "Both drones take off and climb to the planned height.",
-    "In hover the Crazyflie holds within a few centimeters of the simulated height.",
-    "Point navigation: both fly the same plan to the first waypoint.",
-    "On the real drone the position estimate wanders, and the hover height sags as the battery drains.",
-    "Landing, with the firmware recording flight timing, phase and policy activity.",
-    "Motor shutdown. The remaining differences come from sensing and power.",
-  ];
-  function sentence(t) {
-    const nav = phase("navigate");
-    if (t >= T_OFF) return S[6];
-    if (t >= phase("land").t0) return S[5];
-    if (t >= nav.t0) return t < nav.t0 + 3.6 ? S[3] : S[4];
-    if (t >= phase("hover").t0) return S[2];
-    return t < T_ON + 1.2 ? S[0] : S[1];
-  }
-
   /* ---------- layout ---------- */
-  let cssW = 0, cssH = 0, dpr = 1, panels = [], strip = null;
-  const STRIP_H = 196;
+  let cssW = 0, cssH = 0, dpr = 1, panels = [];
   function layout() {
     const w = Math.round(canvas.parentNode.getBoundingClientRect().width);
     if (!w || w === cssW) return false;
     cssW = w; dpr = Math.min(window.devicePixelRatio || 1, 2.5);
-    const stacked = cssW < 480, gap = 12;
+    const stacked = cssW < 480, gap = 16;
     if (stacked) {
       const ph = Math.round(cssW * .8);
       panels = [{ x: 0, y: 0, w: cssW, h: ph }, { x: 0, y: ph + gap, w: cssW, h: ph }];
@@ -97,21 +78,10 @@
       panels = [{ x: 0, y: 0, w: pw, h: ph }, { x: cssW - pw, y: 0, w: pw, h: ph }];
       cssH = ph;
     }
-    strip = { y: cssH + 6, w: cssW, h: STRIP_H };
-    cssH += 6 + STRIP_H;
     panels[0].kind = "sim"; panels[1].kind = "real";
     canvas.style.height = cssH + "px";
     canvas.width = Math.round(cssW * dpr); canvas.height = Math.round(cssH * dpr);
-    fitNote();
     return true;
-  }
-  function fitNote() {
-    if (!note) return;
-    note.style.minHeight = "";
-    let mh = 0;
-    for (const s of S) { note.textContent = s; mh = Math.max(mh, note.getBoundingClientRect().height); }
-    note.style.minHeight = Math.ceil(mh) + "px";
-    note.textContent = "";
   }
 
   /* ---------- camera: gentle sway shared by both panels ---------- */
@@ -120,7 +90,7 @@
     const ph = 2 * Math.PI * t / LOOP;
     const yaw = (-32 + 11 * Math.sin(ph)) * D2R, pitch = (23 + 3 * Math.sin(ph + 1.3)) * D2R;
     return { cy: Math.cos(yaw), sy: Math.sin(yaw), cp: Math.cos(pitch), sp: Math.sin(pitch),
-      f: Math.min(P.w, P.h * 1.2) * 1.9, ox: P.x + P.w * .5, oy: P.y + P.h * .55 };
+      f: Math.min(P.w, P.h * 1.2) * 1.9, ox: P.x + P.w * .5, oy: P.y + P.h * .61 };
   }
   function proj(c, p) {
     const x = p[0] - CENTER[0], y = p[1] - CENTER[1], z = p[2] - CENTER[2];
@@ -174,12 +144,15 @@
       for (let k = -6; k <= 6; k++) lineClip3(c, [k * .66, -G, 0], [k * .66, G, 0]);
       ctx.stroke();
     }
-    // fade toward the far edge, identical in both panels
+    // no frame: the floor fades into the card's paper toward the far edge, the sides and the bottom
     const top = Math.min(...floor.map(p => proj(c, p)[1]));
     const y0 = Math.max(P.y, top - 2), y1 = top + P.h * .3;
-    const gr = ctx.createLinearGradient(0, y0, 0, y1);
-    gr.addColorStop(0, bg); gr.addColorStop(1, bg + "00");
-    ctx.fillStyle = gr; ctx.fillRect(P.x, P.y, P.w, y1 - P.y);
+    const fade = (x0, ya, x1, yb) => { const g = ctx.createLinearGradient(x0, ya, x1, yb); g.addColorStop(0, bg); g.addColorStop(1, bg + "00"); return g; };
+    ctx.fillStyle = fade(0, y0, 0, y1); ctx.fillRect(P.x, P.y, P.w, y1 - P.y);
+    const sw = P.w * .16, bh = P.h * .12;
+    ctx.fillStyle = fade(P.x, 0, P.x + sw, 0); ctx.fillRect(P.x, P.y, sw, P.h);
+    ctx.fillStyle = fade(P.x + P.w, 0, P.x + P.w - sw, 0); ctx.fillRect(P.x + P.w - sw, P.y, sw, P.h);
+    ctx.fillStyle = fade(0, P.y + P.h, 0, P.y + P.h - bh); ctx.fillRect(P.x, P.y + P.h - bh, P.w, bh);
     if (kind === "sim") {
       // pads as plain target rings
       ctx.strokeStyle = "rgba(23,63,53,.55)"; ctx.lineWidth = 1;
@@ -263,76 +236,34 @@
     far.slice(2).forEach(drawMotor);
   }
 
-  /* ---------- time strip: the same tracks plotted against time ---------- */
-  const VMIN = Math.min(...D.vbat), VMAX = Math.max(...D.vbat);
-  const RESID = D.sim.z.map((z, i) => (D.real.z[i] - z) * 100);      // real minus sim, cm, true scale
-  function drawStrip(t, fadeAll) {
-    const Y0 = strip.y, PX0 = 30, PX1 = strip.w - 4;
-    const X = s => PX0 + (PX1 - PX0) * s / TEND;
-    const txt = (s, x, y, font, col, align) => { ctx.font = font; ctx.fillStyle = col; ctx.textAlign = align || "left"; ctx.fillText(s, x, y); };
-    const IT = `italic 12px ${SANS}`, MONO = `11.5px "IBM Plex Mono",ui-monospace,monospace`, SOFT = "#67615a";
-    // phase labels, current one dark and underlined
-    const pi = D.phases.findIndex(ph => t >= ph.t0 && t < ph.t1), cur = pi < 0 ? D.phases.length - 1 : pi;
-    ctx.font = `12.5px ${SANS}`;
-    // centred on each phase, then nudged apart (left to right, then back from the right edge)
-    const L = D.phases.map(ph => { const w = ctx.measureText(ph.name).width; return { w, x: (X(ph.t0) + X(ph.t1)) / 2 - w / 2 }; });
-    for (let k = 0; k < L.length; k++) L[k].x = Math.max(L[k].x, k ? L[k - 1].x + L[k - 1].w + 9 : PX0 - 24);
-    for (let k = L.length - 1; k >= 0; k--) L[k].x = Math.min(L[k].x, k < L.length - 1 ? L[k + 1].x - L[k].w - 9 : PX1 - L[k].w);
-    D.phases.forEach((ph, k) => {
-      txt(ph.name, L[k].x, Y0 + 12, `12.5px ${SANS}`, k === cur ? INK : SOFT);
-      if (k === cur) { ctx.fillStyle = RUST; ctx.fillRect(L[k].x, Y0 + 15, L[k].w, 1); }
-    });
-    // three plots
-    const narrow = PX1 - PX0 < 420;
-    const plots = [
-      { title: "altitude", h: 40, lo: -.08 * D.planHeight, hi: 1.12 * D.planHeight },
-      { title: narrow ? "real minus sim, cm" : "real minus simulation, cm", note: narrow ? "estimate wander" : "position-estimate wander", col: RUST, h: 36, lo: -4.5, hi: 4.5 },
-      { title: narrow ? "battery voltage" : "battery voltage, Crazyflie", note: "height varies with it", col: OCHRE, h: 22, lo: VMIN - .01, hi: VMAX + .01 },
-    ];
-    let y = Y0 + 22;
-    plots.forEach(P => {
-      txt(P.title, PX0, y + 11, IT, SOFT);
-      ctx.font = IT;
-      if (P.note && ctx.measureText(P.title).width + ctx.measureText(P.note).width + 14 < PX1 - PX0) txt(P.note, PX1, y + 11, IT, P.col, "right");
-      P.top = y + 16; P.bot = P.top + P.h; P.Y = v => P.bot - (Math.max(P.lo, Math.min(P.hi, v)) - P.lo) / (P.hi - P.lo) * P.h;
-      y = P.bot + 10;
-    });
-    const [PA, PR, PV] = plots;
-    ctx.textAlign = "left";
-    ctx.lineWidth = .8; ctx.strokeStyle = "#d6c8a9";
-    ctx.beginPath(); ctx.moveTo(PX0, PA.Y(0)); ctx.lineTo(PX1, PA.Y(0)); ctx.moveTo(PX0, PR.Y(0)); ctx.lineTo(PX1, PR.Y(0)); ctx.stroke();
-    ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.moveTo(PX0, PA.Y(D.planHeight)); ctx.lineTo(PX1, PA.Y(D.planHeight)); ctx.stroke();
-    ctx.setLineDash([1, 3]); ctx.beginPath(); [3, -3].forEach(v => { ctx.moveTo(PX0, PR.Y(v)); ctx.lineTo(PX1, PR.Y(v)); }); ctx.stroke();
-    ctx.setLineDash([]);
-    txt("plan", PX0 - 5, PA.Y(D.planHeight) + 4, `italic 11.5px ${SANS}`, SOFT, "right");
-    txt("0", PX0 - 5, PA.Y(0) + 4, MONO, SOFT, "right");
-    txt("+3", PX0 - 5, PR.Y(3) + 4, MONO, SOFT, "right");
-    txt("\u22123", PX0 - 5, PR.Y(-3) + 4, MONO, SOFT, "right");
-    // phase boundaries
-    ctx.strokeStyle = "rgba(214,200,169,.9)"; ctx.setLineDash([2, 3]); ctx.beginPath();
-    D.phases.slice(1).forEach(ph => { ctx.moveTo(X(ph.t0), PA.top - 2); ctx.lineTo(X(ph.t0), PV.bot + 2); }); ctx.stroke();
-    ctx.setLineDash([]);
-    // traces up to the cursor
-    const n = Math.min(N - 1, Math.floor(t / D.dt));
-    const trace = (arr, Y, col, w) => {
-      ctx.strokeStyle = col; ctx.lineWidth = w; ctx.globalAlpha = fadeAll; ctx.beginPath();
-      for (let i = 0; i <= n; i++) { const x = X(i * D.dt), yy = Y(arr[i]); i ? ctx.lineTo(x, yy) : ctx.moveTo(x, yy); }
-      const z = sampleAt(arr, t); ctx.lineTo(X(t), Y(z)); ctx.stroke(); ctx.globalAlpha = 1;
-    };
-    trace(D.sim.z, PA.Y, GREEN, 1.6); trace(D.real.z, PA.Y, RUST, 1.2);
-    trace(D.sim.z.map(() => 0), PR.Y, GREEN, 1.1); trace(RESID, PR.Y, RUST, 1.2);
-    trace(D.vbat, PV.Y, OCHRE, 1.3);
-    if (t >= TEND && fadeAll < 1) return;
-    // one cursor; its dots take the colours of the drones
-    const x = X(t);
-    ctx.strokeStyle = "rgba(23,63,53,.5)"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x, PA.top - 2); ctx.lineTo(x, PV.bot + 2); ctx.stroke();
-    const dot = (y, col, r) => { ctx.fillStyle = col; ctx.strokeStyle = "#fbf8f1"; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill(); ctx.stroke(); };
-    dot(PA.Y(sampleAt(D.sim.z, t)), GREEN, 3.4); dot(PA.Y(sampleAt(D.real.z, t)), RUST, 2.8);
-    dot(PR.Y(sampleAt(RESID, t)), RUST, 2.6); dot(PV.Y(sampleAt(D.vbat, t)), OCHRE, 2.6);
-  }
+  /* ---------- inset: real minus sim height over time, true scale ---------- */
+  const RESID = D.sim.z.map((z, i) => (D.real.z[i] - z) * 100);      // cm, NOT exaggerated
+  const RLO = -3.8, RHI = 1.4;
   function sampleAt(arr, t) {
     const u = Math.max(0, Math.min(TEND, t)) / D.dt, i = Math.min(N - 2, Math.floor(u)), f = u - i;
     return arr[i] + (arr[i + 1] - arr[i]) * f;
+  }
+  function inset(P, t, fadeAll) {
+    const w = Math.round(Math.min(184, P.w * .58)), h = 80;
+    const bx = P.x + P.w - w - 2, by = P.y + 2;           // top-right corner: the drones never fly there
+    ctx.fillStyle = "rgba(251,248,241,0.94)"; ctx.fillRect(bx, by, w, h);
+    ctx.strokeStyle = "#d6c8a9"; ctx.lineWidth = 1; ctx.strokeRect(bx + .5, by + .5, w - 1, h - 1);
+    ctx.textBaseline = "alphabetic";
+    ctx.font = `13px ${SANS}`; ctx.fillStyle = INK; ctx.textAlign = "left";
+    ctx.fillText("Real minus sim, cm", bx + 8, by + 18);
+    const X0 = bx + 30, X1 = bx + w - 9, T0 = by + 28, B0 = by + h - 9;
+    const X = s => X0 + (X1 - X0) * s / TEND, Y = v => B0 - (v - RLO) / (RHI - RLO) * (B0 - T0);
+    ctx.lineWidth = 1; ctx.strokeStyle = "#c9bb98";
+    ctx.beginPath(); ctx.moveTo(X0, Y(0)); ctx.lineTo(X1, Y(0)); ctx.stroke();
+    ctx.setLineDash([1, 3]); ctx.beginPath(); ctx.moveTo(X0, Y(-3)); ctx.lineTo(X1, Y(-3)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.font = `13px ${MONO}`; ctx.fillStyle = SOFT; ctx.textAlign = "right";
+    ctx.fillText("0", X0 - 5, Y(0) + 4); ctx.fillText("\u22123", X0 - 5, Y(-3) + 4);
+    const n = Math.min(N - 1, Math.floor(t / D.dt));
+    ctx.globalAlpha = fadeAll; ctx.strokeStyle = RUST; ctx.lineWidth = 1.4; ctx.lineJoin = "round"; ctx.beginPath();
+    for (let i = 0; i <= n; i++) { const x = X(i * D.dt), y = Y(RESID[i]); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+    ctx.lineTo(X(t), Y(sampleAt(RESID, t))); ctx.stroke();
+    ctx.fillStyle = RUST; ctx.beginPath(); ctx.arc(X(t), Y(sampleAt(RESID, t)), 2.8, 0, 6.2832); ctx.fill();
+    ctx.globalAlpha = 1; ctx.textAlign = "left";
   }
 
   /* ---------- one frame ---------- */
@@ -346,30 +277,23 @@
       const c = camera(lt, P), sim = P.kind === "sim";
       ctx.save();
       ctx.beginPath(); ctx.rect(P.x, P.y, P.w, P.h); ctx.clip();
-      const bg = sim ? "#fbf8f1" : "#f3ecdf";
-      ctx.fillStyle = bg; ctx.fillRect(P.x, P.y, P.w, P.h);
-      ground(c, P.kind, P, bg);
+      ground(c, P.kind, P, CARD);
       const f = sim ? simAt : realAt, p = f(t);
       shadow(c, p);
       planAndWaypoints(c);
       trail(c, f, t, sim ? "31,107,87" : "168,70,31", fadeAll);
       drone(c, p, bodyFrame(accel(f, t)), m, ang, t);
-      // title, with a swatch matching the trail
-      ctx.font = `13px ${SANS}`; ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
-      ctx.fillStyle = sim ? GREEN : RUST; ctx.fillRect(P.x + 10, P.y + 15, 14, 2);
-      ctx.fillStyle = INK;
-      ctx.fillText(sim ? "Simulation (Isaac Lab, PhysX)" : "Crazyflie, onboard firmware", P.x + 30, P.y + 20);
+      // direct label, in the colour of the panel's trail
+      ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
+      ctx.font = `14px ${SANS}`; ctx.fillStyle = sim ? GREEN : RUST;
+      ctx.fillText(sim ? "Simulation, Isaac Lab" : "Crazyflie, onboard", P.x + 4, P.y + 18);
       if (!sim) {
-        ctx.font = `italic 12px ${SANS}`; ctx.fillStyle = "#67615a"; ctx.textAlign = "right";
-        ctx.fillText(`deviation from sim ×${EXAG}`, P.x + P.w - 10, P.y + P.h - 10);
-        ctx.textAlign = "left";
+        ctx.font = `13px ${SANS}`; ctx.fillStyle = SOFT;
+        ctx.fillText(`deviation from sim ×${EXAG}`, P.x + 4, P.y + P.h - 8);
+        inset(P, t, fadeAll);
       }
       ctx.restore();
-      ctx.strokeStyle = "#d6c8a9"; ctx.lineWidth = 1; ctx.strokeRect(P.x + .5, P.y + .5, P.w - 1, P.h - 1);
     }
-    drawStrip(t, fadeAll);
-    const s = sentence(t);
-    if (note && note.textContent !== s) note.textContent = s;
   }
 
   /* ---------- loop ---------- */

@@ -18,8 +18,79 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261120c">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20261120p">
+  <style>
+    /* ---------- Research hub (research.html only) ---------- */
+    .res-jump { margin-top: 1.1rem; }
+    .res-jump.links { gap: .4rem 1.6rem; }
+
+    .page .row > section.res-thread { margin-bottom: 0; padding: 0 0 2.4rem; }
+    .page .row > section.res-thread + section.res-thread { padding-top: 4rem; border-top: 1px solid var(--rule); }
+    .page .row > section.res-code { padding-top: 4rem; border-top: 1px solid var(--rule); }
+
+    .res-head { display: grid; grid-template-columns: minmax(0, 25rem) minmax(0, 1fr); gap: 1rem 4rem; margin-bottom: 2.8rem; }
+    .page .res-head h2 { margin: 0; font-size: clamp(1.9rem, 2.9vw, 2.35rem); }
+    .res-lead { max-width: 46rem; }
+    .res-lead p:last-child, .res-lead ol:last-child { margin-bottom: 0; }
+    .res-lead ol { margin: 0 0 1.1em; padding-left: 1.3rem; }
+    .res-lead li { margin-bottom: .35rem; }
+
+    .res-papers { list-style: none; margin: 0; padding: 0; }
+    .res-paper { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 620px); gap: 2rem 3.5rem; align-items: start; padding: 2.6rem 0; border-top: 1px solid var(--rule-soft); }
+    .res-paper.res-narrow-fig { grid-template-columns: minmax(0, 1fr) minmax(0, 470px); }
+    .res-text { min-width: 0; }
+    .page .res-text h3 { font-family: var(--serif); font-weight: 400; font-size: 1.55rem; line-height: 1.22; color: var(--ink); margin: 0 0 .9rem; }
+    .res-text .authors { margin: 0 0 1rem; }
+    .res-text .res-desc { font-size: 16px; margin: 0 0 1.3rem; max-width: 40rem; }
+    .res-text .links { margin-top: 0; }
+    .res-paper figure { margin: 0; }
+
+    /* a related item with no figure of its own, stacked under the text beside the figure */
+    .res-paper.res-has-also { grid-template-rows: auto 1fr; }
+    .res-has-also > figure { grid-column: 2; grid-row: 1 / span 2; }
+    .res-has-also > .res-also { grid-column: 1; grid-row: 2; align-self: start; padding-top: 2.4rem; border-top: 1px solid var(--rule-soft); }
+    .res-vk-poster { background: #dfe6dc; color: #3d5a4a; }
+
+    /* the replay graph: no card around it here */
+    .res-replay .fig-frame.proof-hero { max-width: 560px; }
+    .res-replay figcaption { text-align: left; }
+    .page .ph-title { margin: 0 0 .1rem; }
+    .page .aip-train-head { margin: 0 0 .5rem; }
+    .page .aip-eng p { margin: 0 0 .65rem; }
+
+    /* Code */
+    .res-code-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem; }
+    .page .res-code-grid > li.res-card { padding: 1.6rem 1.7rem 1.5rem; border: 1px solid var(--rule); margin: 0; }
+    .res-card { display: flex; flex-direction: column; padding: 1.6rem 1.7rem 1.5rem; border: 1px solid var(--rule); background: #fcf9f3; }
+    .page .res-card h3 { font-family: var(--serif); font-weight: 400; font-size: 1.2rem; line-height: 1.25; color: var(--ink); margin: 0 0 .6rem; }
+    .res-card p { font-size: 15.5px; line-height: 1.55; color: var(--soft); margin: 0 0 1.2rem; }
+    .res-card .links a { font-weight: 400; overflow-wrap: anywhere; }
+
+    /* Posters */
+    .page .row > section.res-posters { padding-top: 4.5rem; margin-top: 4.5rem; border-top: 1px solid var(--rule); }
+    .res-posters > p { max-width: 46rem; }
+
+    @media (max-width: 1080px) {
+      .res-code-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .res-paper, .res-paper.res-narrow-fig { grid-template-columns: 1fr; }
+      .res-paper figure { max-width: 640px; }
+      .res-has-also > figure, .res-has-also > .res-also { grid-column: auto; grid-row: auto; }
+      .res-paper.res-has-also { grid-template-rows: none; }
+      .res-paper.res-narrow-fig figure { max-width: 480px; }
+    }
+    @media (max-width: 900px) {
+      .res-head { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .res-code-grid { grid-template-columns: 1fr; }
+      .res-has-also > .res-also { padding-top: 2rem; }
+      .page .row > section.res-thread { padding-bottom: 1.6rem; }
+      .page .row > section.res-thread + section.res-thread, .page .row > section.res-code, .page .row > section.res-posters { padding-top: 3rem; }
+      .res-paper { padding: 2rem 0; }
+      .page .res-text h3 { font-size: 1.35rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -32,7 +103,6 @@
       <a href="publications.html">Publications</a>
       <a href="research.html" class="on" aria-current="page">Research</a>
       <a href="awards.html">Awards</a>
-      <a href="software.html">Software</a>
       <a href="contact.html">Contact</a>
       <span class="social">
         <a href="https://github.com/Logan-Cole-Luna" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.192 22 16.439 22 12.017 22 6.484 17.523 2 12 2z"/></svg></a>
@@ -42,97 +112,229 @@
     </nav>
   </header>
   <section class="row page-hero">
-    <p class="pretitle">Logan Luna</p>
     <h1>Research</h1>
+    <p class="page-intro">Three threads of work, with the figures, papers and code behind each.</p>
+    <div class="links res-jump"><a href="#ai4math">AI for mathematical reasoning</a><a href="#rl">RL for safety-critical systems</a><a href="#sensing">Sensing and scientific workflows</a><a href="#code">Code</a><a href="#posters">Posters</a></div>
   </section>
 </div>
 
 <main class="page">
 <div class="row">
 
+  <!-- THREAD 1: AI FOR MATHEMATICAL REASONING -->
+  <section class="res-thread" id="ai4math">
+    <div class="res-head">
+      <h2>AI for Mathematical Reasoning</h2>
+      <div class="res-lead">
+        <p>
+          My central question is how semantically informative training signals can be quantified
+          and incorporated into the training and generation of mathematical reasoning models.
+          Symbolic feedback rewards output that compiles or type-checks, which does not certify
+          that it expresses the intended mathematics. Current directions:
+        </p>
+        <ol>
+          <li>Extending reinforcement learning from symbolic feedback with semantic alignment as the
+            training objective, measured by pass@<em>k</em> at large <em>k</em>.</li>
+          <li>Dense rewards from distance in a learned proof-semantic space, grounded in
+            kernel-checked entailment.</li>
+          <li>Diffusion language models as a generative substrate for theorem proving and
+            auto-formalization.</li>
+        </ol>
+      </div>
+    </div>
 
-  <!-- RESEARCH AREAS -->
-  <section>
-    <h2>Research Interests</h2>
-    <p>
-      <span class="label">AI for Mathematical Reasoning (AI4Math).</span> My central question is
-      how semantically informative training signals can be quantified and incorporated into the
-      training and generation of mathematical reasoning models. Symbolic feedback rewards output
-      that compiles or type-checks, which does not certify that it expresses the intended
-      mathematics. Current directions:
-    </p>
-    <ol>
-      <li>Extending reinforcement learning from symbolic feedback with semantic alignment as the
-        training objective, measured by pass@<em>k</em> at large <em>k</em>.</li>
-      <li>Dense rewards from distance in a learned proof-semantic space, grounded in
-        kernel-checked entailment.</li>
-      <li>Diffusion language models as a generative substrate for theorem proving and
-        auto-formalization.</li>
-    </ol>
-    <p>
-      Earlier work: reinforcement learning for safety-critical systems (satellite collision
-      avoidance, intrusion detection, sim-to-real drone control), signal-centric remote sensing,
-      FAIR scientific workflows, and computer vision for autonomous vehicles.
-    </p>
+    <div class="res-papers">
+      <article class="res-paper">
+        <div class="res-text">
+          <h3>AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolving Harness</h3>
+          <p class="venue"><span class="vkind vk-review">Under review</span>ICLR 2027</p>
+          <p class="authors">Prithwish Jana, Viet Bach Hoang, <strong>Logan Luna</strong>, Viresh Pati, Akash Singirikonda, Cy Xie, Lisa Carbone, Wuyang Chen, Walter Moreira, Joe Stubbs, Sriram Vishwanath, Vijay Ganesh.</p>
+          <p class="res-desc"><em>Contribution:</em> RL pipeline and reward, BEq+ extension, distillation pipeline and dataset, Semantic Alignment Model. <em>Results:</em> pass@4 semantic correctness from 15.7% to 36.7% standalone (above GPT-5.6-Sol and Codex); 41.9% to 79.8% as a Claude Code skill.</p>
+          <div class="links"><a href="https://jprithwish.github.io/AIProver/">Project page</a></div>
+        </div>
+        <figure class="feature-fig aip-fig">
+          <div class="fig-frame anim-aiprover">
+            <div class="aip-strip"></div>
+            <div class="aip-main" role="img" aria-label="AIProver formalizes the theorem that the first n odd numbers sum to n squared: it writes Lean, gets a Lean error, finds the Mathlib lemma Finset.sum_range_succ, repairs the proof, and checks the Lean statement against the English one."><div class="aip-eng"></div><div class="aip-code"></div></div>
+            <div class="aip-train"></div>
+            <svg class="aip-wires" aria-hidden="true"></svg>
+          </div>
+          <figcaption><b>Fig. 1.</b> An illustrative AIProver session: an English theorem becomes Lean, is repaired from Lean's own error with a Mathlib lemma, and is checked against the English. Above the file, the training stage behind each step lights up; choose one to see it.</figcaption>
+        </figure>
+      </article>
+
+      <article class="res-paper res-narrow-fig res-replay res-has-also">
+        <div class="res-text">
+          <h3>Orchestration run replay</h3>
+          <p class="res-desc">A real run of the orchestration, replayed from its trace: formalization, a 20-lemma sketch, AIProver jobs checked by Lean, and the lemmas that were handed back to the orchestrator. Conditional on the smooth shifted primes hypothesis (H).</p>
+          <div class="links"><a href="replay.html">Full replay</a></div>
+        </div>
+        <figure class="fig fig-replay">
+          <a class="fig-frame boxed paper proof-hero" href="replay.html" aria-label="Watch the full replay of an orchestration run on Erdős's conjecture on large totient fibers">
+            <p class="ph-title">Erdős's conjecture on large totient fibers</p>
+            <div class="ph-graph"></div>
+            <span class="ph-more">Full replay →</span>
+          </a>
+          <figcaption><b>Fig. 2.</b> A real 21-hour orchestration run, replayed from its trace on a compressed clock: each dot is a lemma, filling green as Lean accepts AIProver's proof.</figcaption>
+        </figure>
+        <div class="res-text res-also">
+          <h3>ATLAS: Autoformalized Textbook Library At Scale</h3>
+          <p class="venue">Meta FAIR, Research Collaborator V</p>
+          <p class="res-desc">A verified Lean 4 library built with AutoformBot, an open-source multi-agent framework that translates informal textbook mathematics into machine-checked definitions and proofs. I contribute to ATLAS in a contract role supporting Meta FAIR (Core Learning and Reasoning).</p>
+          <div class="links"><a href="https://arxiv.org/abs/2605.29955">Paper</a><a href="https://github.com/facebookresearch/atlas-lean">Code</a></div>
+        </div>
+      </article>
+    </div>
   </section>
 
-  <!-- RESEARCH GROUPS -->
-  <section>
-    <h2>Research Groups</h2>
-    <ul>
-      <li>
-        <span class="item-title">Reasoning and Learning Group, Georgia Institute of Technology</span> (2025–Present).<br>
-        AI4Math / auto-formalization research under Dr. Vijay Ganesh. Contribute to
-        <em>AIProver</em> (under review, ICLR 2027): built the multi-turn GRPO pipeline and graded
-        reward ladder, the BEq+ extension, the distillation pipeline and dataset (16,570 Mathlib and
-        6,799 Mizar examples), and the Semantic Alignment Model. Developing reinforcement learning
-        from semantic equivalence feedback and diffusion language models for AI4Math.
+  <!-- THREAD 2: RL FOR SAFETY-CRITICAL SYSTEMS -->
+  <section class="res-thread" id="rl">
+    <div class="res-head">
+      <h2>Reinforcement Learning for Safety-Critical Systems</h2>
+      <div class="res-lead">
+        <p>Earlier work in reinforcement learning for safety-critical systems: satellite collision
+        avoidance, intrusion detection, and sim-to-real drone control.</p>
+      </div>
+    </div>
+
+    <div class="res-papers">
+      <article class="res-paper res-narrow-fig res-has-also">
+        <div class="res-text">
+          <h3>Satellite Trajectory Optimization via Proximal Policy Optimization for Space Debris Avoidance</h3>
+          <p class="venue"><span class="vkind vk-journal">Journal</span>IEEE Access, 2026</p>
+          <p class="authors"><strong>Logan Luna</strong>, Juan Ortiz Couder, Raul Alejandro Vargas-Acosta.</p>
+          <p class="res-desc">97.5% collision-avoidance success over 1,000 deterministic GEO episodes, 76.8 and 70.0 percentage points above the rule-based and impulsive Δv baselines.</p>
+          <div class="links"><a href="https://doi.org/10.1109/ACCESS.2026.3655237">DOI</a><a href="https://github.com/Logan-Cole-Luna/sat-trajectory-avoidance">Code</a></div>
+        </div>
+        <figure class="feature-fig">
+          <div class="fig-frame"><img class="fig-still" src="pictures/debris_field.webp" width="880" height="880" alt="Globe surrounded by orbiting debris fragments from the Fengyun-1C, Cosmos 2251 and Iridium 33 breakups"><canvas id="debris" data-theme="paper" data-src="data/debris.json" role="img" aria-label="Animated globe surrounded by orbiting debris fragments from the Fengyun-1C, Cosmos 2251 and Iridium 33 breakups"></canvas></div>
+          <figcaption><b>Fig. 3.</b> Tracked debris from the Fengyun-1C, Cosmos 2251 and Iridium 33 breakups, with an illustrative avoidance manoeuvre magnified in the inset.</figcaption>
+        </figure>
+        <div class="res-text res-also">
+          <h3>AERO-Sim2Real: Reinforcement Learning for Sim-to-Real Drone Deployment</h3>
+          <p class="venue"><span class="vkind res-vk-poster">Poster</span>Senior Design, Embry-Riddle, 2026</p>
+          <p class="authors"><strong>Logan Luna</strong>, Sirio Jansen-Sánchez, Vincent Reggi, Kolton Galie, Nicolas Andricos.</p>
+          <p class="res-desc">PPO policies trained in NVIDIA Isaac Lab and flown autonomously on Crazyflie 2.1 hardware; hover transferred at 1.3/2.1/0.7 cm real-vs-sim RMSE, while a figure-eight task isolated aggressive horizontal maneuvering as the dominant transfer gap.</p>
+          <div class="links"><a href="posters/AERO-Sim2Real Reinforcement Learning For Sim-to-Real Drone Deployment.png">Poster</a></div>
+        </div>
+      </article>
+
+      <article class="res-paper">
+        <div class="res-text">
+          <h3>Dueling Deep Q-Learning for Intrusion Detection</h3>
+          <p class="venue"><span class="vkind vk-conf">Conference</span>IEEE SoutheastCon 2025, <span class="award">Best Paper Award</span></p>
+          <p class="authors"><strong>Logan Luna</strong>, Matthew P. Berkowitz, Laxima Niure Kandel, Sirio Jansen-Sánchez.</p>
+          <p class="res-desc">99.68% multi-class accuracy on 2.18M CIC-IDS2018 flows, against 88% for prior DQN-based detection and 98.4–99% for tree-ensemble and random-forest IDSs; SHAP attribution of the learned policy.</p>
+          <div class="links"><a href="https://doi.org/10.1109/SoutheastCon56624.2025.10971436">DOI</a><a href="https://github.com/Logan-Cole-Luna/Hierarchical-Q-Learning-Threat-Hunting">Code</a></div>
+        </div>
+        <figure class="feature-fig dqn-fig">
+          <div class="fig-frame boxed paper anim-dqn">
+            <div class="dqn-svg"></div>
+          </div>
+          <figcaption><b>Fig. 4.</b> Flows pass an XGBoost screen; malicious ones run through the dueling Q-network, whose value and advantage rejoin as one Q-value per attack class. Recall is the real CIC-IDS2018 result; the flows are illustrative.</figcaption>
+        </figure>
+      </article>
+
+      <article class="res-paper">
+        <div class="res-text">
+          <h3>Direct Policy Transfer from Simulator to Firmware: Verification Boundaries for Learned UAV Autonomy</h3>
+          <p class="venue"><span class="vkind vk-review">Under review</span>ACM International Conference on Trustworthy and Responsible AI and Computing Systems</p>
+          <p class="authors">Illia Biblyi, Elsy Fuentes Montiel, Andressa C. Ojeda, <strong>Logan Luna</strong>, Kolton Galie, Vincent Reggi, Nicolas Andricos, Sirio Jansen-Sánchez, M. Ilhan Akbas.</p>
+          <p class="res-desc">A verification framework for compiling Isaac Lab policies directly into Crazyflie nano-UAV firmware, with executable checks from observation replay to source-to-binary traceability; 2–3 cm hover altitude error onboard.</p>
+        </div>
+        <figure class="feature-fig uav-fig">
+          <div class="fig-frame anim-uav">
+            <canvas class="uav-canvas" role="img" aria-label="Two 3D views of the same flight plan: on the left a simulated nano-quadrotor flies it exactly over a grid; on the right the Crazyflie flies it on a lab floor with small wander and a slight height sag, from takeoff to landing and motor shutdown. An inset in the corner of the right view plots the real drone's height minus the simulated one, in centimeters, over the flight."></canvas>
+          </div>
+          <figcaption><b>Fig. 5.</b> One policy flies the same plan in simulation and on the Crazyflie. The real drone's drift is drawn four times larger; the inset gives it in centimetres. Illustrative tracks.</figcaption>
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <!-- THREAD 3: SENSING AND SCIENTIFIC WORKFLOWS -->
+  <section class="res-thread" id="sensing">
+    <div class="res-head">
+      <h2>Sensing and Scientific Workflows</h2>
+      <div class="res-lead">
+        <p>Earlier work in signal-centric remote sensing and FAIR scientific workflows.</p>
+      </div>
+    </div>
+
+    <div class="res-papers">
+      <article class="res-paper">
+        <div class="res-text">
+          <h3>Signal-Centric Remote Sensing via Alternative Preprocessing and Acoustic Processing for ML-Driven Applications</h3>
+          <p class="venue"><span class="vkind vk-conf">Conference</span>IEEE SoutheastCon 2025, Concord, NC</p>
+          <p class="authors"><strong>Logan Luna</strong>, Sirio Jansen-Sánchez, Ilteris Demirkiran, Leo Ghelarducci.</p>
+          <p class="res-desc">91.2% reduction in total sonar processing time (13.1% in filtering alone) against image-based CV processing, while preserving target structure the image pipeline removed.</p>
+          <div class="links"><a href="https://doi.org/10.1109/SoutheastCon56624.2025.10971547">DOI</a><a href="https://arxiv.org/abs/2609.21123">arXiv</a></div>
+        </div>
+        <figure class="sonar-fig">
+          <div class="fig-frame anim-sonar">
+            <div class="sonar-svg"></div>
+          </div>
+          <figcaption><b>Fig. 6.</b> One sonar sweep past an underwater gate, cleaned two ways. Filtering the raw signal keeps the gate echo in 3.1 ms; rendering images first takes 37.4 ms and erases it. Waterfalls and timings from the paper, slowed down.</figcaption>
+        </figure>
+      </article>
+
+      <article class="res-paper">
+        <div class="res-text">
+          <h3>SensorWF: A FAIR Generalizable Workflow Framework for Scientific Time-Series Analysis</h3>
+          <p class="venue"><span class="vkind vk-workshop">Workshop</span>IEEE eScience 2026 (ReWorDS Workshop), Naples, Italy</p>
+          <p class="authors"><strong>Logan Luna</strong>, Joseph Rigo, Kellan Shew, Raul Alejandro Vargas-Acosta.</p>
+          <p class="res-desc">One analytical core carried across spacecraft telemetry, ECG, and climate data with small domain adapters and no core changes; bit-identical outputs under fixed seeds.</p>
+          <div class="links"><a href="https://arxiv.org/abs/2609.21110">arXiv</a><a href="https://github.com/Logan-Cole-Luna/SensorWF">Code</a></div>
+        </div>
+        <figure class="swf-fig">
+          <div class="fig-frame anim-sensorwf">
+            <div class="swf-svg"></div>
+          </div>
+          <figcaption><b>Fig. 7.</b> Real spacecraft, ECG and weather recordings, each read by its own small adapter (M1), then marked by the same unchanged modules M2 to M5.</figcaption>
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <!-- CODE -->
+  <section class="res-code" id="code">
+    <h2>Code</h2>
+    <ul class="res-code-grid">
+      <li class="res-card">
+        <h3>Milo: Magnitude-Invariant Learning Optimizer</h3>
+        <p>A group-wise gradient normalization optimizer designed to reduce magnitude distortion in learning dynamics, tested across image classification, CNNs, and reinforcement learning tasks.</p>
+        <div class="links"><a href="https://github.com/Logan-Cole-Luna/Milo">Logan-Cole-Luna/Milo</a></div>
       </li>
-      <li>
-        <span class="item-title">Agile Research Group, Embry-Riddle Aeronautical University</span> (2024–2026).<br>
-        Satellite trajectory optimization research under Dr. Omar Ochoa; developed a
-        PPO-based RL framework for fuel-aware satellite collision avoidance (97.5% avoidance
-        success, IEEE Access 2026) and the <em>SensorWF</em> workflow framework (IEEE eScience 2026).
+      <li class="res-card">
+        <h3>SensorWF: A FAIR Generalizable Workflow Framework for Scientific Time-Series Analysis</h3>
+        <p>A FAIR workflow framework that carries one analytical core across spacecraft telemetry, ECG, and climate data via small domain adapters, with bit-identical outputs under fixed seeds (IEEE eScience 2026, ReWorDS Workshop).</p>
+        <div class="links"><a href="https://github.com/Logan-Cole-Luna/SensorWF">Logan-Cole-Luna/SensorWF</a></div>
+      </li>
+      <li class="res-card">
+        <h3>Learning Causal Structures from Aviation Accident Narratives</h3>
+        <p>Compares rule-based NLP, transformer (DistilBERT), and few-shot LLM (Mistral-7B) approaches for extracting causal relationships from NTSB aviation accident narratives into knowledge graphs.</p>
+        <div class="links"><a href="https://github.com/Logan-Cole-Luna/CausalStructuresFromAviation">Logan-Cole-Luna/CausalStructuresFromAviation</a></div>
+      </li>
+      <li class="res-card">
+        <h3>Energy-Efficient Avionics Security</h3>
+        <p>Research on energy-efficient security mechanisms for avionics systems.</p>
+        <div class="links"><a href="https://github.com/Logan-Cole-Luna/energy-efficient-avionics-security">Logan-Cole-Luna/energy-efficient-avionics-security</a></div>
+      </li>
+      <li class="res-card">
+        <h3>Satellite Trajectory Projection and Collision Avoidance</h3>
+        <p>RL-based satellite collision avoidance environment and PPO pipeline.</p>
+        <div class="links"><a href="https://github.com/Logan-Cole-Luna/sat-trajectory-avoidance">Logan-Cole-Luna/sat-trajectory-avoidance</a></div>
+      </li>
+      <li class="res-card">
+        <h3>Hierarchical Q-Learning for Threat Hunting (Dueling DQN)</h3>
+        <p>A multi-stage RL agent performing hierarchical intrusion detection over network traffic, including binary classification and attack-type prediction.</p>
+        <div class="links"><a href="https://github.com/Logan-Cole-Luna/Hierarchical-Q-Learning-Threat-Hunting">Logan-Cole-Luna/Hierarchical-Q-Learning-Threat-Hunting</a></div>
       </li>
     </ul>
   </section>
 
-  <!--
-  <section>
-    <h2>Current Projects</h2>
-    <ul>
-      <li>
-        <span class="item-title">Milo: Magnitude-Invariant Learning Optimizer</span> (2025–Present).<br>
-        A group-wise gradient normalization optimization method designed to reduce
-        magnitude distortion in learning dynamics. Includes empirical testing across
-        image classification, CNNs, and reinforcement learning tasks.
-      </li>
-      <li>
-        <span class="item-title">AI for Data Anomaly Detection in a Satellite Learning Laboratory (SATLL)</span>
-        (2025–2026, Project Lead; CARS-funded).<br>
-        Data-centric ML anomaly detection pipelines for satellite telemetry (power, thermal,
-        attitude, and communications subsystems), operating directly on structured CSV/HDF5
-        data with baseline (z-score) and advanced (Isolation Forest, autoencoder) models.
-      </li>
-      <li>
-        <span class="item-title">Reinforcement Learning for Aerial Robotics: Sim-to-Real Transfer</span>
-        (2025–2026, Flexible &amp; Intelligent Complex Systems Research Group).<br>
-        Training RL control policies for Crazyflie 2.x nano-quadrotors in NVIDIA Omniverse
-        Isaac Gym; evaluating sim-to-real gaps (stability, drift, tracking) under noise, wind,
-        and mass-variation perturbations.
-      </li>
-      <li>
-        <span class="item-title">Enhancing Underwater Object Recognition with Computer Vision and Filtering Techniques</span>
-        (2023–2026, Project Lead).<br>
-        YOLOv8-based detection/classification and feature-matching pipelines (SuperPoint/SuperGlue)
-        for AUV perception, fused with Kalman-based tracking for continuous, confidence-aware detection.
-      </li>
-    </ul>
-  </section>
-  -->
-
-  <!-- POSTERS SECTION -->
-  <section class="wide">
+  <!-- POSTERS -->
+  <section class="wide res-posters" id="posters">
     <h2>Research Posters</h2>
     <p>Below is a selected collection of research posters from 2022–2026, representing
     my work across reinforcement learning, optimization, sonar processing, remote sensing,
@@ -140,7 +342,6 @@
 
     <div class="poster-grid">
 
-      <!-- SIM2REAL DRONE -->
       <div class="poster-item">
         <h3>AERO-Sim2Real: Reinforcement Learning For Sim-to-Real Drone Deployment (2026)</h3>
         <p>Trains PPO-based flight-control policies in NVIDIA IsaacLab and deploys them on Crazyflie 2.1 nano-quadrotors, quantifying sim-to-real divergence across hover, waypoint-following, and figure-eight trajectory tasks.</p>
@@ -149,64 +350,57 @@
         </a>
       </div>
 
-      <!-- CAUSAL AVIATION -->
       <div class="poster-item">
         <h3>Learning Causal Structures from Aviation Accident Narratives (2025)</h3>
-        <p>Compares rule-based NLP, transformer (DistilBERT), and few-shot LLM (Mistral-7B) approaches for extracting causal relationships from NTSB aviation accident narratives and representing them as knowledge graphs.</p>
+        <p>Compares rule-based NLP, transformer (DistilBERT), and few-shot LLM (Mistral-7B) approaches for extracting causal relationships from NTSB aviation accident narratives.</p>
         <a href="posters/35_Learning Causal Structures from Aviation Accident Narratives.pdf.png" target="_blank">
           <img src="pictures/poster-thumbs/aviation-causal-structures.jpg" class="poster-thumb" alt="" loading="lazy">
         </a>
       </div>
 
-      <!-- SAT PROPOSAL -->
       <div class="poster-item">
         <h3>Satellite Proposal Poster (2025)</h3>
-        <p>This poster introduces the proposes a development framework for satellite anomaly detection. It outlines the motivation, mission impact, and design plan prior to full implementation.</p>
+        <p>Proposes a development framework for satellite anomaly detection, with its motivation, mission impact, and design plan.</p>
         <a href="posters/SatProposalPoster.png" target="_blank">
           <img src="pictures/poster-thumbs/sat-proposal.jpg" class="poster-thumb" alt="" loading="lazy">
         </a>
       </div>
 
-      <!-- SAT RESEARCH -->
       <div class="poster-item">
         <h3>Satellite Trajectory Research Poster (2024)</h3>
-        <p>Displays the full research results for PPO-based orbital collision avoidance, including stabilized low-fuel orbits and debris-avoidance maneuvers. This poster was presented as the research matured into publishable form.</p>
+        <p>Full research results for PPO-based orbital collision avoidance, including stabilized low-fuel orbits and debris-avoidance maneuvers.</p>
         <a href="posters/SatResearchPoster.png" target="_blank">
           <img src="pictures/poster-thumbs/sat-research.jpg" class="poster-thumb" alt="" loading="lazy">
         </a>
       </div>
 
-      <!-- CYBER -->
       <div class="poster-item">
         <h3>Hierarchical Dueling Q-Learning for Intrusion Detection (2024)</h3>
-        <p>This poster outlines a two-agent Q-learning and Dueling DQN system for classifying and responding to cyberattacks. It demonstrates near-perfect binary and multi-class accuracy on large intrusion datasets.</p>
+        <p>A two-agent Q-learning and Dueling DQN system for classifying and responding to cyberattacks, with near-perfect binary and multi-class accuracy on large intrusion datasets.</p>
         <a href="posters/Hierarchical Q-Learning for Intrusion Detection.png" target="_blank">
           <img src="pictures/poster-thumbs/hierarchical-q-learning.jpg" class="poster-thumb" alt="" loading="lazy">
         </a>
       </div>
 
-      <!-- SONAR -->
       <div class="poster-item">
         <h3>Sonar Contrastive Learning Research (2024)</h3>
-        <p>Presents a semi-supervised contrastive learning model for sonar-based object detection. Highlights both noise reduction strategies and adaptation potential for radar systems.</p>
+        <p>A semi-supervised contrastive learning model for sonar-based object detection, with noise reduction strategies and adaptation potential for radar systems.</p>
         <a href="posters/RemoteSensingResearch.png" target="_blank">
           <img src="pictures/poster-thumbs/remote-sensing.jpg" class="poster-thumb" alt="" loading="lazy">
         </a>
       </div>
 
-      <!-- AMRA -->
       <div class="poster-item">
         <h3>Autonomous Maritime Robotics Association Poster (2023)</h3>
-        <p>This poster shows early work on underwater sonar-based detection, noise filtering strategies, and object tracking. It represents the foundation of later remote-sensing and sonar research.</p>
+        <p>Early work on underwater sonar-based detection, noise filtering strategies, and object tracking; the foundation of later remote-sensing and sonar research.</p>
         <a href="posters/AMRA Presentation.png" target="_blank">
           <img src="pictures/poster-thumbs/amra-presentation.jpg" class="poster-thumb" alt="" loading="lazy">
         </a>
       </div>
 
-      <!-- AIRCRAFT -->
       <div class="poster-item">
         <h3>Aircraft Detection &amp; Kalman Tracking Poster (2023)</h3>
-        <p>One of my earliest research posters, combining YOLO object detection with ORB keypoints and Kalman filtering for aircraft motion prediction. Demonstrates reliable tracking through occlusions and movement noise. Presented at NCUR 2023; 1st Place at the Embry-Riddle Student Research Symposium.</p>
+        <p>Combines YOLO object detection with ORB keypoints and Kalman filtering for aircraft motion prediction. Presented at NCUR 2023; 1st Place at the Embry-Riddle Student Research Symposium.</p>
         <a href="posters/Aircraft Tracking (48 x 36 in).png" target="_blank">
           <img src="pictures/poster-thumbs/aircraft-tracking.jpg" class="poster-thumb" alt="" loading="lazy">
         </a>
@@ -234,5 +428,18 @@
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
+<script src="data/run011.js?v=20261120p" defer></script>
+<script src="js/aimath-layout.js?v=20261120p" defer></script>
+<script src="js/proof-hero.js?v=20261120p" defer></script>
+<script src="js/debris.js?v=20261120p" defer></script>
+<script src="data/dqn.js?v=20261120p" defer></script>
+<script src="js/anim-dqn.js?v=20261120p" defer></script>
+<script src="data/sensorwf.js?v=20261120p" defer></script>
+<script src="js/anim-sensorwf.js?v=20261120p" defer></script>
+<script src="data/sonar.js?v=20261120p" defer></script>
+<script src="js/anim-sonar.js?v=20261120p" defer></script>
+<script src="data/uav.js?v=20261120p" defer></script>
+<script src="js/anim-uav.js?v=20261120p" defer></script>
+<script src="js/anim-aiprover.js?v=20261120p" defer></script>
 </body>
 </html>

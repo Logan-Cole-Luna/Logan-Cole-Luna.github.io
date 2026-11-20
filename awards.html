@@ -19,7 +19,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261120c">
+  <link rel="stylesheet" href="style.css?v=20261120p">
+  <style>
+    .awd-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.4rem; }
+    .awd-tile { margin: 0; }
+    .awd-tile img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border: 1px solid var(--rule); background: var(--paper); }
+    .page .awd-tile h3 { margin: 1.1rem 0 .35rem; font-family: var(--serif); font-weight: 400; font-size: 1.3rem; line-height: 1.25; color: var(--deep); }
+    .page .awd-tile .awd-year { font-size: 15px; font-weight: 600; color: var(--soft); margin: 0 0 .5rem; }
+    .page .awd-tile p { font-size: 16px; line-height: 1.5; margin: 0; }
+    .page section > ul.awd-more { margin-top: 2.6rem; max-width: 52rem; }
+    .page section > ul.awd-more > li { padding: .9rem 0; }
+    .awd-grants { display: grid; grid-template-columns: 16rem minmax(0, 1fr); gap: 0 3rem; align-items: start; }
+    .page .awd-total { margin: 0; }
+    .awd-total strong { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(3rem, 6vw, 4.4rem); line-height: 1; color: var(--deep); }
+    .awd-total span { display: block; margin-top: .6rem; font-size: 16px; color: var(--soft); }
+    .awd-grants .rail > li { padding: 1.1rem 0; }
+    .awd-grants .rail-key b { display: block; color: var(--ink); font-size: 17px; }
+    .page .awd-grants .rail-body p { margin: .25rem 0 0; }
+    @media (max-width: 900px) {
+      .awd-tiles { grid-template-columns: 1fr 1fr; gap: 1.8rem; }
+      .awd-grants { grid-template-columns: 1fr; gap: 1.6rem; }
+    }
+    @media (max-width: 600px) {
+      .awd-tiles { grid-template-columns: 1fr; gap: 2.4rem; }
+      .awd-tile img { aspect-ratio: 4 / 3.6; }
+    }
+  </style>
 </head>
 <body>
 <div class="top">
@@ -31,7 +56,6 @@
       <a href="publications.html">Publications</a>
       <a href="research.html">Research</a>
       <a href="awards.html" class="on" aria-current="page">Awards</a>
-      <a href="software.html">Software</a>
       <a href="contact.html">Contact</a>
       <span class="social">
         <a href="https://github.com/Logan-Cole-Luna" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.192 22 16.439 22 12.017 22 6.484 17.523 2 12 2z"/></svg></a>
@@ -41,8 +65,8 @@
     </nav>
   </header>
   <section class="row page-hero">
-    <p class="pretitle">Logan Luna</p>
     <h1>Awards</h1>
+    <p class="page-intro">Awards, scholarships and research funding.</p>
   </section>
 </div>
 
@@ -51,72 +75,60 @@
 
   <section>
     <h2>Selected Awards</h2>
-    <ul class="awards-list">
+    <div class="awd-tiles">
+      <figure class="awd-tile">
+        <img src="pictures/Outstanding_Award.jpeg" alt="Outstanding Undergraduate in Computer Science Award">
+        <h3>Embry-Riddle's Outstanding Undergraduate in Computer Science</h3>
+        <p class="awd-year">2025 and 2026</p>
+      </figure>
+      <figure class="awd-tile">
+        <img src="pictures/southeastcon.jpg" alt="IEEE SoutheastCon Award">
+        <h3>IEEE-Eta Kappa Nu Best Paper Award</h3>
+        <p class="awd-year">2025</p>
+        <p>For “Dueling Deep Q-Learning for Intrusion Detection” at IEEE SoutheastCon 2025.</p>
+      </figure>
+      <figure class="awd-tile">
+        <img src="pictures/SRS_LoganLuna.png" alt="Student Research Symposium Award">
+        <h3>1st Place, Embry-Riddle Student Research Symposium</h3>
+        <p class="awd-year">2023</p>
+        <p>For “Enhancing Aircraft Recognition and Localization through Object Detection and Feature Point Tracking with Kalman Filtering”.</p>
+      </figure>
+    </div>
 
-      <!-- Outstanding Undergraduate -->
-      <li class="award-item">
-        <img src="pictures/Outstanding_Award.jpeg" alt="Outstanding Undergraduate in Computer Science Award" class="award-img">
-        <div>
-          <span class="item-title">Embry-Riddle's Outstanding Undergraduate in Computer Science</span>, 2025 &amp; 2026.
-        </div>
-      </li>
-
-      <!-- IEEE Award -->
-      <li class="award-item">
-        <img src="pictures/southeastcon.jpg" alt="IEEE SoutheastCon Award" class="award-img">
-        <div>
-          <span class="item-title">IEEE-Eta Kappa Nu Best Paper Award</span>, 2025.<br>
-          For “Dueling Deep Q-Learning for Intrusion Detection” at IEEE SoutheastCon 2025.
-        </div>
-      </li>
-
-      <!-- SRS Award -->
-      <li class="award-item">
-        <img src="pictures/SRS_LoganLuna.png" alt="Student Research Symposium Award" class="award-img">
-        <div>
-          <span class="item-title">1st Place, Embry-Riddle Student Research Symposium</span>, 2023.<br>
-          For “Enhancing Aircraft Recognition and Localization through Object Detection and Feature Point Tracking with Kalman Filtering”.
-        </div>
-      </li>
-
-      <li class="award-item">
-        <div>
-          <span class="item-title">DoW SMART (Science, Mathematics, and Research for Transformation) Scholarship</span>, 2023–Present.
-        </div>
-      </li>
-
-      <li class="award-item">
-        <div>
-          Dean’s List, Honors Program, Embry-Riddle Aeronautical University.
-        </div>
-      </li>
-
+    <ul class="awd-more">
+      <li><span class="item-title">DoW SMART (Science, Mathematics, and Research for Transformation) Scholarship</span>, 2023–Present.</li>
+      <li>Dean’s List, Honors Program, Embry-Riddle Aeronautical University.</li>
     </ul>
   </section>
 
   <section>
     <h2>Grants &amp; Funding</h2>
-    <p class="small">Total funding secured: $27,960</p>
-    <ul class="awards-list">
-      <li class="award-item">
-        <div>
-          <span class="item-title">Center for Aerospace Resilient Systems (CARS) Research Grant</span> — $24,000, Spring 2026.<br>
-          <em>AI for Data Anomaly Detection in a Satellite Learning Laboratory (SATLL)</em> (Project Lead).
-        </div>
-      </li>
-      <li class="award-item">
-        <div>
-          <span class="item-title">Embry-Riddle Office of Undergraduate Research Spark Grant</span> — $600, 2025.<br>
-          Conference travel support for IEEE SoutheastCon 2025 (Project Lead).
-        </div>
-      </li>
-      <li class="award-item">
-        <div>
-          <span class="item-title">Embry-Riddle SIG Research Project Grant</span> — $3,360, 2024–2025.<br>
-          <em>Signal-Centric Remote Sensing via Alternative Preprocessing and Acoustic Processing for ML-Driven Applications</em> (Project Lead).
-        </div>
-      </li>
-    </ul>
+    <div class="awd-grants">
+      <p class="awd-total"><strong>$27,960</strong><span>Total funding secured</span></p>
+      <ul class="rail">
+        <li>
+          <div class="rail-key"><b>$24,000</b>Spring 2026</div>
+          <div class="rail-body">
+            <span class="item-title">Center for Aerospace Resilient Systems (CARS) Research Grant</span>
+            <p><em>AI for Data Anomaly Detection in a Satellite Learning Laboratory (SATLL)</em> (Project Lead).</p>
+          </div>
+        </li>
+        <li>
+          <div class="rail-key"><b>$600</b>2025</div>
+          <div class="rail-body">
+            <span class="item-title">Embry-Riddle Office of Undergraduate Research Spark Grant</span>
+            <p>Conference travel support for IEEE SoutheastCon 2025 (Project Lead).</p>
+          </div>
+        </li>
+        <li>
+          <div class="rail-key"><b>$3,360</b>2024–2025</div>
+          <div class="rail-body">
+            <span class="item-title">Embry-Riddle SIG Research Project Grant</span>
+            <p><em>Signal-Centric Remote Sensing via Alternative Preprocessing and Acoustic Processing for ML-Driven Applications</em> (Project Lead).</p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
 </div>
 </main>

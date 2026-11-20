@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261120c">
+  <link rel="stylesheet" href="style.css?v=20261120p">
 </head>
 <body>
 
@@ -32,7 +32,6 @@
       <a href="publications.html">Publications</a>
       <a href="research.html">Research</a>
       <a href="awards.html">Awards</a>
-      <a href="software.html">Software</a>
       <a href="contact.html">Contact</a>
       <span class="social">
         <a href="https://github.com/Logan-Cole-Luna" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.192 22 16.439 22 12.017 22 6.484 17.523 2 12 2z"/></svg></a>
@@ -62,13 +61,11 @@
 
     <figure class="fig fig-hero">
       <a class="fig-frame boxed paper proof-hero" href="replay.html" aria-label="Watch the full replay of an orchestration run on Erdős's conjecture on large totient fibers">
-        <div class="ph-head"><span class="ph-eyebrow">Orchestration run replay</span><span class="ph-status">Formalizing</span></div>
         <p class="ph-title">Erdős's conjecture on large totient fibers</p>
         <div class="ph-graph"></div>
-        <div class="ph-bar"><span class="ph-clock">0:00 h</span><span class="ph-msg">Theorem statement formalized in Lean</span></div>
-        <div class="ph-foot"><span><b data-stat="proved">0</b> lemmas proved</span><span><b data-stat="fail">0</b> rejected by Lean</span><span><b data-stat="esc">0</b> escalated</span><span class="ph-more">Full replay →</span></div>
+        <span class="ph-more">Full replay →</span>
       </a>
-      <figcaption>A real 21-hour orchestration run, with lemmas proved by AIProver, replayed from its trace. Conditional on the smooth shifted primes hypothesis (H).</figcaption>
+      <figcaption>A real 21-hour orchestration run, replayed from its trace on a compressed clock: each dot is a lemma, filling green as Lean accepts AIProver's proof. Conditional on the smooth shifted primes hypothesis (H).</figcaption>
     </figure>
   </section>
 </div>
@@ -106,111 +103,100 @@
   </div>
 </section>
 
-<section class="band papers">
+<section class="band papers" id="papers">
   <div class="row">
     <p class="eyebrow">Research</p>
     <h2 class="display">Select Papers</h2>
 
     <ol class="paper-grid">
-      <li class="paper feature aip-feature">
+      <li class="paper feature aip-feature" id="fig-aiprover">
         <div class="feature-text">
           <h3>AIProver: Agentic Auto-Formalization of Mathematical Research via Certificate-Driven Evolving Harness</h3>
-          <div class="tags"><span class="tag amber">Under review</span><span class="tag">ICLR 2027</span></div>
+          <p class="venue"><span class="vkind vk-review">Under review</span>ICLR 2027</p>
           <p class="authors">Prithwish Jana, Viet Bach Hoang, <strong>Logan Luna</strong>, Viresh Pati, Akash Singirikonda, Cy Xie, Lisa Carbone, Wuyang Chen, Walter Moreira, Joe Stubbs, Sriram Vishwanath, Vijay Ganesh.</p>
-          <p class="venue">Under review, ICLR 2027</p>
           <p class="desc"><em>Contribution:</em> RL pipeline and reward, BEq+ extension, distillation pipeline and dataset, Semantic Alignment Model. <em>Results:</em> pass@4 semantic correctness from 15.7% to 36.7% standalone (above GPT-5.6-Sol and Codex); 41.9% to 79.8% as a Claude Code skill.</p>
           <div class="links"><a href="https://jprithwish.github.io/AIProver/">Project page</a></div>
         </div>
         <figure class="feature-fig aip-fig">
-          <div class="fig-frame boxed paper anim-aiprover">
+          <div class="fig-frame anim-aiprover">
             <div class="aip-strip"></div>
             <div class="aip-main" role="img" aria-label="AIProver formalizes the theorem that the first n odd numbers sum to n squared: it writes Lean, gets a Lean error, finds the Mathlib lemma Finset.sum_range_succ, repairs the proof, and checks the Lean statement against the English one."><div class="aip-eng"></div><div class="aip-code"></div></div>
-            <p class="aip-note" aria-live="off"></p>
             <div class="aip-train"></div>
             <svg class="aip-wires" aria-hidden="true"></svg>
           </div>
-          <figcaption>An illustrative session: AIProver turns an English theorem into Lean, repairs it from Lean's own error with a Mathlib lemma, and checks that the Lean says the same thing as the English. The strip above shows which part of training taught each step; choose a stage to see what it does.</figcaption>
+          <figcaption><b>Fig. 1.</b> An illustrative AIProver session: an English theorem becomes Lean, is repaired from Lean's own error with a Mathlib lemma, and is checked against the English. Above the file, the training stage behind each step lights up; choose one to see it.</figcaption>
         </figure>
       </li>
 
-      <li class="paper feature flip">
+      <li class="paper feature flip" id="fig-dqn">
         <div class="feature-text">
           <h3>Dueling Deep Q-Learning for Intrusion Detection</h3>
-          <div class="tags"><span class="tag">Conference</span><span class="tag green">Best Paper Award</span></div>
+          <p class="venue"><span class="vkind vk-conf">Conference</span>IEEE SoutheastCon 2025, <span class="award">Best Paper Award</span></p>
           <p class="authors"><strong>Logan Luna</strong>, Matthew P. Berkowitz, Laxima Niure Kandel, Sirio Jansen-Sánchez.</p>
-          <p class="venue">IEEE SoutheastCon 2025</p>
           <p class="desc">99.68% multi-class accuracy on 2.18M CIC-IDS2018 flows, against 88% for prior DQN-based detection and 98.4–99% for tree-ensemble and random-forest IDSs; SHAP attribution of the learned policy.</p>
           <div class="links"><a href="https://doi.org/10.1109/SoutheastCon56624.2025.10971436">DOI</a><a href="https://github.com/Logan-Cole-Luna/Hierarchical-Q-Learning-Threat-Hunting">Code</a></div>
         </div>
         <figure class="feature-fig dqn-fig">
           <div class="fig-frame boxed paper anim-dqn">
             <div class="dqn-svg"></div>
-            <p class="dqn-note" aria-live="off">A flow arrives.</p>
           </div>
-          <figcaption>Illustrative example flows pass a screening model; malicious ones go to a dueling Q-network, whose value and advantage streams rejoin to name the attack. Flow counts and recall are the real CIC-IDS2018 results.</figcaption>
+          <figcaption><b>Fig. 2.</b> A flow arrives as packets and its features are read off them. Benign flows leave at the XGBoost screen; malicious ones pass the dueling Q-network, where each class rises or falls from the value line V(s) to its Q-value and the highest names the attack. Flows are illustrative; recall is the real CIC-IDS2018 result.</figcaption>
         </figure>
       </li>
 
-      <li class="paper feature">
+      <li class="paper feature" id="fig-satellite">
         <div class="feature-text">
           <h3>Satellite Trajectory Optimization via Proximal Policy Optimization for Space Debris Avoidance</h3>
-          <div class="tags"><span class="tag">Journal</span><span class="tag green">Published, IEEE Access</span></div>
+          <p class="venue"><span class="vkind vk-journal">Journal</span>IEEE Access, 2026</p>
           <p class="authors"><strong>Logan Luna</strong>, Juan Ortiz Couder, Raul Alejandro Vargas-Acosta.</p>
-          <p class="venue">IEEE Access, 2026</p>
           <p class="desc">97.5% collision-avoidance success over 1,000 deterministic GEO episodes, 76.8 and 70.0 percentage points above the rule-based and impulsive Δv baselines.</p>
           <div class="links"><a href="https://doi.org/10.1109/ACCESS.2026.3655237">DOI</a><a href="https://github.com/Logan-Cole-Luna/sat-trajectory-avoidance">Code</a></div>
         </div>
         <figure class="feature-fig">
-          <div class="fig-frame boxed paper"><img class="fig-still" src="pictures/debris_field.webp" width="880" height="880" alt="Globe surrounded by orbiting debris fragments from the Fengyun-1C, Cosmos 2251 and Iridium 33 breakups"><canvas id="debris" data-theme="paper" data-src="data/debris.json" role="img" aria-label="Animated globe surrounded by orbiting debris fragments from the Fengyun-1C, Cosmos 2251 and Iridium 33 breakups"></canvas></div>
-          <figcaption>Tracked debris from the Fengyun-1C, Cosmos 2251 and Iridium 33 breakups, with an illustrative avoidance maneuver.</figcaption>
+          <div class="fig-frame"><img class="fig-still" src="pictures/debris_field.webp" width="880" height="880" alt="Globe surrounded by orbiting debris fragments from the Fengyun-1C, Cosmos 2251 and Iridium 33 breakups"><canvas id="debris" data-theme="paper" data-src="data/debris.json" role="img" aria-label="Animated globe surrounded by orbiting debris fragments from the Fengyun-1C, Cosmos 2251 and Iridium 33 breakups"></canvas></div>
+          <figcaption><b>Fig. 3.</b> Tracked debris from the Fengyun-1C, Cosmos 2251 and Iridium 33 breakups, with an illustrative avoidance manoeuvre magnified in the inset.</figcaption>
         </figure>
       </li>
 
-      <li class="paper feature flip uav-feature">
+      <li class="paper feature flip uav-feature" id="fig-uav">
         <div class="feature-text">
           <h3>Direct Policy Transfer from Simulator to Firmware: Verification Boundaries for Learned UAV Autonomy</h3>
-          <div class="tags"><span class="tag amber">Under review</span><span class="tag">EA Track 8</span></div>
+          <p class="venue"><span class="vkind vk-review">Under review</span>ACM International Conference on Trustworthy and Responsible AI and Computing Systems</p>
           <p class="authors">Illia Biblyi, Elsy Fuentes Montiel, Andressa C. Ojeda, <strong>Logan Luna</strong>, Kolton Galie, Vincent Reggi, Nicolas Andricos, Sirio Jansen-Sánchez, M. Ilhan Akbas.</p>
-          <p class="venue">Under review, EA Track 8: Operational Boundary Assurance for Trustworthy Agentic and Autonomous Systems</p>
           <p class="desc">A verification framework for compiling Isaac Lab policies directly into Crazyflie nano-UAV firmware, with executable checks from observation replay to source-to-binary traceability; 2–3 cm hover altitude error onboard.</p>
         </div>
         <figure class="feature-fig uav-fig">
-          <div class="fig-frame boxed paper anim-uav">
-            <canvas class="uav-canvas" role="img" aria-label="Two 3D views of the same flight plan: on the left a simulated nano-quadrotor flies it exactly over a grid; on the right the Crazyflie flies it on a lab floor with small wander and a slight height sag, from takeoff to landing and motor shutdown. Below, the same flights plotted over time: altitude, real minus simulation in centimeters, and battery voltage."></canvas>
-            <p class="uav-note" aria-live="off">The same checkpoint runs in simulation and on the Crazyflie; the propellers spin up.</p>
+          <div class="fig-frame anim-uav">
+            <canvas class="uav-canvas" role="img" aria-label="Two 3D views of the same flight plan: on the left a simulated nano-quadrotor flies it exactly over a grid; on the right the Crazyflie flies it on a lab floor with small wander and a slight height sag, from takeoff to landing and motor shutdown. An inset in the corner of the right view plots the real drone's height minus the simulated one, in centimeters, over the flight."></canvas>
           </div>
-          <figcaption>An illustrative flight: one checkpoint flies one plan in simulation (left) and on the Crazyflie (right), from takeoff through two waypoints to landing and motor shutdown. The plots below follow the same flights over time. In the 3D views the real drone's wander and height sag are exaggerated four times and the drones are drawn larger than life; the plots use true scale. The paper's flight records will replace these tracks.</figcaption>
+          <figcaption><b>Fig. 4.</b> One policy flies the same plan in simulation and on the Crazyflie. The real drone's drift is drawn four times larger; the inset gives it in centimetres. Illustrative tracks.</figcaption>
         </figure>
       </li>
 
-      <li class="paper half">
+      <li class="paper half" id="fig-sonar">
         <h3>Signal-Centric Remote Sensing via Alternative Preprocessing and Acoustic Processing for ML-Driven Applications</h3>
-        <div class="tags"><span class="tag">Conference</span><span class="tag green">Published</span></div>
+        <p class="venue"><span class="vkind vk-conf">Conference</span>IEEE SoutheastCon 2025, Concord, NC</p>
         <p class="authors"><strong>Logan Luna</strong>, Sirio Jansen-Sánchez, Ilteris Demirkiran, Leo Ghelarducci.</p>
-        <p class="venue">IEEE SoutheastCon 2025, Concord, NC</p>
         <p class="desc">91.2% reduction in total sonar processing time (13.1% in filtering alone) against image-based CV processing, while preserving target structure the image pipeline removed.</p>
         <figure class="sonar-fig">
-          <div class="fig-frame boxed paper anim-sonar">
+          <div class="fig-frame anim-sonar">
             <div class="sonar-svg"></div>
-            <p class="sonar-note" aria-live="off">A sonar sweeps past a gate; each column of the waterfall is one return.</p>
           </div>
-          <figcaption>The same sonar recording of an underwater gate, cleaned two ways. Working on the sonar's raw numbers finishes in a tenth of the time and keeps the gate's echo; turning each scan into an image first is slower and erases it. Plots and timings are from the paper, with the timings slowed down.</figcaption>
+          <figcaption><b>Fig. 5.</b> One sonar sweep past an underwater gate, cleaned two ways. Filtering the raw signal keeps the gate echo in 3.1 ms; rendering images first takes 37.4 ms and erases it. Waterfalls and timings from the paper, slowed down.</figcaption>
         </figure>
         <div class="links"><a href="https://doi.org/10.1109/SoutheastCon56624.2025.10971547">DOI</a><a href="https://arxiv.org/abs/2609.21123">arXiv</a></div>
       </li>
 
-      <li class="paper half">
+      <li class="paper half" id="fig-sensorwf">
         <h3>SensorWF: A FAIR Generalizable Workflow Framework for Scientific Time-Series Analysis</h3>
-        <div class="tags"><span class="tag">Workshop</span><span class="tag green">IEEE eScience 2026</span></div>
+        <p class="venue"><span class="vkind vk-workshop">Workshop</span>IEEE eScience 2026 (ReWorDS Workshop), Naples, Italy</p>
         <p class="authors"><strong>Logan Luna</strong>, Joseph Rigo, Kellan Shew, Raul Alejandro Vargas-Acosta.</p>
-        <p class="venue">IEEE eScience 2026 (ReWorDS Workshop), Naples, Italy</p>
         <p class="desc">One analytical core carried across spacecraft telemetry, ECG, and climate data with small domain adapters and no core changes; bit-identical outputs under fixed seeds.</p>
         <figure class="swf-fig">
-          <div class="fig-frame boxed paper anim-sensorwf">
+          <div class="fig-frame anim-sensorwf">
             <div class="swf-svg"></div>
-            <p class="swf-note" aria-live="off">SatelliteAdapter decodes SCOTTI v2 hex frames, about one per second.</p>
           </div>
-          <figcaption>Real spacecraft, ECG and weather recordings each enter through a small adapter written for that domain, then run through the same unchanged code. Running it again produces the same output file, byte for byte.</figcaption>
+          <figcaption><b>Fig. 6.</b> Real spacecraft, ECG and weather recordings, each read by its own small adapter (M1), then marked by the same unchanged modules M2 to M5.</figcaption>
         </figure>
         <div class="links"><a href="https://arxiv.org/abs/2609.21110">arXiv</a><a href="https://github.com/Logan-Cole-Luna/SensorWF">Code</a></div>
       </li>
@@ -289,18 +275,18 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
-<script src="data/run011.js?v=20261120c" defer></script>
-<script src="js/aimath-layout.js?v=20261120c" defer></script>
-<script src="js/proof-hero.js?v=20261120c" defer></script>
-<script src="js/debris.js?v=20261120c" defer></script>
-<script src="data/dqn.js?v=20261120c" defer></script>
-<script src="js/anim-dqn.js?v=20261120c" defer></script>
-<script src="data/sensorwf.js?v=20261120c" defer></script>
-<script src="js/anim-sensorwf.js?v=20261120c" defer></script>
-<script src="data/sonar.js?v=20261120c" defer></script>
-<script src="js/anim-sonar.js?v=20261120c" defer></script>
-<script src="data/uav.js?v=20261120c" defer></script>
-<script src="js/anim-uav.js?v=20261120c" defer></script>
-<script src="js/anim-aiprover.js?v=20261120c" defer></script>
+<script src="data/run011.js?v=20261120p" defer></script>
+<script src="js/aimath-layout.js?v=20261120p" defer></script>
+<script src="js/proof-hero.js?v=20261120p" defer></script>
+<script src="js/debris.js?v=20261120p" defer></script>
+<script src="data/dqn.js?v=20261120p" defer></script>
+<script src="js/anim-dqn.js?v=20261120p" defer></script>
+<script src="data/sensorwf.js?v=20261120p" defer></script>
+<script src="js/anim-sensorwf.js?v=20261120p" defer></script>
+<script src="data/sonar.js?v=20261120p" defer></script>
+<script src="js/anim-sonar.js?v=20261120p" defer></script>
+<script src="data/uav.js?v=20261120p" defer></script>
+<script src="js/anim-uav.js?v=20261120p" defer></script>
+<script src="js/anim-aiprover.js?v=20261120p" defer></script>
 </body>
 </html>
