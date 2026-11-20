@@ -114,6 +114,33 @@
   reset();
   if (reduce) { sched.forEach(s => apply(s.e)); syncEdges(); running = false; }
   else { apply(sched[0].e); apply(sched[1].e); apply(sched[2].e); idx = 3; tl = sched[3].t; syncEdges(); }   // start already sketched
+  const ht = /#t=([\d.]+)/.exec(location.hash);   // #t=<s> jumps to a moment, for testing
+  if (ht && !reduce) { reset(); idx = 0; tl = parseFloat(ht[1]) % END; while (idx < sched.length && sched[idx].t <= tl) apply(sched[idx++].e); syncEdges(); }
+  // Fixed height at a given width: play every event once off-loop, keep the tallest header, message
+  // line and counter row, reserve those heights, then restore the current moment. Redone on resize.
+  const head = $(".ph-head"), foot = $(".ph-foot"), parts = [head, msg, foot];
+  let fitW = -1;
+  function fit() {
+    const w = root.clientWidth;
+    if (!w || w === fitW) return;
+    fitW = w;
+    const keep = { msg: msg.innerHTML, status: status.textContent, done: status.classList.contains("done"), clock: clock.textContent };
+    parts.forEach(e => (e.style.minHeight = "0px"));
+    const max = parts.map(() => 0);
+    const measure = () => parts.forEach((e, i) => (max[i] = Math.max(max[i], e.getBoundingClientRect().height)));
+    reset(); status.textContent = "Formalizing"; measure();
+    sched.forEach(x => { apply(x.e); measure(); });
+    parts.forEach((e, i) => (e.style.minHeight = Math.ceil(max[i]) + "px"));
+    reset();                                   // replay up to the current moment
+    const upto = reduce ? sched.length : idx;
+    for (let i = 0; i < upto; i++) apply(sched[i].e);
+    msg.innerHTML = keep.msg; status.textContent = keep.status; status.classList.toggle("done", keep.done); clock.textContent = keep.clock;
+    syncEdges();
+  }
+  fit();
+  let fitRaf = 0;
+  addEventListener("resize", () => { if (!fitRaf) fitRaf = requestAnimationFrame(() => { fitRaf = 0; fit(); }); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fitW = -1; fit(); });
   if ("IntersectionObserver" in window) new IntersectionObserver(es => { running = es[0].isIntersecting && !reduce; last = null; }).observe(root);
   requestAnimationFrame(frame);
 })();

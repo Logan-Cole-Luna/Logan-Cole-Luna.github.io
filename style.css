@@ -255,7 +255,7 @@ footer a:hover { color: var(--rust-soft); }
 /* ---------- Hero: AIProver run replay ---------- */
 .fig-frame.boxed.proof-hero, a.proof-hero { display: block; color: inherit; text-decoration: none; padding: 1.1rem 1.2rem .9rem; transition: border-color .2s, box-shadow .2s; }
 a.proof-hero:hover { border-color: var(--rust); box-shadow: 0 2px 0 rgba(168, 70, 31, .12); }
-.ph-head { display: flex; justify-content: space-between; align-items: center; gap: .6rem; }
+.ph-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .2rem .6rem; }   /* wraps only below ~380px, where the long final status would otherwise widen the hero */
 .ph-eyebrow { font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--rust); }
 .ph-status { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .15rem .5rem; background: #e6dcc6; color: #4e4a44; white-space: nowrap; }
 .ph-status.done { background: #dde7da; color: #2f6b45; }
@@ -312,3 +312,111 @@ a.proof-hero:hover { border-color: var(--rust); box-shadow: 0 2px 0 rgba(168, 70
   .menu a { font-size: 14.5px; white-space: nowrap; }
   .social { gap: .8rem; }
 }
+
+/* ---------- Paper card: DQN intrusion-detection animation ---------- */
+.paper.wide.full { grid-column: 1 / -1; }
+.paper.feature.flip { grid-template-columns: minmax(0, 600px) minmax(0, 1fr); }
+.paper.feature.flip .feature-text { min-height: 0; }
+.paper.feature.flip .feature-text .links { margin-top: 1.4rem; }
+.paper.feature.flip .feature-fig { order: -1; }
+@media (max-width: 900px) { .paper.feature.flip { grid-template-columns: 1fr; } .paper.feature.flip .feature-fig { order: 0; } }
+.fig-frame.boxed.anim-dqn { padding: 1.3rem 1.3rem .9rem; }
+.dqn-svg svg { width: 100%; height: auto; display: block; }
+.dqn-note { margin: .5rem 0 0; min-height: 1.45em; font-size: 13.5px; line-height: 1.45; color: var(--soft); }
+.dqn-fig figcaption { line-height: 1.5; }
+@media (max-width: 640px) { .fig-frame.boxed.anim-dqn { padding: .9rem .7rem .7rem; } .dqn-note { min-height: 2.9em; } }
+
+/* ---------- Paper card: SensorWF animation ---------- */
+.swf-fig { margin: 0 0 1.8rem; }
+.fig-frame.boxed.anim-sensorwf { padding: 1.2rem 1.3rem .9rem; }
+.swf-svg svg { width: 100%; height: auto; display: block; }
+.swf-note { margin: .5rem 0 0; min-height: 1.45em; font-size: 13.5px; line-height: 1.45; color: var(--soft); }
+.swf-fig figcaption { margin-top: .6rem; font-size: 13.5px; line-height: 1.5; color: var(--soft); text-align: center; }
+@media (max-width: 640px) { .fig-frame.boxed.anim-sensorwf { padding: .9rem .7rem .7rem; } .swf-note { min-height: 2.9em; } }
+
+/* ---------- Paper card: AIProver session figure ---------- */
+.paper.feature.aip-feature { grid-template-columns: minmax(0, 1fr) minmax(0, 620px); }
+@media (max-width: 900px) { .paper.feature.aip-feature { grid-template-columns: 1fr; } .aip-feature .feature-fig { max-width: 640px; } }
+.fig-frame.boxed.anim-aiprover { padding: 1rem 1.1rem .9rem; }
+.aip-strip { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .55rem; font-size: 13px; color: var(--soft); padding-bottom: .55rem; margin-bottom: .9rem; border-bottom: 1px solid var(--rule); }
+.aip-stage { font: inherit; color: inherit; background: none; border: 0; border-bottom: 1.5px solid transparent; border-radius: 0; padding: 0 0 2px; cursor: pointer; transition: color .25s, border-color .25s; }
+.aip-stage:hover { color: var(--ink); border-bottom-color: var(--rule); }
+.aip-stage:focus-visible { outline: 1px solid var(--rust); outline-offset: 3px; }
+.aip-stage.is-on { color: var(--rust); border-bottom-color: var(--rust); }
+.aip-stage[aria-pressed="true"] { font-weight: 600; }
+.aip-arrow { color: #b9ab8c; }
+.aip-main { display: grid; grid-template-columns: 164px minmax(0, 1fr); gap: 1.25rem; align-items: start; opacity: var(--aip-fade, 1); }
+.aip-eng p { margin: 0 0 .65rem; font-size: 14px; line-height: 1.5; color: var(--ink); }
+.aip-eng i { font-style: italic; }
+.aip-thm-h { font-weight: 600; color: var(--deep); }
+.aip-eng .aip-disp { font-size: 14.5px; margin: .1rem 0 .75rem; white-space: nowrap; }
+.aip-eng .aip-proof { font-size: 13px; color: var(--soft); }
+.aip-pair { transition: background-color .3s, box-shadow .3s; }
+.aip-pair.is-on { background: rgba(192, 138, 43, .2); box-shadow: 0 1.5px 0 #c08a2b; }
+.aip-code { background: #efe6d4; border: 1px solid var(--rule); min-width: 0; }
+.aip-file { display: flex; justify-content: space-between; gap: .8rem; padding: .35rem .7rem; border-bottom: 1px solid var(--rule); font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; color: var(--soft); }
+.aip-src { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; line-height: 20px; padding: .45rem 0 .5rem; min-height: 236px; overflow-x: auto; }
+.aip-ln { display: flex; white-space: pre; }
+.aip-ln.is-err { background: rgba(168, 70, 31, .07); }
+.aip-num { flex: none; width: 2.4em; padding-right: .8em; text-align: right; color: #a3977e; }
+.aip-tx { color: var(--ink); padding-right: .6rem; }
+.aip-kw { color: var(--deep); font-weight: 500; }
+.aip-err { text-decoration: underline wavy var(--rust); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.aip-msg { overflow: hidden; padding-left: 3.2em; font-size: 12px; line-height: 18px; white-space: nowrap; }
+.aip-msg-err { color: var(--rust); }
+.aip-msg-search { color: var(--soft); }
+.aip-msg-hit { font-size: 13px; line-height: 20px; color: var(--green); }
+.aip-q { color: var(--ink); }
+.aip-hit, .aip-lemma { color: var(--green); font-weight: 500; }
+.aip-hide { visibility: hidden; }
+.aip-fly { position: absolute; left: 0; top: 0; z-index: 2; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; line-height: 20px; font-weight: 500; color: var(--green); white-space: pre; pointer-events: none; opacity: 0; }
+.aip-caret { display: inline-block; width: 1.5px; height: 15px; margin-left: 1px; vertical-align: -3px; background: var(--rust); }
+.aip-tick { color: var(--green); font-weight: 600; }
+.aip-goals { font-family: "Source Sans 3", sans-serif; font-style: italic; font-size: 13px; color: var(--green); }
+.aip-bad { color: var(--rust); }
+.aip-good { color: var(--green); }
+.aip-reward { color: var(--rust); font-weight: 500; }
+.aip-note { margin: .75rem 0 0; min-height: 1.45em; font-size: 13.5px; line-height: 1.45; color: var(--soft); }
+.aip-train { margin-top: .8rem; padding-top: .7rem; border-top: 1px solid var(--rule); }
+.aip-train-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.aip-train-name { font-size: 14px; font-weight: 600; color: var(--deep); }
+.aip-resume { font: inherit; font-size: 13px; color: var(--rust); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.aip-resume:focus-visible { outline: 1px solid var(--rust); outline-offset: 3px; }
+.aip-train-desc { margin: .2rem 0 .6rem; min-height: 2.9em; font-size: 13px; line-height: 1.45; color: var(--soft); }
+.aip-train-fig { min-height: 118px; }
+.aip-train-fig svg { display: block; overflow: visible; }
+svg.aip-wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+svg.aip-wires path { fill: none; stroke: var(--rust); stroke-width: 1; opacity: .75; }
+svg.aip-wires path.aip-link { stroke: #c08a2b; opacity: .9; }
+.aip-fig figcaption { margin-top: .6rem; font-size: 13.5px; line-height: 1.5; color: var(--soft); text-align: center; }
+@media (max-width: 640px) {
+  .fig-frame.boxed.anim-aiprover { padding: .85rem .7rem .7rem; }
+  .aip-strip { font-size: 12.5px; gap: .15rem .4rem; }
+  .aip-main { grid-template-columns: 1fr; gap: .4rem; }
+  .aip-eng .aip-proof { display: none; }
+  .aip-note { min-height: 2.9em; }
+  .aip-src { font-size: 12.5px; overflow-x: hidden; min-height: 296px; }
+  .aip-ln { white-space: pre-wrap; }
+  .aip-tx { min-width: 0; overflow-wrap: anywhere; }
+  .aip-num { width: 2em; padding-right: .6em; }
+  .aip-msg { padding-left: 2.6em; white-space: normal; }
+  .aip-train-desc { min-height: 5.8em; }
+  .aip-train-fig { min-height: 152px; }
+}
+
+/* ---------- Paper card: Signal-Centric sonar animation ---------- */
+.sonar-fig { margin: 0 0 1.8rem; }
+.fig-frame.boxed.anim-sonar { padding: 1.2rem 1.3rem .9rem; }
+.sonar-svg svg { width: 100%; height: auto; display: block; }
+.sonar-note { margin: .5rem 0 0; min-height: 1.45em; font-size: 13.5px; line-height: 1.45; color: var(--soft); }
+.sonar-fig figcaption { margin-top: .6rem; font-size: 13.5px; line-height: 1.5; color: var(--soft); text-align: center; }
+@media (max-width: 640px) { .fig-frame.boxed.anim-sonar { padding: .9rem .7rem .7rem; } .sonar-note { min-height: 2.9em; } }
+
+/* ---------- Paper card: direct policy transfer, UAV animation ---------- */
+.paper.feature.flip.uav-feature { grid-template-columns: minmax(0, 620px) minmax(0, 1fr); }
+@media (max-width: 900px) { .paper.feature.flip.uav-feature { grid-template-columns: 1fr; } .uav-feature .feature-fig { max-width: 620px; } }
+.fig-frame.boxed.anim-uav { padding: 1rem 1rem .85rem; }
+.fig-frame .uav-canvas { position: static; opacity: 1; display: block; width: 100%; height: 460px; }
+.uav-note { margin: .45rem 0 0; font-size: 13.5px; line-height: 1.45; color: var(--soft); }
+.uav-fig figcaption { line-height: 1.5; }
+@media (max-width: 640px) { .fig-frame.boxed.anim-uav { padding: .8rem .7rem .7rem; } }

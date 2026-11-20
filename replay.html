@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Logan Luna – AIProver Run Replay</title>
+  <title>Logan Luna – Orchestration Run Replay</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="pictures/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="pictures/favicon-32.png" type="image/png" sizes="32x32">
@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261120c">
   <style>
   :root { --ochre: #c08a2b; --lgreen: #d3e4d8; }
 
@@ -35,7 +35,8 @@
   .status.done { background: #dde7da; color: #2f6b45; }
   .stats { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; font-size: 13px; color: var(--soft); }
   .stats b { display: block; font-family: "DM Serif Display", serif; font-weight: 400; font-size: 22px; color: var(--ink); }
-  .log { list-style: none; margin: 0; padding: 0; font-size: 13.5px; line-height: 1.35; flex: 1; overflow: hidden; min-height: 180px; }
+  /* the log is a fixed region: it fills what the stage leaves (never less than 180px) and never grows the panel */
+  .log { list-style: none; margin: 0; padding: 0; font-size: 13.5px; line-height: 1.35; flex: 1 1 0px; overflow: hidden; min-height: 180px; }
   .log li { padding: .35rem 0 .35rem .7rem; border-left: 2px solid var(--rule); margin-bottom: .3rem; animation: in .35s ease; }
   .log li.fail { border-color: var(--rust); } .log li.esc { border-color: var(--ochre); } .log li.ok { border-color: var(--green); }
   .log time { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--soft); margin-right: .4rem; }
@@ -63,7 +64,7 @@
   .ring.on { animation: pulse 1.2s ease-out infinite; }
   @keyframes pulse { 0% { opacity: .7; } 100% { opacity: 0; transform: scale(1.12); } }
   .badge { font-family: "Source Sans 3", sans-serif !important; font-size: 9px !important; font-weight: 700; letter-spacing: .06em; }
-  @media (max-width: 900px) { .panel { grid-template-columns: 1fr; } .side { border-left: 0; border-top: 1px solid var(--rule); } .log { min-height: 0; max-height: 220px; } }
+  @media (max-width: 900px) { .panel { grid-template-columns: 1fr; } .side { border-left: 0; border-top: 1px solid var(--rule); } .log { flex: none; height: 220px; min-height: 0; } }
   </style>
 </head>
 <body>
@@ -86,7 +87,7 @@
     </nav>
   </header>
   <section class="row page-hero">
-    <p class="pretitle">AIProver run replay</p>
+    <p class="pretitle">Orchestration run replay</p>
     <h1>Erdős's conjecture on large totient fibers</h1>
   </section>
 </div>
@@ -132,8 +133,8 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
-<script src="data/run011.js"></script>
-<script src="js/aimath-layout.js"></script>
+<script src="data/run011.js?v=20261120c"></script>
+<script src="js/aimath-layout.js?v=20261120c"></script>
 <script>
 (() => {
   const RUN = window.RUN, NS = "http://www.w3.org/2000/svg";
@@ -204,6 +205,9 @@
     const li = document.createElement("li"); if (cls) li.className = cls;
     li.innerHTML = `<time>${fmtH(h)}</time>${html}`; log.prepend(li);
     while (log.children.length > 7) log.lastChild.remove();
+    // keep whole entries only: drop the oldest ones that no longer fit the fixed log height
+    const bottom = log.getBoundingClientRect().bottom;
+    while (log.children.length > 1 && log.lastChild.getBoundingClientRect().bottom > bottom + .5) log.lastChild.remove();
   }
   const code = n => `<code>${n}</code>`;
   function stat() { for (const k in S) document.getElementById("s" + k[0].toUpperCase() + k.slice(1)).textContent = S[k]; }
@@ -231,6 +235,17 @@
     }
     stat();
   }
+
+  // the status line's height is reserved for its longest wording, measured at load and on resize
+  const STATUS = [["Formalizing"], ["Formalized"], ["Faithful"], ["Proving lemmas"], ["Verified", 1], ["Proved, verified, reviewed", 1]];
+  function fitStatus() {
+    const keep = [status.textContent, status.classList.contains("done")]; let h = 0;
+    status.style.minHeight = "0px";
+    STATUS.forEach(([s, d]) => { status.textContent = s; status.classList.toggle("done", !!d); h = Math.max(h, status.getBoundingClientRect().height); });
+    status.textContent = keep[0]; status.classList.toggle("done", keep[1]); status.style.minHeight = Math.ceil(h) + "px";
+  }
+  fitStatus(); addEventListener("resize", fitStatus);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitStatus);
 
   function reset() {
     Object.values(N).forEach(o => { o.state = "hidden"; o.proved = false; o.g.setAttribute("opacity", 0); o.ring.classList.remove("on"); o.badge.setAttribute("opacity", 0); });
